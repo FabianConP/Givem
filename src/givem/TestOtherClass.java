@@ -11,5 +11,10 @@ package givem;
  * @author fabian
  */
 public class TestOtherClass {
-    
+        public static void main(String[] args) {
+        System.out.println("Hello World");
+        System.out.println("Guest modification - Ac");
+        System.out.println("Ok");
+        System.out.println("My modifications");
+    }
 }
