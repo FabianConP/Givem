@@ -1,10 +1,10 @@
+package gui;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package gui;
 
 /**
  *
@@ -13,7 +13,7 @@ package gui;
 public class JIF_Inicio_Sesion extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form JIF_Login
+     * Creates new form JIF_Inicio_Sesion
      */
     public JIF_Inicio_Sesion() {
         initComponents();
@@ -28,62 +28,15 @@ public class JIF_Inicio_Sesion extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jt_Documento = new javax.swing.JTextField();
-        jt_Contrasena = new javax.swing.JPasswordField();
-        jb_Entrar = new javax.swing.JButton();
-        jl_Documento = new javax.swing.JLabel();
-        jl_Contrasena = new javax.swing.JLabel();
-
-        setTitle("Inicio de Sesión");
-        setToolTipText("");
-
-        jt_Documento.setToolTipText("Documento del empleado");
-
-        jt_Contrasena.setToolTipText("Contraseña del empleado");
-
-        jb_Entrar.setText("Entrar");
-        jb_Entrar.setToolTipText("Clic aquí para iniciar sesión");
-
-        jl_Documento.setText("Documento");
-
-        jl_Contrasena.setText("Contraseña");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jl_Documento)
-                        .addGap(18, 18, 18)
-                        .addComponent(jt_Documento, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jl_Contrasena)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(30, 30, 30)
-                                .addComponent(jb_Entrar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jt_Contrasena)))))
-                .addContainerGap(25, Short.MAX_VALUE))
+            .addGap(0, 394, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_Documento)
-                    .addComponent(jt_Documento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_Contrasena)
-                    .addComponent(jt_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jb_Entrar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(0, 274, Short.MAX_VALUE)
         );
 
         pack();
@@ -91,10 +44,5 @@ public class JIF_Inicio_Sesion extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jb_Entrar;
-    private javax.swing.JLabel jl_Contrasena;
-    private javax.swing.JLabel jl_Documento;
-    private javax.swing.JPasswordField jt_Contrasena;
-    private javax.swing.JTextField jt_Documento;
     // End of variables declaration//GEN-END:variables
 }

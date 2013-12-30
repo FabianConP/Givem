@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gui;
 
 /**
@@ -12,11 +11,15 @@ package gui;
  */
 public class Frm_Principal extends javax.swing.JFrame {
 
+    public static String rol;
+
     /**
      * Creates new form Principal
      */
-    public Frm_Principal() {
+    public Frm_Principal(String Rol) {
         initComponents();
+        rol = Rol;
+        this.setTitle(this.getTitle() + " - " + rol);
     }
 
     /**
@@ -30,7 +33,6 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         jmb_Principal = new javax.swing.JMenuBar();
         jm_Archivo = new javax.swing.JMenu();
-        jmi_Iniciar_Sesion = new javax.swing.JMenuItem();
         jmi_Cerrar_Sesion = new javax.swing.JMenuItem();
         jmi_Salir = new javax.swing.JMenuItem();
         jm_Agregar_Modificar = new javax.swing.JMenu();
@@ -59,15 +61,12 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         jm_Archivo.setText("Archivo");
 
-        jmi_Iniciar_Sesion.setText("Iniciar Sesión");
-        jmi_Iniciar_Sesion.addActionListener(new java.awt.event.ActionListener() {
+        jmi_Cerrar_Sesion.setText("Cerrar Sesión");
+        jmi_Cerrar_Sesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_Iniciar_SesionActionPerformed(evt);
+                jmi_Cerrar_SesionActionPerformed(evt);
             }
         });
-        jm_Archivo.add(jmi_Iniciar_Sesion);
-
-        jmi_Cerrar_Sesion.setText("Cerrar Sesión");
         jm_Archivo.add(jmi_Cerrar_Sesion);
 
         jmi_Salir.setText("Salir");
@@ -81,6 +80,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jmb_Principal.add(jm_Archivo);
 
         jm_Agregar_Modificar.setText("Agregar / Modificar");
+        jm_Agregar_Modificar.setEnabled(false);
 
         jmi_Factura.setText("Factura");
         jm_Agregar_Modificar.add(jmi_Factura);
@@ -171,12 +171,11 @@ public class Frm_Principal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jmi_SalirActionPerformed
 
-    private void jmi_Iniciar_SesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_Iniciar_SesionActionPerformed
-        JIF_Inicio_Sesion jif_Inicio_Sesion = new JIF_Inicio_Sesion();
-        this.getContentPane().add(jif_Inicio_Sesion);
-        jif_Inicio_Sesion.show();
-        jmi_Iniciar_Sesion.setEnabled(false);
-    }//GEN-LAST:event_jmi_Iniciar_SesionActionPerformed
+    private void jmi_Cerrar_SesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_Cerrar_SesionActionPerformed
+        Frm_Inicio_Sesion frm_Inicio_Sesion = new Frm_Inicio_Sesion();
+        frm_Inicio_Sesion.main(new String[]{""});
+        this.dispose();
+    }//GEN-LAST:event_jmi_Cerrar_SesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,7 +207,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frm_Principal().setVisible(true);
+                new Frm_Principal(rol).setVisible(true);
             }
         });
     }
@@ -228,7 +227,6 @@ public class Frm_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_Factura;
     private javax.swing.JMenuItem jmi_Generar_CS;
     private javax.swing.JMenuItem jmi_Informe_General;
-    private javax.swing.JMenuItem jmi_Iniciar_Sesion;
     private javax.swing.JMenuItem jmi_Inventario;
     private javax.swing.JMenuItem jmi_Producto;
     private javax.swing.JMenuItem jmi_Productos_Vendidos;
