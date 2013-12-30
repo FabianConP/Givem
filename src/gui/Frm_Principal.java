@@ -28,7 +28,6 @@ public class Frm_Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jdp_Principal = new javax.swing.JDesktopPane();
         jmb_Principal = new javax.swing.JMenuBar();
         jm_Archivo = new javax.swing.JMenu();
         jmi_Iniciar_Sesion = new javax.swing.JMenuItem();
@@ -54,13 +53,18 @@ public class Frm_Principal extends javax.swing.JFrame {
         jmi_Acerca = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setFocusableWindowState(false);
+        setTitle("Givem");
         setPreferredSize(new java.awt.Dimension(1024, 768));
         setResizable(false);
 
         jm_Archivo.setText("Archivo");
 
         jmi_Iniciar_Sesion.setText("Iniciar Sesión");
+        jmi_Iniciar_Sesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_Iniciar_SesionActionPerformed(evt);
+            }
+        });
         jm_Archivo.add(jmi_Iniciar_Sesion);
 
         jmi_Cerrar_Sesion.setText("Cerrar Sesión");
@@ -101,6 +105,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jmb_Principal.add(jm_Agregar_Modificar);
 
         jm_Herramientas.setText("Herramientas");
+        jm_Herramientas.setEnabled(false);
 
         jmi_Generar_CS.setText("Generar Copia de Seguridad");
         jm_Herramientas.add(jmi_Generar_CS);
@@ -111,6 +116,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jmb_Principal.add(jm_Herramientas);
 
         jm_Informes.setText("Informes");
+        jm_Informes.setEnabled(false);
 
         jmi_Informe_General.setText("Informe General");
         jm_Informes.add(jmi_Informe_General);
@@ -145,13 +151,11 @@ public class Frm_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdp_Principal, javax.swing.GroupLayout.PREFERRED_SIZE, 1024, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 1024, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jdp_Principal, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 750, Short.MAX_VALUE)
         );
 
         pack();
@@ -159,13 +163,20 @@ public class Frm_Principal extends javax.swing.JFrame {
 
     private void jmi_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ProductoActionPerformed
         JIF_Producto jif_Producto = new JIF_Producto();
-        jdp_Principal.add(jif_Producto);
+        this.getContentPane().add(jif_Producto);
         jif_Producto.show();
     }//GEN-LAST:event_jmi_ProductoActionPerformed
 
     private void jmi_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_SalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jmi_SalirActionPerformed
+
+    private void jmi_Iniciar_SesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_Iniciar_SesionActionPerformed
+        JIF_Inicio_Sesion jif_Inicio_Sesion = new JIF_Inicio_Sesion();
+        this.getContentPane().add(jif_Inicio_Sesion);
+        jif_Inicio_Sesion.show();
+        jmi_Iniciar_Sesion.setEnabled(false);
+    }//GEN-LAST:event_jmi_Iniciar_SesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,7 +214,6 @@ public class Frm_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jdp_Principal;
     private javax.swing.JMenu jm_Agregar_Modificar;
     private javax.swing.JMenu jm_Archivo;
     private javax.swing.JMenu jm_Ayuda;
