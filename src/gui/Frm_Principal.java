@@ -18,7 +18,8 @@ public class Frm_Principal extends javax.swing.JFrame {
      */
     public Frm_Principal(String Rol) {
         initComponents();
-        rol = Rol;
+        rol = "Vendedor";
+        // rol = Rol; Solo si se llega desde un inicio de sesion
         this.setTitle(this.getTitle() + " - " + rol);
     }
 
