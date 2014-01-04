@@ -8,6 +8,7 @@ package Conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -21,10 +22,14 @@ public class Conexion {
         Class.forName("com.mysql.jdbc.Driver");
         String dbUrl = "jdbc:mysql://localhost/db_Givem";
         try {
-            c = DriverManager.getConnection(dbUrl, "root", "1234");
-        } catch (Exception e) {
+            c = DriverManager.getConnection(dbUrl, "root", "");
+        } catch (SQLException e) {
             System.out.println(e.getCause());
         }
+    }
+
+    public Statement createStatement() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -81,7 +81,6 @@ public class Frm_Principal extends javax.swing.JFrame {
         jmb_Principal.add(jm_Archivo);
 
         jm_Agregar_Modificar.setText("Agregar / Modificar");
-        jm_Agregar_Modificar.setEnabled(false);
 
         jmi_Factura.setText("Factura");
         jm_Agregar_Modificar.add(jmi_Factura);
@@ -95,6 +94,11 @@ public class Frm_Principal extends javax.swing.JFrame {
         jm_Agregar_Modificar.add(jmi_Producto);
 
         jmi_Cliente.setText("Cliente");
+        jmi_Cliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_ClienteActionPerformed(evt);
+            }
+        });
         jm_Agregar_Modificar.add(jmi_Cliente);
 
         jmi_Empleado.setText("Empleado");
@@ -177,6 +181,12 @@ public class Frm_Principal extends javax.swing.JFrame {
         frm_Inicio_Sesion.main(new String[]{""});
         this.dispose();
     }//GEN-LAST:event_jmi_Cerrar_SesionActionPerformed
+
+    private void jmi_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ClienteActionPerformed
+        JIF_Cliente jif_Cliente = new JIF_Cliente();
+        this.getContentPane().add(jif_Cliente);
+        jif_Cliente.show();
+    }//GEN-LAST:event_jmi_ClienteActionPerformed
 
     /**
      * @param args the command line arguments

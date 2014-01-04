@@ -30,7 +30,6 @@
         <Menu class="javax.swing.JMenu" name="jm_Agregar_Modificar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar / Modificar"/>
-            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmi_Factura">
@@ -50,6 +49,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cliente"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmi_ClienteActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmi_Empleado">
               <Properties>
