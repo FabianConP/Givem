@@ -7,11 +7,10 @@
 package gui;
 
 import Conexion.Conexion;
+import Util.Util;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,12 +42,20 @@ public class Frm_Inicio_Sesion extends javax.swing.JFrame {
         jb_Entrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inicio de sesión");
 
-        jt_Contrasena.setToolTipText("Contraseña del empleado");
+        jt_Contrasena.setText("1234");
+        jt_Contrasena.setToolTipText("Contraseña del empleado [a-Z][0-9]");
 
         jl_Documento.setText("Documento");
 
-        jt_Documento.setToolTipText("Documento del empleado");
+        jt_Documento.setText("1019101086");
+        jt_Documento.setToolTipText("Documento del empleado [0-9]");
+        jt_Documento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_DocumentoKeyTyped(evt);
+            }
+        });
 
         jl_Contrasena.setText("Contraseña");
 
@@ -106,18 +113,24 @@ public class Frm_Inicio_Sesion extends javax.swing.JFrame {
         try {
             c = new Conexion();
             Statement s = c.c.createStatement();
-            ResultSet r = s.executeQuery("SELECT * FROM tb_Empleado WHERE cedula = " + jt_Documento.getText());
+            String cedula = jt_Documento.getText();
+            String contraseña = Util.cArrayToString(jt_Contrasena.getPassword());
+            String sentence  = "CALL sp_login("+cedula+","+contraseña+")", ans = "";
+            ResultSet r = s.executeQuery(sentence);
             if (r.next()) {
-                if (r.getString(5).equals(jt_Contrasena.getPassword())) {
+                ans = r.getString(1);
+                if (!ans.equals("NO")) {
                     JOptionPane.showMessageDialog(this,
-                        "Se ha iniciado sesión correctamente\nBienvenido su rol es "+r.getString(6));
-                    Frm_Principal frm_Principal = new Frm_Principal(r.getString(6));
+                        "Se ha iniciado sesión correctamente\nBienvenido su rol es "+ans);
+                    Frm_Principal frm_Principal = new Frm_Principal(ans);
                     frm_Principal.main(new String[]{""});
                     this.dispose();
                 } else
                 JOptionPane.showMessageDialog(this,"Documento o contraseña incorrecta");
+                jt_Contrasena.setText("");
             } else
             JOptionPane.showMessageDialog(this,"Documento o contraseña incorrecta");
+            jt_Contrasena.setText("");
             c.c.close();
         } catch (ClassNotFoundException | SQLException ex) {
            JOptionPane.showMessageDialog(this,"Error al conectarse", "Error de conexion", JOptionPane.ERROR_MESSAGE); 
@@ -125,6 +138,12 @@ public class Frm_Inicio_Sesion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jb_EntrarActionPerformed
 
+    private void jt_DocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_DocumentoKeyTyped
+        char n = evt.getKeyChar();
+        if(!Character.isDigit(n))
+            evt.consume();  
+    }//GEN-LAST:event_jt_DocumentoKeyTyped
+    
     /**
      * @param args the command line arguments
      */

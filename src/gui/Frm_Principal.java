@@ -168,6 +168,7 @@ public class Frm_Principal extends javax.swing.JFrame {
 
     private void jmi_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ProductoActionPerformed
         JIF_Producto jif_Producto = new JIF_Producto();
+        this.getContentPane().removeAll();
         this.getContentPane().add(jif_Producto);
         jif_Producto.show();
     }//GEN-LAST:event_jmi_ProductoActionPerformed
@@ -184,6 +185,7 @@ public class Frm_Principal extends javax.swing.JFrame {
 
     private void jmi_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ClienteActionPerformed
         JIF_Cliente jif_Cliente = new JIF_Cliente();
+         this.getContentPane().removeAll();
         this.getContentPane().add(jif_Cliente);
         jif_Cliente.show();
     }//GEN-LAST:event_jmi_ClienteActionPerformed

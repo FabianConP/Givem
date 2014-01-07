@@ -166,7 +166,6 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
         jt_Ciudad.setBounds(240, 210, 320, 25);
 
         jl_Fondo.setBackground(new java.awt.Color(255, 255, 255));
-        jl_Fondo.setIcon(new javax.swing.ImageIcon("D:\\Bibliotecas\\Proyectos\\Netbeans\\Clones, clones, clones\\Givem\\build\\classes\\Imágenes\\margenes34.png")); // NOI18N
         getContentPane().add(jl_Fondo);
         jl_Fondo.setBounds(-50, -470, 1070, 1260);
 
