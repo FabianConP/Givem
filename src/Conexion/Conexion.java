@@ -22,7 +22,7 @@ public class Conexion {
         Class.forName("com.mysql.jdbc.Driver");
         String dbUrl = "jdbc:mysql://localhost/db_Givem";
         try {
-            c = DriverManager.getConnection(dbUrl, "root", "");
+            c = DriverManager.getConnection(dbUrl, "root", "1234");
         } catch (SQLException e) {
             System.out.println(e.getCause());
         }

@@ -139,12 +139,12 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jt_IdProducto" alignment="0" max="32767" attributes="0"/>
                       <Component id="jt_Nombre" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jt_Precio" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jt_Costo" alignment="0" max="32767" attributes="0"/>
                       <Component id="jt_Marca" alignment="0" max="32767" attributes="0"/>
                       <Component id="jt_Color" alignment="0" max="32767" attributes="0"/>
                       <Component id="jcb_Genero" max="32767" attributes="0"/>
                       <Component id="jcb_Deporte" max="32767" attributes="0"/>
+                      <Component id="jft_Precio" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jft_Costo" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -165,12 +165,12 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jl_Precio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jt_Precio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jft_Precio" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jl_Costo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jt_Costo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jft_Costo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -233,21 +233,12 @@
           </Properties>
           <Events>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jt_IdProductoFocusLost"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jt_IdProductoKeyTyped"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jt_Nombre">
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Nombre del producto [a-Z][0-9]"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jt_Precio">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Precio del producto [0-9]"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jt_Costo">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Costo del producto [0-9]"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jt_Marca">
@@ -283,6 +274,7 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="jcb_Deporte">
           <Properties>
+            <Property name="editable" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="119">
                 <StringItem index="0" value="General"/>
@@ -407,6 +399,21 @@
               </StringArray>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="AutoCompleteDecorator.decorate(this.jcb_Deporte);"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jft_Precio">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jft_Precio.setValue(new Float(0.00));"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(java.text.NumberFormat&#xa;    .getCurrencyInstance())"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jft_Costo">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jft_Costo.setValue(new Float(0.00));"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(java.text.NumberFormat&#xa;    .getCurrencyInstance())"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
@@ -425,16 +432,13 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="jl_Categoria" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                          <Component id="jcb_Categoria" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="jl_Talla" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                          <Component id="jt_Talla" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="jl_Categoria" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jl_Talla" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jt_Talla" max="32767" attributes="0"/>
+                      <Component id="jcb_Categoria" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -497,6 +501,9 @@
         <Property name="text" type="java.lang.String" value="Agregar"/>
         <Property name="toolTipText" type="java.lang.String" value="Agregar producto"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_AgregarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -563,7 +570,7 @@
             <Component class="javax.swing.JTable" name="jta_ArticulosRegistrados">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="8" rowCount="4">
+                  <Table columnCount="8" rowCount="0">
                     <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
                     <Column editable="false" title="Nombre" type="java.lang.Object"/>
                     <Column editable="false" title="Precio" type="java.lang.Object"/>

@@ -6,11 +6,16 @@
 package gui;
 
 import Conexion.Conexion;
+import Util.Util;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
  *
@@ -45,14 +50,16 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
         jl_Color = new javax.swing.JLabel();
         jt_IdProducto = new javax.swing.JTextField();
         jt_Nombre = new javax.swing.JTextField();
-        jt_Precio = new javax.swing.JTextField();
-        jt_Costo = new javax.swing.JTextField();
         jt_Marca = new javax.swing.JTextField();
         jt_Color = new javax.swing.JTextField();
         jl_Genero = new javax.swing.JLabel();
         jcb_Genero = new javax.swing.JComboBox();
         jl_Deporte = new javax.swing.JLabel();
         jcb_Deporte = new javax.swing.JComboBox();
+        jft_Precio = new JFormattedTextField(java.text.NumberFormat
+            .getCurrencyInstance());
+        jft_Costo = new JFormattedTextField(java.text.NumberFormat
+            .getCurrencyInstance());
         jPanel1 = new javax.swing.JPanel();
         jcb_Categoria = new javax.swing.JComboBox();
         jl_Categoria = new javax.swing.JLabel();
@@ -107,12 +114,13 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
                 jt_IdProductoFocusLost(evt);
             }
         });
+        jt_IdProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_IdProductoKeyTyped(evt);
+            }
+        });
 
         jt_Nombre.setToolTipText("Nombre del producto [a-Z][0-9]");
-
-        jt_Precio.setToolTipText("Precio del producto [0-9]");
-
-        jt_Costo.setToolTipText("Costo del producto [0-9]");
 
         jt_Marca.setToolTipText("Marca del producto [a-Z][0-9]");
 
@@ -124,6 +132,7 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
 
         jl_Deporte.setText("Deporte");
 
+        jcb_Deporte.setEditable(true);
         jcb_Deporte.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "General", "Á delta", "Acrobacia", "Ácuatlon", "Aeróbic", "Aikido", "Ajedrez", "Alpinismo", "Artes marciales", "Atletismo", "Automobilismo", "Baloncesto", "Balonmano", "Billar", "Billarda", "Birlos", "Bobsleigh", "Bodyboard", "Boxeo", "Bádminton", "Béisbol", "Boccia", "Buceo", "Caminata", "Capoeira", "Caza", "Clave", "Ciclismo", "Colombofilia", "Corfebol", "Críquet", "Cróquet", "Cuádratlon", "Curling", "Danza deportiva", "Dardos", "Décatlon", "Ecuestre", "Esgrima", "Espeleología", "Esquí", "Equitación", "Escalada", "Fútbol", "Fútbol de playa", "Fútbol sala", "Frontón man", "Floorball", "Gimnasia", "Gimnasia Rítmica", "Golf", "Goalball", "Hapkido", "Hóckey en patines", "Hóckey sobre césped", "Hóckey sobre hielo", "Hóckey", "Hurling", "Judo", "Karate", "Kendo", "Kickboxing", "Karting", "Kung Fu", "Kayak polo", "Krav Maga", "Lacrosse", "Levantamiento de pesas", "Lucha", "Luciadas extremas", "Longboard", "Motociclismo", "Motonáutica", "Mhuai Thay", "Natación", "Natación sincronizada", "Octopush", "Orientación", "Paracaidismo", "Parapente", "Parkour", "Patinaje", "Paintball", "Pelota", "Péntatlon moderno", "Pesca deportiva", "Petanca", "Piragüismo", "Polo", "Remo", "Rugby", "Salto de trampolín", "Shinty", "Showbol", "Skateboard", "Skeleton", "Snowboard", "Softbol", "Speedball", "Squash", "Sumo", "Superbikes", "Surf", "Tenis", "Tenis de mesa", "Tiro", "Tiro con arco", "Tríatlon", "Taekwondo", "Ultraligeros", "Vela (deporte)", "Voleibol", "Voleibol de playa", "Valetudo", "Waterpolo", "Windsurf", "Wushu", "Win Tsun", "Wakeboard" }));
 
         javax.swing.GroupLayout jp_DatosGeneralesLayout = new javax.swing.GroupLayout(jp_DatosGenerales);
@@ -145,12 +154,12 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
                 .addGroup(jp_DatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jt_IdProducto)
                     .addComponent(jt_Nombre)
-                    .addComponent(jt_Precio)
-                    .addComponent(jt_Costo)
                     .addComponent(jt_Marca)
                     .addComponent(jt_Color)
                     .addComponent(jcb_Genero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jcb_Deporte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jcb_Deporte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jft_Precio)
+                    .addComponent(jft_Costo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jp_DatosGeneralesLayout.setVerticalGroup(
@@ -166,11 +175,11 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jp_DatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jl_Precio)
-                    .addComponent(jt_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jft_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jp_DatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jl_Costo)
-                    .addComponent(jt_Costo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jft_Costo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jp_DatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jl_Marca)
@@ -188,6 +197,10 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
                     .addComponent(jl_Deporte)
                     .addComponent(jcb_Deporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+
+        AutoCompleteDecorator.decorate(this.jcb_Deporte);
+        jft_Precio.setValue(new Float(0.00));
+        jft_Costo.setValue(new Float(0.00));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo"));
 
@@ -213,14 +226,12 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jl_Categoria)
-                        .addGap(28, 28, 28)
-                        .addComponent(jcb_Categoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jl_Talla)
-                        .addGap(60, 60, 60)
-                        .addComponent(jt_Talla)))
+                    .addComponent(jl_Categoria)
+                    .addComponent(jl_Talla))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jt_Talla)
+                    .addComponent(jcb_Categoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -239,6 +250,11 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
 
         jb_Agregar.setText("Agregar");
         jb_Agregar.setToolTipText("Agregar producto");
+        jb_Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_AgregarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Filtro");
 
@@ -255,10 +271,7 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
 
         jta_ArticulosRegistrados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Código", "Nombre", "Precio", "Costo", "Marca", "Color", "Categoría", "Info. adicional"
@@ -371,7 +384,7 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
         if (item.equals("Accesorios")) {
             jt_Talla.setText("");
             jt_Talla.setEnabled(false);
-        }else{
+        } else {
             jt_Talla.setText("");
             jt_Talla.setEnabled(true);
         }
@@ -385,14 +398,54 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
         try {
             Conexion c = new Conexion();
             Statement s = c.c.createStatement();
-            
+
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(JIF_Producto.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        if(jt_IdProducto.getText().length()!=0){
-            
+        }
+        if (jt_IdProducto.getText().length() != 0) {
+
         }
     }//GEN-LAST:event_jt_IdProductoFocusLost
+
+    private void jt_IdProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_IdProductoKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_IdProductoKeyTyped
+
+    private void jb_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_AgregarActionPerformed
+        Conexion c;
+        try {
+            c = new Conexion();
+            Statement s = c.c.createStatement();
+            String idProducto = jt_IdProducto.getText();
+            String nombre = jt_Nombre.getText();
+            String precio = Util.formatMoney(jft_Precio.getText());
+            String costo = Util.formatMoney(jft_Costo.getText());
+            String marca = jt_Marca.getText();
+            String color = jt_Color.getText();
+            String genero = jcb_Genero.getSelectedItem().toString();
+            String deporte = jcb_Deporte.getSelectedItem().toString();
+            String categoria = jcb_Categoria.getSelectedItem().toString();
+            String info = jt_Talla.getText();
+            CallableStatement cs = c.c.prepareCall("{ CALL sp_agregarProducto(?,?,?,?,?,?,?,?,?,?) }");
+            cs.setInt(1, Integer.parseInt(idProducto));
+            cs.setString(2, nombre);
+            cs.setDouble(3, Double.parseDouble(precio));
+            cs.setDouble(4, Double.parseDouble(costo));
+            cs.setString(5, marca);
+            cs.setString(6, color);
+            cs.setString(7, genero);
+            cs.setString(8, deporte);
+            cs.setString(9, categoria);
+            cs.setString(10, info);
+            ResultSet rs = cs.executeQuery();
+            JOptionPane.showMessageDialog(this, "Se ha agregado el producto correctamentes");
+            c.c.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al conectarse\n" + ex.getMessage(), "Error de conexion", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jb_AgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -406,6 +459,8 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox jcb_Categoria;
     private javax.swing.JComboBox jcb_Deporte;
     private javax.swing.JComboBox jcb_Genero;
+    private javax.swing.JFormattedTextField jft_Costo;
+    private javax.swing.JFormattedTextField jft_Precio;
     private javax.swing.JLabel jl_Categoria;
     private javax.swing.JLabel jl_Color;
     private javax.swing.JLabel jl_Costo;
@@ -421,12 +476,10 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jrb_Codigo;
     private javax.swing.JRadioButton jrb_Nombre;
     private javax.swing.JTextField jt_Color;
-    private javax.swing.JTextField jt_Costo;
     private javax.swing.JTextField jt_Filtro;
     private javax.swing.JTextField jt_IdProducto;
     private javax.swing.JTextField jt_Marca;
     private javax.swing.JTextField jt_Nombre;
-    private javax.swing.JTextField jt_Precio;
     private javax.swing.JTextField jt_Talla;
     private javax.swing.JTable jta_ArticulosRegistrados;
     // End of variables declaration//GEN-END:variables

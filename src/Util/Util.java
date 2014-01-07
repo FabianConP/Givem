@@ -17,4 +17,8 @@ public class Util {
             ret += array[i];
         return ret;
     }
+    
+    public static String formatMoney(String text){
+        return text.substring(1).replace(".", "").replace(",", ".");
+    }
 }
