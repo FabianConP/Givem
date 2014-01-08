@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+    </Property>
+    <Property name="closable" type="boolean" value="true"/>
+    <Property name="maximizable" type="boolean" value="true"/>
+    <Property name="resizable" type="boolean" value="true"/>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[1020, 718]"/>
+    </Property>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jl_Pais" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="jl_Nombre" min="-2" pref="92" max="-2" attributes="0"/>
+                          <Component id="jl_Cedula" min="-2" pref="92" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jt_Cedula" pref="320" max="32767" attributes="0"/>
+                          <Component id="jt_Nombre" max="32767" attributes="0"/>
+                          <Component id="jt_Pais" alignment="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="327" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jl_Ciudad" min="-2" pref="92" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                              <Component id="jt_Ciudad" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jl_Tienda" min="-2" pref="92" max="-2" attributes="0"/>
+                                  <Component id="jl_Supervisor" min="-2" pref="92" max="-2" attributes="0"/>
+                                  <Component id="jl_Rol" min="-2" pref="92" max="-2" attributes="0"/>
+                                  <Component id="jl_Correo" min="-2" pref="117" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jcb_Supervisor" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jcb_Tienda" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jt_Correo" max="32767" attributes="0"/>
+                                  <Component id="jcb_Rol" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jl_Telefono" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                                  <Component id="jl_Direccion" alignment="0" min="-2" pref="92" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jt_Direccion" max="32767" attributes="0"/>
+                                  <Component id="jt_Telefono" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="jl_Icono" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="280" max="-2" attributes="0"/>
+              <Component id="jb_Agregar" min="-2" pref="114" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+              <Component id="jb_Modificar" min="-2" pref="114" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
+                      <Component id="jl_Icono" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jt_Cedula" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jl_Cedula" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jt_Nombre" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jl_Nombre" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jl_Pais" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jt_Pais" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jt_Ciudad" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jl_Ciudad" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jt_Direccion" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jl_Direccion" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jt_Telefono" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jl_Telefono" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jt_Correo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jl_Correo" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jcb_Tienda" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jl_Tienda" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jl_Rol" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jcb_Rol" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jl_Supervisor" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jcb_Supervisor" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jb_Agregar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                  <Component id="jb_Modificar" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="132" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="jl_Cedula">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="C&#xe9;dula:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_Nombre">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nombre:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_Pais">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pais:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_Ciudad">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ciudad:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_Direccion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Direcci&#xf3;n:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_Telefono">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_Correo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Correo Electr&#xf3;nico:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_Tienda">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tienda:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_Supervisor">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Supervisor:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_Rol">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rol:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_Icono">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Im&#xe1;genes/User.jpg"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jt_Cedula">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jt_Nombre">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jt_Pais">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jt_Ciudad">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jt_Direccion">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jt_Telefono">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jt_Correo">
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jcb_Tienda">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Americas"/>
+            <StringItem index="1" value="Unicentro"/>
+            <StringItem index="2" value="Chapinero"/>
+            <StringItem index="3" value="Centro"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcb_TiendaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jcb_Supervisor">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="Carlos"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcb_SupervisorActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jcb_Rol">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="Vendedor"/>
+            <StringItem index="1" value="Supervisor"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcb_RolActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jb_Agregar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_AgregarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jb_Modificar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+</Form>
