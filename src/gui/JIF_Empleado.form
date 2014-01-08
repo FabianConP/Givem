@@ -242,12 +242,7 @@
     <Component class="javax.swing.JComboBox" name="jcb_Tienda">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Americas"/>
-            <StringItem index="1" value="Unicentro"/>
-            <StringItem index="2" value="Chapinero"/>
-            <StringItem index="3" value="Centro"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>

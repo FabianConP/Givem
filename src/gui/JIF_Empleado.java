@@ -89,7 +89,6 @@ public class JIF_Empleado extends javax.swing.JInternalFrame {
 
         jl_Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/User.jpg"))); // NOI18N
 
-        jcb_Tienda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Americas", "Unicentro", "Chapinero", "Centro" }));
         jcb_Tienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcb_TiendaActionPerformed(evt);
