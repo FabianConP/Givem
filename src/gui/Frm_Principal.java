@@ -42,6 +42,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jmi_Cliente = new javax.swing.JMenuItem();
         jmi_Empleado = new javax.swing.JMenuItem();
         jmi_Proveedor = new javax.swing.JMenuItem();
+        jmi_Tienda = new javax.swing.JMenuItem();
         jm_Herramientas = new javax.swing.JMenu();
         jmi_Generar_CS = new javax.swing.JMenuItem();
         jmi_Restaurar = new javax.swing.JMenuItem();
@@ -102,10 +103,28 @@ public class Frm_Principal extends javax.swing.JFrame {
         jm_Agregar_Modificar.add(jmi_Cliente);
 
         jmi_Empleado.setText("Empleado");
+        jmi_Empleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_EmpleadoActionPerformed(evt);
+            }
+        });
         jm_Agregar_Modificar.add(jmi_Empleado);
 
         jmi_Proveedor.setText("Proveedor");
+        jmi_Proveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_ProveedorActionPerformed(evt);
+            }
+        });
         jm_Agregar_Modificar.add(jmi_Proveedor);
+
+        jmi_Tienda.setText("Tienda");
+        jmi_Tienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_TiendaActionPerformed(evt);
+            }
+        });
+        jm_Agregar_Modificar.add(jmi_Tienda);
 
         jmb_Principal.add(jm_Agregar_Modificar);
 
@@ -188,6 +207,24 @@ public class Frm_Principal extends javax.swing.JFrame {
         jif_Cliente.show();
     }//GEN-LAST:event_jmi_ClienteActionPerformed
 
+    private void jmi_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ProveedorActionPerformed
+        JIF_Proveedor jif_Proveedor = new JIF_Proveedor();
+        this.getContentPane().add(jif_Proveedor);
+        jif_Proveedor.show();
+    }//GEN-LAST:event_jmi_ProveedorActionPerformed
+
+    private void jmi_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_EmpleadoActionPerformed
+        JIF_Empleado jif_Empleado = new JIF_Empleado();
+        this.getContentPane().add(jif_Empleado);
+        jif_Empleado.show();
+    }//GEN-LAST:event_jmi_EmpleadoActionPerformed
+
+    private void jmi_TiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_TiendaActionPerformed
+        JIF_Tienda jif_Tienda = new JIF_Tienda();
+        this.getContentPane().add(jif_Tienda);
+        jif_Tienda.show();
+    }//GEN-LAST:event_jmi_TiendaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -244,6 +281,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_Proveedor;
     private javax.swing.JMenuItem jmi_Restaurar;
     private javax.swing.JMenuItem jmi_Salir;
+    private javax.swing.JMenuItem jmi_Tienda;
     private javax.swing.JMenuItem jmi_Ventas_Tienda;
     private javax.swing.JMenuItem jmi_Ventas_Vendedor;
     // End of variables declaration//GEN-END:variables
