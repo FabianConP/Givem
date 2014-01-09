@@ -51,61 +51,85 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jb_Agregar" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jp_DatosGenerales" max="32767" attributes="0"/>
+                      <Component id="jp_Tipo" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jPanel1" max="32767" attributes="0"/>
-                          <Component id="jp_DatosGenerales" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Component id="jb_Nuevo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jb_Borrar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jb_Guardar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jp_ProductosRegistrados" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <Component id="jl_Filtro" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jrb_Codigo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jrb_Nombre" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jt_Filtro" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="jt_Filtro" min="-2" pref="160" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jb_Buscar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jc_Accesorios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jc_Ropa" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jc_Calzado" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jb_Buscar" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jp_ProductosRegistrados" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jb_Informe" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jp_DatosGenerales" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jp_Tipo" min="-2" pref="100" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jl_Filtro" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jrb_Nombre" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jrb_Codigo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jt_Filtro" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jb_Buscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jc_Accesorios" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jc_Ropa" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jc_Calzado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jp_ProductosRegistrados" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jp_DatosGenerales" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel1" min="-2" pref="98" max="-2" attributes="0"/>
-                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jb_Agregar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jb_Guardar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jb_Borrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jb_Nuevo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jb_Informe" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -135,18 +159,18 @@
                       <Component id="jl_Genero" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jl_Deporte" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jt_IdProducto" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jt_Nombre" alignment="0" max="32767" attributes="0"/>
                       <Component id="jt_Marca" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jt_Color" alignment="0" max="32767" attributes="0"/>
                       <Component id="jcb_Genero" max="32767" attributes="0"/>
                       <Component id="jcb_Deporte" max="32767" attributes="0"/>
                       <Component id="jft_Precio" alignment="0" max="32767" attributes="0"/>
                       <Component id="jft_Costo" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jcb_Color" max="32767" attributes="0"/>
+                      <Component id="jt_Nombre" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="15" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -180,7 +204,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jl_Color" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jt_Color" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcb_Color" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -246,11 +270,6 @@
             <Property name="toolTipText" type="java.lang.String" value="Marca del producto [a-Z][0-9]"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jt_Color">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Color [a-Z]"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jl_Genero">
           <Properties>
             <Property name="text" type="java.lang.String" value="G&#xe9;nero"/>
@@ -265,6 +284,7 @@
                 <StringItem index="2" value="Femenino"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="G&#xe9;nero del producto"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jl_Deporte">
@@ -398,26 +418,67 @@
                 <StringItem index="118" value="Wakeboard"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Deporte en el que se usa el producto"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="AutoCompleteDecorator.decorate(this.jcb_Deporte);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jft_Precio">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Precio del producto [0-9][,.]"/>
+          </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jft_PrecioKeyTyped"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jft_Precio.setValue(new Float(0.00));"/>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(java.text.NumberFormat&#xa;    .getCurrencyInstance())"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jft_Costo">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Costo del producto [0-9][,."/>
+          </Properties>
+          <Events>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jft_CostoKeyTyped"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jft_Costo.setValue(new Float(0.00));"/>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JFormattedTextField(java.text.NumberFormat&#xa;    .getCurrencyInstance())"/>
           </AuxValues>
         </Component>
+        <Component class="javax.swing.JComboBox" name="jcb_Color">
+          <Properties>
+            <Property name="editable" type="boolean" value="true"/>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="15">
+                <StringItem index="0" value="Amarillo"/>
+                <StringItem index="1" value="Azul"/>
+                <StringItem index="2" value="Beige"/>
+                <StringItem index="3" value="Blanco"/>
+                <StringItem index="4" value="Caf&#xe9;"/>
+                <StringItem index="5" value="Dorado"/>
+                <StringItem index="6" value="Gris"/>
+                <StringItem index="7" value="Naranja"/>
+                <StringItem index="8" value="Negro"/>
+                <StringItem index="9" value="Plateado"/>
+                <StringItem index="10" value="Rojo"/>
+                <StringItem index="11" value="Rosado"/>
+                <StringItem index="12" value="Transparente"/>
+                <StringItem index="13" value="Verde"/>
+                <StringItem index="14" value="Violeta"/>
+              </StringArray>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Color del producto"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="AutoCompleteDecorator.decorate(this.jcb_Color);"/>
+          </AuxValues>
+        </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="jp_Tipo">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -435,12 +496,12 @@
                       <Component id="jl_Categoria" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jl_Talla" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jt_Talla" max="32767" attributes="0"/>
+                      <Component id="jcb_Talla" max="32767" attributes="0"/>
                       <Component id="jcb_Categoria" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -454,8 +515,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jt_Talla" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jl_Talla" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jcb_Talla" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
@@ -483,29 +544,39 @@
             <Property name="text" type="java.lang.String" value="Categor&#xed;a"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jt_Talla">
-          <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Talla del producto"/>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jl_Talla">
           <Properties>
             <Property name="text" type="java.lang.String" value="Talla"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JComboBox" name="jcb_Talla">
+          <Properties>
+            <Property name="editable" type="boolean" value="true"/>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Talla del producto"/>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="AutoCompleteDecorator.decorate(this.jcb_Talla);"/>
+          </AuxValues>
+        </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jb_Agregar">
+    <Component class="javax.swing.JButton" name="jb_Guardar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Agregar"/>
-        <Property name="toolTipText" type="java.lang.String" value="Agregar producto"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Im&#xe1;genes/img_guardar.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Guardar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Guardar producto"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_AgregarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_GuardarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="jl_Filtro">
       <Properties>
         <Property name="text" type="java.lang.String" value="Filtro"/>
       </Properties>
@@ -518,6 +589,9 @@
         <Property name="text" type="java.lang.String" value="Nombre"/>
         <Property name="toolTipText" type="java.lang.String" value="Filtrar por nombre"/>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jrb_NombreItemStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jrb_Codigo">
       <Properties>
@@ -528,8 +602,17 @@
         <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
         <Property name="toolTipText" type="java.lang.String" value="Filtrar por c&#xf3;digo"/>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jrb_CodigoItemStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jt_Filtro">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;Digite el valor por el cual desea filtrar los productos&#xa;&lt;p&gt;&#xa;Deje en blanco si desea ver todos los productos&#xa;&lt;/html&gt;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jt_FiltroKeyTyped"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JPanel" name="jp_ProductosRegistrados">
       <Properties>
@@ -545,7 +628,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="627" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="630" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -570,20 +653,27 @@
             <Component class="javax.swing.JTable" name="jta_ArticulosRegistrados">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="8" rowCount="0">
+                  <Table columnCount="10" rowCount="0">
                     <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
                     <Column editable="false" title="Nombre" type="java.lang.Object"/>
                     <Column editable="false" title="Precio" type="java.lang.Object"/>
                     <Column editable="false" title="Costo" type="java.lang.Object"/>
                     <Column editable="false" title="Marca" type="java.lang.Object"/>
                     <Column editable="false" title="Color" type="java.lang.Object"/>
+                    <Column editable="false" title="Deporte" type="java.lang.Object"/>
+                    <Column editable="false" title="Genero" type="java.lang.Object"/>
                     <Column editable="false" title="Categor&#xed;a" type="java.lang.Object"/>
-                    <Column editable="false" title="Info. adicional" type="java.lang.Object"/>
+                    <Column editable="false" title="Info" type="java.lang.Object"/>
                   </Table>
                 </Property>
-                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="jta_ArticulosRegistrados.setAutoCreateRowSorter(true);">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="140" resizable="false">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -603,7 +693,7 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="60" resizable="false">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -613,12 +703,17 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="55" resizable="false">
                       <Title/>
                       <Editor/>
                       <Renderer/>
                     </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="40" resizable="false">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -629,6 +724,9 @@
                   <TableHeader reorderingAllowed="false" resizingAllowed="false"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jta_ArticulosRegistradosMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -636,11 +734,70 @@
     </Container>
     <Component class="javax.swing.JButton" name="jb_Buscar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Im&#xe1;genes/img_buscar.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Buscar"/>
         <Property name="toolTipText" type="java.lang.String" value="Buscar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_BuscarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jb_Nuevo">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Im&#xe1;genes/img_nuevo.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Nuevo"/>
+        <Property name="toolTipText" type="java.lang.String" value="Nuevo producto, limpia los campos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_NuevoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jc_Accesorios">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Accesorios"/>
+        <Property name="toolTipText" type="java.lang.String" value="Marque esta opci&#xf3;n si desea ver productos que sean accesorios"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jc_Ropa">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Ropa"/>
+        <Property name="toolTipText" type="java.lang.String" value="Marque esta opci&#xf3;n si desea ver productos que sean ropa"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="jc_Calzado">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Calzado"/>
+        <Property name="toolTipText" type="java.lang.String" value="Marque esta opci&#xf3;n si desea ver productos que sean calzado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jb_Borrar">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Im&#xe1;genes/img_borrar.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Borrar"/>
+        <Property name="toolTipText" type="java.lang.String" value="Borrar producto"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_BorrarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jb_Informe">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Im&#xe1;genes/img_reporte.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Informe"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_InformeActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
