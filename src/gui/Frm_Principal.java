@@ -83,9 +83,16 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         jm_Agregar_Modificar.setText("Agregar / Modificar");
 
+        jmi_Factura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         jmi_Factura.setText("Factura");
+        jmi_Factura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_FacturaActionPerformed(evt);
+            }
+        });
         jm_Agregar_Modificar.add(jmi_Factura);
 
+        jmi_Producto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jmi_Producto.setText("Producto");
         jmi_Producto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +101,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         });
         jm_Agregar_Modificar.add(jmi_Producto);
 
+        jmi_Cliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jmi_Cliente.setText("Cliente");
         jmi_Cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +110,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         });
         jm_Agregar_Modificar.add(jmi_Cliente);
 
+        jmi_Empleado.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         jmi_Empleado.setText("Empleado");
         jmi_Empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +119,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         });
         jm_Agregar_Modificar.add(jmi_Empleado);
 
+        jmi_Proveedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jmi_Proveedor.setText("Proveedor");
         jmi_Proveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +128,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         });
         jm_Agregar_Modificar.add(jmi_Proveedor);
 
+        jmi_Tienda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
         jmi_Tienda.setText("Tienda");
         jmi_Tienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,21 +222,31 @@ public class Frm_Principal extends javax.swing.JFrame {
 
     private void jmi_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ProveedorActionPerformed
         JIF_Proveedor jif_Proveedor = new JIF_Proveedor();
+        this.getContentPane().removeAll();
         this.getContentPane().add(jif_Proveedor);
         jif_Proveedor.show();
     }//GEN-LAST:event_jmi_ProveedorActionPerformed
 
     private void jmi_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_EmpleadoActionPerformed
         JIF_Empleado jif_Empleado = new JIF_Empleado();
+        this.getContentPane().removeAll();
         this.getContentPane().add(jif_Empleado);
         jif_Empleado.show();
     }//GEN-LAST:event_jmi_EmpleadoActionPerformed
 
     private void jmi_TiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_TiendaActionPerformed
         JIF_Tienda jif_Tienda = new JIF_Tienda();
+        this.getContentPane().removeAll();
         this.getContentPane().add(jif_Tienda);
         jif_Tienda.show();
     }//GEN-LAST:event_jmi_TiendaActionPerformed
+
+    private void jmi_FacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_FacturaActionPerformed
+        JIF_Factura jif_Factura = new JIF_Factura();
+        this.getContentPane().removeAll();
+        this.getContentPane().add(jif_Factura);
+        jif_Factura.show();
+    }//GEN-LAST:event_jmi_FacturaActionPerformed
 
     /**
      * @param args the command line arguments

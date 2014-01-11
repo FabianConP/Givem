@@ -87,9 +87,7 @@ public class Frm_Inicio_Sesion extends javax.swing.JFrame {
                         .addComponent(jl_Contrasena)
                         .addGap(18, 18, 18)
                         .addComponent(jt_Contrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jb_Entrar)))
+                    .addComponent(jb_Entrar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(

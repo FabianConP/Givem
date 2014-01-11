@@ -89,7 +89,7 @@
                           <Component id="jp_ProductosRegistrados" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jb_Informe" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="16" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -161,16 +161,16 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jt_IdProducto" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jt_Marca" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jcb_Genero" max="32767" attributes="0"/>
-                      <Component id="jcb_Deporte" max="32767" attributes="0"/>
-                      <Component id="jft_Precio" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jft_Costo" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jcb_Color" max="32767" attributes="0"/>
-                      <Component id="jt_Nombre" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jt_Marca" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
+                      <Component id="jcb_Genero" min="-2" pref="142" max="-2" attributes="0"/>
+                      <Component id="jcb_Deporte" min="-2" pref="142" max="-2" attributes="0"/>
+                      <Component id="jft_Precio" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
+                      <Component id="jft_Costo" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
+                      <Component id="jcb_Color" min="-2" pref="142" max="-2" attributes="0"/>
+                      <Component id="jt_Nombre" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
+                      <Component id="jt_IdProducto" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -498,8 +498,8 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jcb_Talla" max="32767" attributes="0"/>
-                      <Component id="jcb_Categoria" max="32767" attributes="0"/>
+                      <Component id="jcb_Talla" min="-2" pref="142" max="-2" attributes="0"/>
+                      <Component id="jcb_Categoria" min="-2" pref="142" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               </Group>

@@ -39,10 +39,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jt_Contrasena" min="-2" pref="157" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jb_Entrar" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jb_Entrar" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
           </Group>

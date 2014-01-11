@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -187,15 +188,15 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
                     .addComponent(jl_Deporte))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jp_DatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jt_IdProducto)
-                    .addComponent(jt_Marca)
-                    .addComponent(jcb_Genero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jcb_Deporte, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jft_Precio)
-                    .addComponent(jft_Costo)
-                    .addComponent(jcb_Color, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jt_Nombre))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(jt_Marca, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcb_Genero, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcb_Deporte, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jft_Precio, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jft_Costo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcb_Color, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jt_IdProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jp_DatosGeneralesLayout.setVerticalGroup(
             jp_DatosGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,8 +268,8 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
                     .addComponent(jl_Talla))
                 .addGap(18, 18, 18)
                 .addGroup(jp_TipoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jcb_Talla, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jcb_Categoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jcb_Talla, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcb_Categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20))
         );
         jp_TipoLayout.setVerticalGroup(
@@ -472,7 +473,7 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jp_ProductosRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jb_Informe))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(16, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -769,7 +770,13 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
         try {
             JasperReport report = JasperCompileManager.compileReport(getClass().getResource("/Reportes/rep_InventarioProducto.jrxml").getPath());
             Conexion c = new Conexion();
-            JasperPrint print = JasperFillManager.fillReport(report, new HashMap(), c.c);
+            Map map = new HashMap(10);
+            map.put("TIPO", jrb_Codigo.isSelected()?"Codigo":"Nombre");
+            map.put("VALOR", jt_Filtro.getText());
+            map.put("ACCE", jc_Accesorios.isSelected()?"true":"false");
+            map.put("ROPA", jc_Ropa.isSelected()?"true":"false");
+            map.put("CALZ", jc_Calzado.isSelected()?"true":"false");
+            JasperPrint print = JasperFillManager.fillReport(report,map, c.c);
             JasperViewer.viewReport(print, false);
         } catch (ClassNotFoundException | SQLException | JRException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error con la conexión", JOptionPane.ERROR_MESSAGE);

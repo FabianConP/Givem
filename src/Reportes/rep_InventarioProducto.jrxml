@@ -13,8 +13,13 @@
 			<style mode="Opaque" backcolor="#F0EFEF"/>
 		</conditionalStyle>
 	</style>
-	<queryString language="SQL">
-		<![CDATA[call sp_tablaProducto("Codigo", "", "true", "true", "true");]]>
+	<parameter name="TIPO" class="java.lang.String"/>
+	<parameter name="VALOR" class="java.lang.String"/>
+	<parameter name="ACCE" class="java.lang.String"/>
+	<parameter name="ROPA" class="java.lang.String"/>
+	<parameter name="CALZ" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[call sp_tablaProducto('$P!{TIPO}', '$P!{VALOR}', '$P!{ACCE}', '$P!{ROPA}', '$P!{CALZ}');]]>
 	</queryString>
 	<field name="idProducto" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
