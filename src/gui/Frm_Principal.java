@@ -5,21 +5,36 @@
  */
 package gui;
 
+import Conexion.Conexion;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author fabian
  */
 public class Frm_Principal extends javax.swing.JFrame {
 
+    public static String cedula;
+    public static String cedulaSupervisor;
+    public static String idTienda;
     public static String rol;
+    public static String nombre;
+    public static String pais;
+    public static String ciudad;
+    public static String direccion;
+    public static String telefono;
+    public static String email;
 
     /**
      * Creates new form Principal
      */
-    public Frm_Principal(String Rol) {
+    public Frm_Principal(String Cedula, String Rol) {
         initComponents();
-        rol = "Vendedor";
-        // rol = Rol; Solo si se llega desde un inicio de sesion
+        cedula = Cedula;
+        rol = Rol;
         this.setTitle(this.getTitle() + " - " + rol);
     }
 
@@ -60,6 +75,11 @@ public class Frm_Principal extends javax.swing.JFrame {
         setTitle("Givem");
         setPreferredSize(new java.awt.Dimension(1024, 768));
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jm_Archivo.setText("Archivo");
 
@@ -215,7 +235,7 @@ public class Frm_Principal extends javax.swing.JFrame {
 
     private void jmi_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ClienteActionPerformed
         JIF_Cliente jif_Cliente = new JIF_Cliente();
-         this.getContentPane().removeAll();
+        this.getContentPane().removeAll();
         this.getContentPane().add(jif_Cliente);
         jif_Cliente.show();
     }//GEN-LAST:event_jmi_ClienteActionPerformed
@@ -248,6 +268,28 @@ public class Frm_Principal extends javax.swing.JFrame {
         jif_Factura.show();
     }//GEN-LAST:event_jmi_FacturaActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        try {
+            Conexion c = new Conexion();
+            Statement s = c.c.createStatement();
+            String sentence = "CALL sp_infoSesion(" + cedula + ")";
+            ResultSet r = s.executeQuery(sentence);
+            while (r.next()) {
+                idTienda = r.getString(3);
+                rol = r.getString(6);
+                nombre = r.getString(8);
+                pais = r.getString(9);
+                ciudad = r.getString(10);
+                direccion = r.getString(11);
+                telefono = r.getString(12);
+                email = r.getString(13);
+            }
+            c.c.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
     /**
      * @param args the command line arguments
      */
@@ -278,7 +320,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frm_Principal(rol).setVisible(true);
+                new Frm_Principal(cedula, rol).setVisible(true);
             }
         });
     }

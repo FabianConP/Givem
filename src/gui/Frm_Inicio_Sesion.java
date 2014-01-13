@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gui;
 
 import Conexion.Conexion;
@@ -120,35 +119,38 @@ public class Frm_Inicio_Sesion extends javax.swing.JFrame {
             Statement s = c.c.createStatement();
             String cedula = jt_Documento.getText();
             String contraseña = Util.cArrayToString(jt_Contrasena.getPassword());
-            String sentence  = "CALL sp_login("+cedula+","+contraseña+")", ans = "";
+            String sentence = "CALL sp_login(" + cedula + "," + contraseña + ")", rol = "";
             ResultSet r = s.executeQuery(sentence);
             if (r.next()) {
-                ans = r.getString(1);
-                if (!ans.equals("NO")) {
+                rol = r.getString(1);
+                if (!rol.equals("NO")) {
                     JOptionPane.showMessageDialog(this,
-                        "Se ha iniciado sesión correctamente\nBienvenido su rol es "+ans);
-                    Frm_Principal frm_Principal = new Frm_Principal(ans);
+                            "Se ha iniciado sesión correctamente\nBienvenido su rol es " + rol);
+                    Frm_Principal frm_Principal = new Frm_Principal(cedula, rol);
                     frm_Principal.main(new String[]{""});
                     this.dispose();
-                } else
-                JOptionPane.showMessageDialog(this,"Documento o contraseña incorrecta");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Documento o contraseña incorrecta");
+                }
                 jt_Contrasena.setText("");
-            } else
-            JOptionPane.showMessageDialog(this,"Documento o contraseña incorrecta");
+            } else {
+                JOptionPane.showMessageDialog(this, "Documento o contraseña incorrecta");
+            }
             jt_Contrasena.setText("");
             c.c.close();
         } catch (ClassNotFoundException | SQLException ex) {
-           JOptionPane.showMessageDialog(this,"Error al conectarse", "Error de conexion", JOptionPane.ERROR_MESSAGE); 
+            JOptionPane.showMessageDialog(this, "Error al conectarse", "Error de conexion", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jb_EntrarActionPerformed
 
     private void jt_DocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_DocumentoKeyTyped
         char n = evt.getKeyChar();
-        if(!Character.isDigit(n))
-            evt.consume();  
+        if (!Character.isDigit(n)) {
+            evt.consume();
+        }
     }//GEN-LAST:event_jt_DocumentoKeyTyped
-    
+
     /**
      * @param args the command line arguments
      */
