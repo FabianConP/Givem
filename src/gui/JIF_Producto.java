@@ -256,6 +256,11 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
         jcb_Talla.setEditable(true);
         jcb_Talla.setToolTipText("Talla del producto");
         jcb_Talla.setEnabled(false);
+        jcb_Talla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcb_TallaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_TipoLayout = new javax.swing.GroupLayout(jp_Tipo);
         jp_Tipo.setLayout(jp_TipoLayout);
@@ -782,6 +787,10 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error con la conexión", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jb_InformeActionPerformed
+
+    private void jcb_TallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcb_TallaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcb_TallaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

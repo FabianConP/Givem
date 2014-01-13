@@ -54,11 +54,14 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
         jb_Modificar = new javax.swing.JButton();
         jl_Ciudad = new javax.swing.JLabel();
         jt_Ciudad = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setTitle("CLIENTE");
         setPreferredSize(new java.awt.Dimension(1020, 718));
         setVisible(true);
         getContentPane().setLayout(null);
@@ -70,6 +73,11 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
         jt_Cedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jt_CedulaActionPerformed(evt);
+            }
+        });
+        jt_Cedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_CedulaKeyTyped(evt);
             }
         });
         getContentPane().add(jt_Cedula);
@@ -100,12 +108,22 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
                 jt_NombreActionPerformed(evt);
             }
         });
+        jt_Nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_NombreKeyTyped(evt);
+            }
+        });
         getContentPane().add(jt_Nombre);
         jt_Nombre.setBounds(240, 150, 320, 25);
 
         jt_Direccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jt_DireccionActionPerformed(evt);
+            }
+        });
+        jt_Direccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_DireccionKeyTyped(evt);
             }
         });
         getContentPane().add(jt_Direccion);
@@ -116,12 +134,22 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
                 jt_PaisActionPerformed(evt);
             }
         });
+        jt_Pais.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_PaisKeyTyped(evt);
+            }
+        });
         getContentPane().add(jt_Pais);
         jt_Pais.setBounds(240, 180, 320, 25);
 
         jt_Telefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jt_TelefonoActionPerformed(evt);
+            }
+        });
+        jt_Telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_TelefonoKeyTyped(evt);
             }
         });
         getContentPane().add(jt_Telefono);
@@ -132,22 +160,30 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
                 jt_Correo_ElectronicoActionPerformed(evt);
             }
         });
+        jt_Correo_Electronico.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_Correo_ElectronicoKeyTyped(evt);
+            }
+        });
         getContentPane().add(jt_Correo_Electronico);
         jt_Correo_Electronico.setBounds(240, 300, 320, 25);
 
         jl_Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/icono_acc_clientes.jpg"))); // NOI18N
         getContentPane().add(jl_Icono);
-        jl_Icono.setBounds(650, 80, 265, 246);
+        jl_Icono.setBounds(595, 90, 260, 260);
 
+        jb_Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_nuevo.png"))); // NOI18N
         jb_Agregar.setText("Agregar");
+        jb_Agregar.setPreferredSize(new java.awt.Dimension(83, 25));
         jb_Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_AgregarActionPerformed(evt);
             }
         });
         getContentPane().add(jb_Agregar);
-        jb_Agregar.setBounds(210, 380, 114, 43);
+        jb_Agregar.setBounds(190, 360, 114, 30);
 
+        jb_Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/modificar.png"))); // NOI18N
         jb_Modificar.setText("Modificar");
         jb_Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,23 +191,38 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jb_Modificar);
-        jb_Modificar.setBounds(350, 380, 114, 43);
+        jb_Modificar.setBounds(320, 360, 114, 30);
 
         jl_Ciudad.setText("Ciudad:");
         getContentPane().add(jl_Ciudad);
         jl_Ciudad.setBounds(120, 210, 92, 20);
+
+        jt_Ciudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_CiudadKeyTyped(evt);
+            }
+        });
         getContentPane().add(jt_Ciudad);
         jt_Ciudad.setBounds(240, 210, 320, 25);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(100, 90, 490, 260);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/fondo-blanco.jpg"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1040, 710);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jt_CedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_CedulaActionPerformed
-
+        
     }//GEN-LAST:event_jt_CedulaActionPerformed
 
     private void jt_NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_NombreActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jt_NombreActionPerformed
 
     private void jt_DireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_DireccionActionPerformed
@@ -272,8 +323,64 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jb_ModificarActionPerformed
 
+    private void jt_CedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_CedulaKeyTyped
+      char caracter = evt.getKeyChar();
+
+      if(((caracter < '0') || (caracter > '9')) && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+         evt.consume();  // ignorar el evento de teclado
+      }
+    }//GEN-LAST:event_jt_CedulaKeyTyped
+
+    private void jt_NombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_NombreKeyTyped
+        int limite = 60;
+        if (jt_Nombre.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_NombreKeyTyped
+
+    private void jt_PaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_PaisKeyTyped
+        int limite = 20;
+        if (jt_Pais.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_PaisKeyTyped
+
+    private void jt_CiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_CiudadKeyTyped
+        int limite = 20;
+        if (jt_Ciudad.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_CiudadKeyTyped
+
+    private void jt_DireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_DireccionKeyTyped
+        int limite = 60;
+        if (jt_Direccion.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_DireccionKeyTyped
+
+    private void jt_TelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_TelefonoKeyTyped
+      char caracter = evt.getKeyChar();
+      if(((caracter < '0') || (caracter > '9')) && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+         evt.consume();  // ignorar el evento de teclado
+      }
+      int limite = 20;
+       if (jt_Telefono.getText().length() >= limite){
+            evt.consume();
+       }
+    }//GEN-LAST:event_jt_TelefonoKeyTyped
+
+    private void jt_Correo_ElectronicoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_Correo_ElectronicoKeyTyped
+        int limite = 60;
+        if (jt_Correo_Electronico.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_Correo_ElectronicoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jb_Agregar;
     private javax.swing.JButton jb_Modificar;
     private javax.swing.JLabel jl_Cedula;

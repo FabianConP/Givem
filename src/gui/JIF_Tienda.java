@@ -52,130 +52,162 @@ public class JIF_Tienda extends javax.swing.JInternalFrame {
         jt_Correo = new javax.swing.JTextField();
         jb_Agregar = new javax.swing.JButton();
         jb_Modificar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
+        setTitle("TIENDA");
         setPreferredSize(new java.awt.Dimension(1020, 718));
+        getContentPane().setLayout(null);
 
-        jl_ID.setText("ID:");
+        jl_ID.setText("Id. Tienda:");
+        getContentPane().add(jl_ID);
+        jl_ID.setBounds(80, 60, 92, 23);
 
         jl_Nombre.setText("Nombre:");
+        getContentPane().add(jl_Nombre);
+        jl_Nombre.setBounds(80, 90, 92, 23);
 
         jl_Pais.setText("País:");
+        getContentPane().add(jl_Pais);
+        jl_Pais.setBounds(80, 120, 92, 23);
 
         jl_Ciudad.setText("Ciudad:");
+        getContentPane().add(jl_Ciudad);
+        jl_Ciudad.setBounds(80, 150, 92, 23);
 
         jl_Direccion.setText("Dirección:");
+        getContentPane().add(jl_Direccion);
+        jl_Direccion.setBounds(80, 180, 92, 23);
 
         jl_Telefono.setText("Teléfono:");
+        getContentPane().add(jl_Telefono);
+        jl_Telefono.setBounds(80, 210, 92, 23);
 
         jl_Correo.setText("Correo Electrónico:");
+        getContentPane().add(jl_Correo);
+        jl_Correo.setBounds(80, 240, 110, 23);
 
         jt_ID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jt_IDActionPerformed(evt);
             }
         });
+        jt_ID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_IDKeyTyped(evt);
+            }
+        });
+        getContentPane().add(jt_ID);
+        jt_ID.setBounds(190, 60, 320, 25);
+
+        jt_Nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_NombreKeyTyped(evt);
+            }
+        });
+        getContentPane().add(jt_Nombre);
+        jt_Nombre.setBounds(190, 90, 320, 25);
+
+        jt_Pais.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_PaisKeyTyped(evt);
+            }
+        });
+        getContentPane().add(jt_Pais);
+        jt_Pais.setBounds(190, 120, 320, 25);
+
+        jt_Ciudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_CiudadKeyTyped(evt);
+            }
+        });
+        getContentPane().add(jt_Ciudad);
+        jt_Ciudad.setBounds(190, 150, 320, 25);
+
+        jt_Direccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_DireccionKeyTyped(evt);
+            }
+        });
+        getContentPane().add(jt_Direccion);
+        jt_Direccion.setBounds(190, 180, 320, 25);
 
         jt_Telefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jt_TelefonoActionPerformed(evt);
             }
         });
+        jt_Telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_TelefonoKeyTyped(evt);
+            }
+        });
+        getContentPane().add(jt_Telefono);
+        jt_Telefono.setBounds(190, 210, 320, 25);
 
+        jt_Correo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jt_CorreoActionPerformed(evt);
+            }
+        });
+        jt_Correo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_CorreoKeyTyped(evt);
+            }
+        });
+        getContentPane().add(jt_Correo);
+        jt_Correo.setBounds(190, 240, 320, 25);
+
+        jb_Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_nuevo.png"))); // NOI18N
         jb_Agregar.setText("Agregar");
         jb_Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jb_AgregarActionPerformed(evt);
             }
         });
+        getContentPane().add(jb_Agregar);
+        jb_Agregar.setBounds(180, 300, 114, 30);
 
+        jb_Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/modificar.png"))); // NOI18N
         jb_Modificar.setText("Modificar");
+        jb_Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_ModificarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jb_Modificar);
+        jb_Modificar.setBounds(320, 300, 114, 30);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jl_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jt_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jl_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jt_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jl_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jt_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jl_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jt_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jl_Pais, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jt_Pais, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jl_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jl_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(103, 103, 103)
-                                .addComponent(jt_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(jb_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
-                        .addComponent(jb_Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(540, Short.MAX_VALUE))
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 466, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jt_ID, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_Pais, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jt_Pais, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jt_Ciudad, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jt_Direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jt_Telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jt_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jb_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jb_Modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(76, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 245, Short.MAX_VALUE)
         );
+
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(60, 40, 470, 250);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/tienda.jpg"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(560, 50, 270, 250);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/fondo-blanco.jpg"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 1040, 620);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -234,8 +266,103 @@ public class JIF_Tienda extends javax.swing.JInternalFrame {
        
     }//GEN-LAST:event_jt_TelefonoActionPerformed
 
+    private void jt_CorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_CorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jt_CorreoActionPerformed
+
+    private void jb_ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_ModificarActionPerformed
+        String id = jt_ID.getText();
+        String nombre = jt_Nombre.getText();
+        String pais = jt_Pais.getText();
+        String ciudad = jt_Ciudad.getText();
+        String direccion = jt_Direccion.getText();
+        String telefono = jt_Telefono.getText();
+        String correo = jt_Correo.getText();
+        int ntelefono = Integer.parseInt(telefono);
+        
+        Conexion c;
+            try { 
+                    c = new Conexion();try (Statement s = c.c.createStatement()) {
+                    
+                    if (pais.equals("") || ciudad.equals("")){
+                        pais = "Colombia";
+                        ciudad = "Bogotá";                          
+                    }
+                    s.executeUpdate("update tb_Contacto, tb_Tienda set nombre = '" + nombre + "', pais = '" + pais + "', ciudad = '" + ciudad + "', direccion = '" + direccion + "', telefono = " + ntelefono + ", correoElectronico = '" + correo + "' where tb_Contacto.idUbicacion = tb_Tienda.contacto_idUbicacion and idTienda = " + id);
+                    JOptionPane.showMessageDialog(null, "Proveedor Modificado Satisfactoriamente!");
+                    jt_ID.setText("");
+                    jt_Nombre.setText("");
+                    jt_Pais.setText("");
+                    jt_Ciudad.setText("");
+                    jt_Direccion.setText("");
+                    jt_Telefono.setText("");
+                    jt_Correo.setText("");
+                    s.close();
+                }
+
+            } catch (    ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(JIF_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jb_ModificarActionPerformed
+
+    private void jt_IDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_IDKeyTyped
+        char caracter = evt.getKeyChar();
+        if(((caracter < '0') || (caracter > '9')) && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+             evt.consume();  // ignorar el evento de teclado
+        }
+    }//GEN-LAST:event_jt_IDKeyTyped
+
+    private void jt_NombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_NombreKeyTyped
+        int limite = 60;
+        if (jt_Nombre.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_NombreKeyTyped
+
+    private void jt_PaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_PaisKeyTyped
+        int limite = 20;
+        if (jt_Pais.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_PaisKeyTyped
+
+    private void jt_CiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_CiudadKeyTyped
+        int limite = 20;
+        if (jt_Ciudad.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_CiudadKeyTyped
+
+    private void jt_DireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_DireccionKeyTyped
+        int limite = 60;
+        if (jt_Direccion.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_DireccionKeyTyped
+
+    private void jt_TelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_TelefonoKeyTyped
+        char caracter = evt.getKeyChar();
+        if(((caracter < '0') || (caracter > '9')) && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
+        int limite = 20;
+        if (jt_Telefono.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_TelefonoKeyTyped
+
+    private void jt_CorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_CorreoKeyTyped
+        int limite = 60;
+        if (jt_Correo.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_CorreoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jb_Agregar;
     private javax.swing.JButton jb_Modificar;
     private javax.swing.JLabel jl_Ciudad;

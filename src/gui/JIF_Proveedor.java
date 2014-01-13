@@ -51,72 +51,113 @@ public class JIF_Proveedor extends javax.swing.JInternalFrame {
         jt_Telefono = new javax.swing.JTextField();
         jt_Correo_Electronico = new javax.swing.JTextField();
         jt_Web = new javax.swing.JTextField();
-        jl_Icono = new javax.swing.JLabel();
         jb_Agregar = new javax.swing.JButton();
         jb_Modificar = new javax.swing.JButton();
         jl_idProveedor = new javax.swing.JLabel();
         jt_idProveedor = new javax.swing.JTextField();
+        jl_Icono = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
+        setTitle("PROVEEDOR");
         setPreferredSize(new java.awt.Dimension(1020, 718));
         setVisible(true);
         getContentPane().setLayout(null);
 
         jl_iNombre.setText("Nombre:");
         getContentPane().add(jl_iNombre);
-        jl_iNombre.setBounds(70, 110, 92, 23);
+        jl_iNombre.setBounds(70, 100, 92, 23);
 
         jl_Pais.setText("País:");
         getContentPane().add(jl_Pais);
-        jl_Pais.setBounds(70, 150, 92, 23);
+        jl_Pais.setBounds(70, 130, 92, 23);
 
         jl_Ciudad.setText("Ciudad:");
         getContentPane().add(jl_Ciudad);
-        jl_Ciudad.setBounds(70, 190, 92, 23);
+        jl_Ciudad.setBounds(70, 160, 92, 23);
 
         jl_Direccion.setText("Dirección:");
         getContentPane().add(jl_Direccion);
-        jl_Direccion.setBounds(70, 230, 92, 23);
+        jl_Direccion.setBounds(70, 190, 92, 23);
 
         jl_Telefono.setText("Teléfono:");
         getContentPane().add(jl_Telefono);
-        jl_Telefono.setBounds(70, 270, 92, 23);
+        jl_Telefono.setBounds(70, 220, 92, 23);
 
-        jl_Correo_Electronico.setText("Correo Electrónico");
+        jl_Correo_Electronico.setText("Correo Electrónico:");
         getContentPane().add(jl_Correo_Electronico);
-        jl_Correo_Electronico.setBounds(70, 310, 110, 23);
+        jl_Correo_Electronico.setBounds(70, 250, 110, 23);
 
-        jl_Web.setText("Página Web");
+        jl_Web.setText("Página Web:");
         getContentPane().add(jl_Web);
-        jl_Web.setBounds(70, 350, 92, 23);
+        jl_Web.setBounds(70, 280, 92, 23);
 
         jt_Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jt_NombreActionPerformed(evt);
             }
         });
+        jt_Nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_NombreKeyTyped(evt);
+            }
+        });
         getContentPane().add(jt_Nombre);
-        jt_Nombre.setBounds(200, 110, 320, 25);
+        jt_Nombre.setBounds(180, 100, 320, 25);
+
+        jt_Pais.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_PaisKeyTyped(evt);
+            }
+        });
         getContentPane().add(jt_Pais);
-        jt_Pais.setBounds(200, 150, 320, 25);
+        jt_Pais.setBounds(180, 130, 320, 25);
+
+        jt_Ciudad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_CiudadKeyTyped(evt);
+            }
+        });
         getContentPane().add(jt_Ciudad);
-        jt_Ciudad.setBounds(200, 190, 320, 25);
+        jt_Ciudad.setBounds(180, 160, 320, 25);
+
+        jt_Direccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_DireccionKeyTyped(evt);
+            }
+        });
         getContentPane().add(jt_Direccion);
-        jt_Direccion.setBounds(200, 230, 320, 25);
+        jt_Direccion.setBounds(180, 190, 320, 25);
+
+        jt_Telefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_TelefonoKeyTyped(evt);
+            }
+        });
         getContentPane().add(jt_Telefono);
-        jt_Telefono.setBounds(200, 270, 320, 25);
+        jt_Telefono.setBounds(180, 220, 320, 25);
+
+        jt_Correo_Electronico.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_Correo_ElectronicoKeyTyped(evt);
+            }
+        });
         getContentPane().add(jt_Correo_Electronico);
-        jt_Correo_Electronico.setBounds(200, 310, 320, 25);
+        jt_Correo_Electronico.setBounds(180, 250, 320, 25);
+
+        jt_Web.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_WebKeyTyped(evt);
+            }
+        });
         getContentPane().add(jt_Web);
-        jt_Web.setBounds(200, 350, 320, 25);
+        jt_Web.setBounds(180, 280, 320, 25);
 
-        jl_Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/suppliers.jpg"))); // NOI18N
-        getContentPane().add(jl_Icono);
-        jl_Icono.setBounds(570, 120, 0, 250);
-
+        jb_Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_nuevo.png"))); // NOI18N
         jb_Agregar.setText("Agregar");
         jb_Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,8 +165,9 @@ public class JIF_Proveedor extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jb_Agregar);
-        jb_Agregar.setBounds(120, 440, 114, 43);
+        jb_Agregar.setBounds(150, 340, 114, 30);
 
+        jb_Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/modificar.png"))); // NOI18N
         jb_Modificar.setText("Modificar");
         jb_Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,13 +175,32 @@ public class JIF_Proveedor extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jb_Modificar);
-        jb_Modificar.setBounds(260, 440, 114, 43);
+        jb_Modificar.setBounds(290, 340, 114, 30);
 
-        jl_idProveedor.setText("ID");
+        jl_idProveedor.setText("Id. Proveedor:");
         getContentPane().add(jl_idProveedor);
         jl_idProveedor.setBounds(70, 70, 92, 23);
+
+        jt_idProveedor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_idProveedorKeyTyped(evt);
+            }
+        });
         getContentPane().add(jt_idProveedor);
-        jt_idProveedor.setBounds(200, 70, 320, 25);
+        jt_idProveedor.setBounds(180, 70, 320, 25);
+
+        jl_Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/suppliers.jpg"))); // NOI18N
+        getContentPane().add(jl_Icono);
+        jl_Icono.setBounds(530, 50, 300, 280);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        getContentPane().add(jPanel1);
+        jPanel1.setBounds(50, 50, 470, 280);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/fondo-blanco.jpg"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 1020, 700);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,7 +275,7 @@ public class JIF_Proveedor extends javax.swing.JInternalFrame {
                     }
                     s.executeUpdate("update tb_Contacto, tb_Proveedor set nombre = '" + nombre + "', pais = '" + pais + "', ciudad = '" + ciudad + "', direccion = '" + direccion + "', telefono = " + ntelefono + ", correoElectronico = '" + correo + "' , paginaWeb = '" + web + "' " + "where tb_Contacto.idUbicacion = tb_Proveedor.contacto_idUbicacion and idProveedor = " + id);
                     JOptionPane.showMessageDialog(null, "Proveedor Modificado Satisfactoriamente!");
-                    
+                    jt_idProveedor.setText("");
                     jt_Nombre.setText("");
                     jt_Pais.setText("");
                     jt_Ciudad.setText("");
@@ -230,8 +291,70 @@ public class JIF_Proveedor extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jb_ModificarActionPerformed
 
+    private void jt_idProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_idProveedorKeyTyped
+        char caracter = evt.getKeyChar();
+        if(((caracter < '0') || (caracter > '9')) && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+             evt.consume();  // ignorar el evento de teclado
+        }
+    }//GEN-LAST:event_jt_idProveedorKeyTyped
+
+    private void jt_NombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_NombreKeyTyped
+        int limite = 60;
+        if (jt_Nombre.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_NombreKeyTyped
+
+    private void jt_PaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_PaisKeyTyped
+        int limite = 20;
+        if (jt_Pais.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_PaisKeyTyped
+
+    private void jt_CiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_CiudadKeyTyped
+        int limite = 20;
+        if (jt_Ciudad.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_CiudadKeyTyped
+
+    private void jt_DireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_DireccionKeyTyped
+        int limite = 60;
+        if (jt_Direccion.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_DireccionKeyTyped
+
+    private void jt_TelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_TelefonoKeyTyped
+        int limite = 20;
+        if (jt_Telefono.getText().length() >= limite){
+            evt.consume();
+        }
+        char caracter = evt.getKeyChar();
+        if(((caracter < '0') || (caracter > '9')) && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
+    }//GEN-LAST:event_jt_TelefonoKeyTyped
+
+    private void jt_Correo_ElectronicoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_Correo_ElectronicoKeyTyped
+        int limite = 60;
+        if (jt_Correo_Electronico.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_Correo_ElectronicoKeyTyped
+
+    private void jt_WebKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_WebKeyTyped
+        int limite = 60;
+        if (jt_Web.getText().length() >= limite){
+            evt.consume();
+        }
+    }//GEN-LAST:event_jt_WebKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jb_Agregar;
     private javax.swing.JButton jb_Modificar;
     private javax.swing.JLabel jl_Ciudad;
