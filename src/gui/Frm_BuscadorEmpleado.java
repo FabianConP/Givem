@@ -46,6 +46,7 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
         jb_Agregar = new javax.swing.JButton();
         jl_Codigo = new javax.swing.JLabel();
         jl_Nombre = new javax.swing.JLabel();
+        jl_Tienda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,14 +76,14 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Documento", "Nombre"
+                "Documento", "Nombre", "Tienda"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -104,6 +105,7 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
         if (jta_Empleado.getColumnModel().getColumnCount() > 0) {
             jta_Empleado.getColumnModel().getColumn(0).setPreferredWidth(120);
             jta_Empleado.getColumnModel().getColumn(1).setPreferredWidth(400);
+            jta_Empleado.getColumnModel().getColumn(2).setPreferredWidth(120);
         }
 
         jb_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_buscar.png"))); // NOI18N
@@ -136,6 +138,8 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
 
         jl_Nombre.setText("Nombre");
 
+        jl_Tienda.setText("Tienda");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,7 +147,7 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jl_Filtro)
                         .addGap(18, 18, 18)
@@ -155,9 +159,12 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jb_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jl_Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jl_Codigo, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jl_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jl_Codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jl_Tienda)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jb_Agregar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -177,7 +184,9 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jl_Codigo)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jl_Codigo)
+                            .addComponent(jl_Tienda))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jl_Nombre)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -202,6 +211,7 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
             jb_Agregar.setEnabled(true);
             jl_Codigo.setText(jta_Empleado.getValueAt(fila, 0).toString());
             jl_Nombre.setText(jta_Empleado.getValueAt(fila, 1).toString());
+            jl_Tienda.setText(jta_Empleado.getValueAt(fila, 2).toString());
         }else
             jb_Agregar.setEnabled(false);
     }//GEN-LAST:event_jta_EmpleadoMouseClicked
@@ -220,6 +230,7 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
     private void jb_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_AgregarActionPerformed
        JIF_Factura.jt_CodigoVendedor.setText(jl_Codigo.getText());
        JIF_Factura.jl_NomVendedor.setText(jl_Nombre.getText());
+       JIF_Factura.jl_Tienda.setText(jl_Tienda.getText());
        this.dispose();
     }//GEN-LAST:event_jb_AgregarActionPerformed
 
@@ -238,7 +249,7 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
                     + "\",\"" + valorFiltro + "\")";
             ResultSet r = s.executeQuery(sentence);
             while (r.next()) {
-                Object[] o = new Object[]{r.getString(1), r.getString(2)};
+                Object[] o = new Object[]{r.getString(1), r.getString(2), r.getString(3)};
                 dtm.addRow(o);
                 jta_Empleado.setModel(dtm);
             }
@@ -291,6 +302,7 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel jl_Codigo;
     private javax.swing.JLabel jl_Filtro;
     private javax.swing.JLabel jl_Nombre;
+    private javax.swing.JLabel jl_Tienda;
     private javax.swing.JRadioButton jrb_Codigo;
     private javax.swing.JRadioButton jrb_Nombre;
     private javax.swing.JTextField jt_Filtro;

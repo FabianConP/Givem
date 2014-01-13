@@ -5,18 +5,27 @@
  */
 package gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import Conexion.Conexion;
+import java.awt.Color;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import javax.swing.Timer;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Personal
  */
 public class JIF_Factura extends javax.swing.JInternalFrame {
+
+    public static double precioT;
 
     /**
      * Creates new form Factura
@@ -40,6 +49,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jb_BuscarEmpleado = new javax.swing.JButton();
         jl_InfoNomVendedor = new javax.swing.JLabel();
         jl_NomVendedor = new javax.swing.JLabel();
+        jc_Sesion = new javax.swing.JCheckBox();
         jp_Producto = new javax.swing.JPanel();
         jl_CodigoProducto = new javax.swing.JLabel();
         jt_CodigoProducto = new javax.swing.JTextField();
@@ -48,12 +58,14 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jl_PrecioProducto = new javax.swing.JLabel();
         jl_NombreProducto = new javax.swing.JLabel();
         jl_CantidadProducto = new javax.swing.JLabel();
-        jsp_Cantidad = new javax.swing.JSpinner();
+        js_Cantidad = new javax.swing.JSpinner();
         jb_AgregarProducto = new javax.swing.JButton();
         jc_DescuentoProducto = new javax.swing.JCheckBox();
         jl_InfoUnidDispoProducto = new javax.swing.JLabel();
         jt_UnidDispoProducto = new javax.swing.JTextField();
-        jt_DescuentoProducto = new javax.swing.JTextField();
+        jl_InfoPrecioT = new javax.swing.JLabel();
+        jl_PrecioProductoT = new javax.swing.JLabel();
+        js_DescuentoProducto = new javax.swing.JSpinner();
         jp_Venta = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jta_Venta = new javax.swing.JTable();
@@ -65,16 +77,34 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jl_InfoNomCliente = new javax.swing.JLabel();
         jl_NomCliente = new javax.swing.JLabel();
         jl_InfoFactura = new javax.swing.JLabel();
-        jl_NumeroFactura = new javax.swing.JLabel();
         jl_Fecha = new javax.swing.JLabel();
         jl_InfoPrecioTotal = new javax.swing.JLabel();
         jl_PrecioTotal = new javax.swing.JLabel();
         jl_InfoFecha = new javax.swing.JLabel();
+        js_NumeroFactura = new javax.swing.JSpinner();
+        jl_InfoTienda = new javax.swing.JLabel();
+        jl_Tienda = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setTitle("Factura");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameOpened(evt);
+            }
+        });
 
         jp_Vendedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
@@ -97,6 +127,14 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
 
         jl_NomVendedor.setText(" ");
 
+        jc_Sesion.setText("Sesión");
+        jc_Sesion.setToolTipText("<html>\nMarque esta opción si el vendedor <p>es el mismo de la sesión\n</html>");
+        jc_Sesion.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jc_SesionItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jp_VendedorLayout = new javax.swing.GroupLayout(jp_Vendedor);
         jp_Vendedor.setLayout(jp_VendedorLayout);
         jp_VendedorLayout.setHorizontalGroup(
@@ -104,18 +142,20 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
             .addGroup(jp_VendedorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jp_VendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jl_NomVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jp_VendedorLayout.createSequentialGroup()
-                        .addComponent(jl_NomVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jp_VendedorLayout.createSequentialGroup()
-                        .addComponent(jl_InfoNomVendedor)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jp_VendedorLayout.createSequentialGroup()
-                        .addComponent(jl_CodigoVendedor)
+                        .addGroup(jp_VendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jp_VendedorLayout.createSequentialGroup()
+                                .addComponent(jl_InfoNomVendedor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jc_Sesion))
+                            .addGroup(jp_VendedorLayout.createSequentialGroup()
+                                .addComponent(jl_CodigoVendedor)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jt_CodigoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jt_CodigoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jb_BuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jb_BuscarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jp_VendedorLayout.setVerticalGroup(
             jp_VendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +166,9 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                     .addComponent(jt_CodigoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jb_BuscarEmpleado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jl_InfoNomVendedor)
+                .addGroup(jp_VendedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jl_InfoNomVendedor)
+                    .addComponent(jc_Sesion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jl_NomVendedor)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -149,12 +191,12 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         });
 
         jl_InfoPrecio.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jl_InfoPrecio.setText("Precio");
+        jl_InfoPrecio.setText("Precio c/u");
 
         jl_PrecioProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jl_PrecioProducto.setForeground(new java.awt.Color(0, 102, 0));
         jl_PrecioProducto.setText("$$");
-        jl_PrecioProducto.setToolTipText("Precio del producto");
+        jl_PrecioProducto.setToolTipText("Precio c/u del producto");
         jl_PrecioProducto.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jl_NombreProducto.setText(" ");
@@ -163,16 +205,32 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jl_CantidadProducto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jl_CantidadProducto.setText("Cantidad");
 
-        jsp_Cantidad.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
-        jsp_Cantidad.setToolTipText("Cantidad de productos a comprar");
+        js_Cantidad.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+        js_Cantidad.setToolTipText("Cantidad de productos a comprar");
+        js_Cantidad.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                js_CantidadStateChanged(evt);
+            }
+        });
 
         jb_AgregarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_nuevo.png"))); // NOI18N
         jb_AgregarProducto.setText("Agregar");
         jb_AgregarProducto.setToolTipText("Agregar producto(s) a la factura");
+        jb_AgregarProducto.setEnabled(false);
+        jb_AgregarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_AgregarProductoActionPerformed(evt);
+            }
+        });
 
         jc_DescuentoProducto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jc_DescuentoProducto.setText("Descuento");
+        jc_DescuentoProducto.setText("Dto");
         jc_DescuentoProducto.setToolTipText("Marque esta opción si se aplica algún descuento al producto");
+        jc_DescuentoProducto.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jc_DescuentoProductoItemStateChanged(evt);
+            }
+        });
 
         jl_InfoUnidDispoProducto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jl_InfoUnidDispoProducto.setText("Unid. disp.");
@@ -180,7 +238,23 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jt_UnidDispoProducto.setToolTipText("Unidades dispo. del producto");
         jt_UnidDispoProducto.setEnabled(false);
 
-        jt_DescuentoProducto.setToolTipText("Descuento a aplicar");
+        jl_InfoPrecioT.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jl_InfoPrecioT.setText("Precio T.");
+
+        jl_PrecioProductoT.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jl_PrecioProductoT.setForeground(new java.awt.Color(0, 102, 0));
+        jl_PrecioProductoT.setText("$$");
+        jl_PrecioProductoT.setToolTipText("Precio total de lo(s) producto(s)");
+        jl_PrecioProductoT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+
+        js_DescuentoProducto.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
+        js_DescuentoProducto.setToolTipText("El descuento se ve reflejado sólo en el precio total");
+        js_DescuentoProducto.setEnabled(false);
+        js_DescuentoProducto.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                js_DescuentoProductoStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jp_ProductoLayout = new javax.swing.GroupLayout(jp_Producto);
         jp_Producto.setLayout(jp_ProductoLayout);
@@ -188,34 +262,38 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
             jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_ProductoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jp_ProductoLayout.createSequentialGroup()
+                .addGroup(jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jp_ProductoLayout.createSequentialGroup()
                         .addComponent(jl_NombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jl_InfoUnidDispoProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jt_UnidDispoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jl_CantidadProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jsp_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jl_CantidadProducto))
                     .addGroup(jp_ProductoLayout.createSequentialGroup()
                         .addComponent(jl_CodigoProducto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jt_CodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jb_BuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jb_BuscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jl_InfoPrecio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jl_PrecioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jc_DescuentoProducto)
+                        .addComponent(jl_PrecioProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jl_InfoPrecioT)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jt_DescuentoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(16, 16, 16)
+                        .addComponent(jl_PrecioProductoT, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jc_DescuentoProducto)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(js_DescuentoProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                    .addComponent(js_Cantidad))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jb_AgregarProducto)
-                .addContainerGap())
+                .addGap(20, 20, 20))
         );
         jp_ProductoLayout.setVerticalGroup(
             jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,19 +301,24 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jp_ProductoLayout.createSequentialGroup()
-                        .addGroup(jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jl_CodigoProducto)
-                            .addComponent(jt_CodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jb_BuscarProducto)
-                            .addComponent(jl_InfoPrecio)
-                            .addComponent(jl_PrecioProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jc_DescuentoProducto)
-                            .addComponent(jt_DescuentoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jc_DescuentoProducto)
+                                .addComponent(js_DescuentoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jl_InfoPrecioT)
+                                .addComponent(jl_PrecioProductoT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jl_CodigoProducto)
+                                .addComponent(jt_CodigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jb_BuscarProducto)
+                                .addComponent(jl_InfoPrecio)
+                                .addComponent(jl_PrecioProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jl_NombreProducto)
                             .addComponent(jl_CantidadProducto)
-                            .addComponent(jsp_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(js_Cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jl_InfoUnidDispoProducto)
                             .addComponent(jt_UnidDispoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(2, 2, 2))
@@ -333,10 +416,11 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
             jp_ClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_ClienteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jp_ClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jl_CodCliente)
-                    .addComponent(jt_CodigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jb_BuscarCliente))
+                .addGroup(jp_ClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jb_BuscarCliente)
+                    .addGroup(jp_ClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jl_CodCliente)
+                        .addComponent(jt_CodigoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jl_InfoNomCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -347,10 +431,6 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jl_InfoFactura.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_InfoFactura.setText("Factura");
 
-        jl_NumeroFactura.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jl_NumeroFactura.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jl_NumeroFactura.setText(" ");
-
         jl_Fecha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jl_Fecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jl_Fecha.setText(" ");
@@ -360,10 +440,20 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
 
         jl_PrecioTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jl_PrecioTotal.setForeground(new java.awt.Color(0, 102, 0));
-        jl_PrecioTotal.setText("Precio Total");
+        jl_PrecioTotal.setText("0");
 
         jl_InfoFecha.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_InfoFecha.setText("Fecha");
+
+        js_NumeroFactura.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        js_NumeroFactura.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
+
+        jl_InfoTienda.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jl_InfoTienda.setText("Tienda");
+
+        jl_Tienda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jl_Tienda.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jl_Tienda.setText(" ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -371,35 +461,35 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jp_Venta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jp_Vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jp_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jl_InfoFactura))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jl_InfoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jl_Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                                    .addComponent(jl_NumeroFactura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jp_Producto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jl_InfoPrecioTotal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jl_PrecioTotal)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jl_PrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jb_Facturar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))))
+                        .addComponent(jb_Facturar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jp_Venta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jp_Vendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jp_Cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jl_InfoFactura))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jl_InfoFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jl_InfoTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jl_Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                            .addComponent(js_NumeroFactura)
+                            .addComponent(jl_Tienda, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)))
+                    .addComponent(jp_Producto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,22 +504,25 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jl_InfoFactura)
-                            .addComponent(jl_NumeroFactura))
-                        .addGap(19, 19, 19)
+                            .addComponent(js_NumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jl_InfoFecha)
-                            .addComponent(jl_Fecha))))
+                            .addComponent(jl_Fecha))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jl_InfoTienda)
+                            .addComponent(jl_Tienda))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jp_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jp_Venta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jb_Facturar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jl_InfoPrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jl_PrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(7, 7, 7))
+                    .addComponent(jl_InfoPrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jl_PrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -452,19 +545,144 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jb_BuscarClienteActionPerformed
 
     private void jb_BuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_BuscarProductoActionPerformed
-        Frm_BuscadorProducto frm_BuscadorProducto = new Frm_BuscadorProducto();
-        frm_BuscadorProducto.main(new String[]{""});
+        if (jl_Tienda.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "No se ha cargado la tienda, seleccione un vendedor");
+        } else {
+            Frm_BuscadorProducto frm_BuscadorProducto = new Frm_BuscadorProducto();
+            frm_BuscadorProducto.main(new String[]{""});
+        }
     }//GEN-LAST:event_jb_BuscarProductoActionPerformed
+
+    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+        precioT = 0;
+        try {
+            Conexion c = new Conexion();
+            Statement s = c.c.createStatement();
+            String sentence = "CALL sp_codNuevaFactura()";
+            ResultSet r = s.executeQuery(sentence);
+            if (r.next()) {
+                int numFactura = Integer.parseInt(r.getString(1));
+                SpinnerNumberModel snm = new SpinnerNumberModel(numFactura, numFactura, 1000, 1);
+                js_NumeroFactura.setModel(snm);
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al generar nueva factura", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            c.c.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        JFormattedTextField tf = ((JSpinner.DefaultEditor) js_NumeroFactura.getEditor()).getTextField();
+        tf.setEditable(false);
+        tf.setBackground(Color.white);
+    }//GEN-LAST:event_formInternalFrameOpened
+
+    public static void cargarUnidDisponibles(String idProducto) {
+        try {
+            if (jl_Tienda.getText().length() != 0) {
+                Conexion c = new Conexion();
+                Statement s = c.c.createStatement();
+                String sentence = "CALL sp_unidDispoProducto(" + idProducto + "," + jl_Tienda.getText() + ")";
+                ResultSet r = s.executeQuery(sentence);
+                if (r.next()) {
+                    int unidDispo = Integer.parseInt(r.getString(1));
+                    SpinnerNumberModel snm;
+                    if (unidDispo > 0) {
+                        snm = new SpinnerNumberModel(1, 1, unidDispo, 1);
+                        jb_AgregarProducto.setEnabled(true);
+                    } else {
+                        jt_CodigoProducto.setText("");
+                        jl_NombreProducto.setText("No hay disponiblidad del producto");
+                        jl_PrecioProducto.setText("$$");
+                        jl_PrecioProductoT.setText("$$");
+                        jc_DescuentoProducto.setSelected(false);
+                        js_DescuentoProducto.setValue(new Integer(0));
+                        snm = new SpinnerNumberModel(0, 0, 0, 0);
+                        jb_AgregarProducto.setEnabled(false);
+                        //JOptionPane.showMessageDialog(this, "No ha disponibilidad del producto");
+                    }
+                    js_Cantidad.setModel(snm);
+                    jt_UnidDispoProducto.setText(unidDispo + "");
+                } else {
+                    //JOptionPane.showMessageDialog(this, "Error al generar nueva factura", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                c.c.close();
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            //JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    private void jc_SesionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jc_SesionItemStateChanged
+        if (jc_Sesion.isSelected()) {
+            jt_CodigoVendedor.setText(Frm_Principal.cedula);
+            jl_NomVendedor.setText(Frm_Principal.nombre);
+            jl_Tienda.setText(Frm_Principal.idTienda);
+            jb_BuscarEmpleado.setEnabled(false);
+        } else {
+            jb_BuscarEmpleado.setEnabled(true);
+            jt_CodigoVendedor.setText("");
+            jl_Tienda.setText("");
+        }
+    }//GEN-LAST:event_jc_SesionItemStateChanged
+
+    private void jc_DescuentoProductoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jc_DescuentoProductoItemStateChanged
+        SpinnerNumberModel snm = new SpinnerNumberModel(0, 0, 100, 1);
+        js_DescuentoProducto.setModel(snm);
+        js_DescuentoProducto.setEnabled(jc_DescuentoProducto.isSelected());
+        double preciocu = Double.parseDouble(jl_PrecioProducto.getText());
+        int cantidad = Integer.parseInt(js_Cantidad.getValue().toString());
+        jl_PrecioProductoT.setText(preciocu * cantidad + "");
+    }//GEN-LAST:event_jc_DescuentoProductoItemStateChanged
+
+    private void js_CantidadStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_js_CantidadStateChanged
+        double preciocu = Double.parseDouble(jl_PrecioProducto.getText());
+        double preciot = 0;
+        int cantidad = Integer.parseInt(js_Cantidad.getValue().toString());
+        double dto = Double.parseDouble(js_DescuentoProducto.getValue().toString());
+        preciot = preciocu * cantidad;
+        preciot -= (dto / 100.0) * preciot;
+        jl_PrecioProductoT.setText(String.format("%.2f", preciot).replaceAll(",", ".") + "");
+    }//GEN-LAST:event_js_CantidadStateChanged
+
+    private void js_DescuentoProductoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_js_DescuentoProductoStateChanged
+        if (jc_DescuentoProducto.isSelected()) {
+            double preciocu = Double.parseDouble(jl_PrecioProducto.getText());
+            double preciot = 0;
+            int cantidad = Integer.parseInt(js_Cantidad.getValue().toString());
+            double dto = Double.parseDouble(js_DescuentoProducto.getValue().toString());
+            preciot = preciocu * cantidad;
+            preciot -= (dto / 100.0) * preciot;
+            jl_PrecioProductoT.setText(String.format("%.2f", preciot).replaceAll(",", ".") + "");
+        }
+    }//GEN-LAST:event_js_DescuentoProductoStateChanged
+
+    private void jb_AgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_AgregarProductoActionPerformed
+        DefaultTableModel dtm = (DefaultTableModel) jta_Venta.getModel();
+        Object codigo = (Object) jt_CodigoProducto.getText();
+        Object nombre = (Object) jl_NombreProducto.getText();
+        Object precio = (Object) jl_PrecioProducto.getText();
+        Object cantidad = (Object) js_Cantidad.getValue().toString();
+        Object preciot = (Object) jl_PrecioProductoT.getText();
+        Object dto = (Object) js_DescuentoProducto.getValue().toString();
+        Object[] o = new Object[]{codigo, nombre, precio, cantidad, preciot, dto};
+        dtm.addRow(o);
+        jta_Venta.setModel(dtm);
+        jb_AgregarProducto.setEnabled(false);
+        precioT += Double.parseDouble(jl_PrecioProductoT.getText());
+        jl_PrecioTotal.setText(String.format("%.2f", precioT).replaceAll(",", "."));
+    }//GEN-LAST:event_jb_AgregarProductoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jb_AgregarProducto;
+    public static javax.swing.JButton jb_AgregarProducto;
     private javax.swing.JButton jb_BuscarCliente;
     private javax.swing.JButton jb_BuscarEmpleado;
     private javax.swing.JButton jb_BuscarProducto;
     private javax.swing.JButton jb_Facturar;
-    private javax.swing.JCheckBox jc_DescuentoProducto;
+    private static javax.swing.JCheckBox jc_DescuentoProducto;
+    private javax.swing.JCheckBox jc_Sesion;
     private javax.swing.JLabel jl_CantidadProducto;
     private javax.swing.JLabel jl_CodCliente;
     private javax.swing.JLabel jl_CodigoProducto;
@@ -475,24 +693,28 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jl_InfoNomCliente;
     private javax.swing.JLabel jl_InfoNomVendedor;
     private javax.swing.JLabel jl_InfoPrecio;
+    private javax.swing.JLabel jl_InfoPrecioT;
     private javax.swing.JLabel jl_InfoPrecioTotal;
+    private javax.swing.JLabel jl_InfoTienda;
     private javax.swing.JLabel jl_InfoUnidDispoProducto;
     public static javax.swing.JLabel jl_NomCliente;
     public static javax.swing.JLabel jl_NomVendedor;
     public static javax.swing.JLabel jl_NombreProducto;
-    private javax.swing.JLabel jl_NumeroFactura;
     public static javax.swing.JLabel jl_PrecioProducto;
+    public static javax.swing.JLabel jl_PrecioProductoT;
     private javax.swing.JLabel jl_PrecioTotal;
+    public static javax.swing.JLabel jl_Tienda;
     private javax.swing.JPanel jp_Cliente;
     private javax.swing.JPanel jp_Producto;
     private javax.swing.JPanel jp_Vendedor;
     private javax.swing.JPanel jp_Venta;
-    private javax.swing.JSpinner jsp_Cantidad;
+    private static javax.swing.JSpinner js_Cantidad;
+    private static javax.swing.JSpinner js_DescuentoProducto;
+    private javax.swing.JSpinner js_NumeroFactura;
     public static javax.swing.JTextField jt_CodigoCliente;
     public static javax.swing.JTextField jt_CodigoProducto;
     public static javax.swing.JTextField jt_CodigoVendedor;
-    private javax.swing.JTextField jt_DescuentoProducto;
-    private javax.swing.JTextField jt_UnidDispoProducto;
+    private static javax.swing.JTextField jt_UnidDispoProducto;
     private javax.swing.JTable jta_Venta;
     // End of variables declaration//GEN-END:variables
 }

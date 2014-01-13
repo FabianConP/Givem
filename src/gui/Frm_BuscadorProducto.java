@@ -266,6 +266,8 @@ public class Frm_BuscadorProducto extends javax.swing.JFrame {
         JIF_Factura.jt_CodigoProducto.setText(jl_Codigo.getText());
         JIF_Factura.jl_NombreProducto.setText(jl_Nombre.getText());
         JIF_Factura.jl_PrecioProducto.setText(jl_Precio.getText());
+        JIF_Factura.jl_PrecioProductoT.setText(jl_Precio.getText());
+        JIF_Factura.cargarUnidDisponibles(jl_Codigo.getText());
         this.dispose();
     }//GEN-LAST:event_jb_AgregarActionPerformed
 

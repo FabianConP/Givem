@@ -357,20 +357,10 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jta_ArticulosRegistrados);
         if (jta_ArticulosRegistrados.getColumnModel().getColumnCount() > 0) {
-            jta_ArticulosRegistrados.getColumnModel().getColumn(0).setResizable(false);
             jta_ArticulosRegistrados.getColumnModel().getColumn(0).setPreferredWidth(60);
-            jta_ArticulosRegistrados.getColumnModel().getColumn(1).setResizable(false);
             jta_ArticulosRegistrados.getColumnModel().getColumn(1).setPreferredWidth(140);
-            jta_ArticulosRegistrados.getColumnModel().getColumn(2).setResizable(false);
-            jta_ArticulosRegistrados.getColumnModel().getColumn(3).setResizable(false);
-            jta_ArticulosRegistrados.getColumnModel().getColumn(4).setResizable(false);
-            jta_ArticulosRegistrados.getColumnModel().getColumn(5).setResizable(false);
             jta_ArticulosRegistrados.getColumnModel().getColumn(5).setPreferredWidth(60);
-            jta_ArticulosRegistrados.getColumnModel().getColumn(6).setResizable(false);
-            jta_ArticulosRegistrados.getColumnModel().getColumn(7).setResizable(false);
             jta_ArticulosRegistrados.getColumnModel().getColumn(7).setPreferredWidth(55);
-            jta_ArticulosRegistrados.getColumnModel().getColumn(8).setResizable(false);
-            jta_ArticulosRegistrados.getColumnModel().getColumn(9).setResizable(false);
             jta_ArticulosRegistrados.getColumnModel().getColumn(9).setPreferredWidth(40);
         }
         jta_ArticulosRegistrados.setAutoCreateRowSorter(true);
