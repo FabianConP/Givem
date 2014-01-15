@@ -7,6 +7,7 @@ package gui;
 
 import Conexion.Conexion;
 import Util.Util;
+import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,6 +25,8 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
@@ -111,6 +114,7 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
         setTitle("Producto");
         setToolTipText("");
         setAutoscrolls(true);
+        setPreferredSize(new java.awt.Dimension(990, 483));
 
         jp_DatosGenerales.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos generales"));
 
@@ -256,11 +260,6 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
         jcb_Talla.setEditable(true);
         jcb_Talla.setToolTipText("Talla del producto");
         jcb_Talla.setEnabled(false);
-        jcb_Talla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcb_TallaActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jp_TipoLayout = new javax.swing.GroupLayout(jp_Tipo);
         jp_Tipo.setLayout(jp_TipoLayout);
@@ -468,12 +467,12 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jp_ProductosRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jb_Informe))
-                        .addContainerGap(16, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jp_DatosGenerales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -490,14 +489,14 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
                             .addComponent(jc_Ropa)
                             .addComponent(jc_Calzado))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jp_ProductosRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jp_ProductosRegistrados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jb_Informe)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jb_Guardar)
-                        .addComponent(jb_Borrar)
-                        .addComponent(jb_Nuevo))
-                    .addComponent(jb_Informe))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jb_Guardar)
+                    .addComponent(jb_Borrar)
+                    .addComponent(jb_Nuevo))
                 .addGap(17, 17, 17))
         );
 
@@ -763,7 +762,9 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
 
     private void jb_InformeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_InformeActionPerformed
         try {
-            JasperReport report = JasperCompileManager.compileReport(getClass().getResource("/Reportes/rep_InventarioProducto.jrxml").getPath());
+            InputStream input = this.getClass().getResourceAsStream("/Reportes/rep_InventarioProducto.jrxml");
+            JasperDesign design = JRXmlLoader.load(input);
+            JasperReport report = JasperCompileManager.compileReport(design);
             Conexion c = new Conexion();
             Map map = new HashMap(10);
             map.put("TIPO", jrb_Codigo.isSelected()?"Codigo":"Nombre");
@@ -777,10 +778,6 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error con la conexión", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jb_InformeActionPerformed
-
-    private void jcb_TallaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcb_TallaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcb_TallaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
