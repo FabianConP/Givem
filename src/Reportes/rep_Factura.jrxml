@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="216" pageHeight="792" columnWidth="176" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="67ca6ce7-32a3-4eb8-bb54-3397a8f4047f">
 	<property name="ireport.zoom" value="3.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="32"/>
+	<property name="ireport.y" value="31"/>
 	<parameter name="CC" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -34,7 +34,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT * FROM v_productosFactura WHERE idFactura = 6;]]>
+		<![CDATA[SELECT * FROM v_productosFactura WHERE idFactura = $P!{FACTURA};]]>
 	</queryString>
 	<field name="idFactura" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -214,7 +214,7 @@
 				<textElement>
 					<font fontName="Times New Roman" size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{CLIENTEDOC}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[SUM($F{precio})]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="0" y="25" width="55" height="11" uuid="df760de9-35eb-4f65-8763-03e5b1f7ae5f"/>
