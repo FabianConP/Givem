@@ -116,6 +116,7 @@ public class Frm_Inicio_Sesion extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jb_EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_EntrarActionPerformed

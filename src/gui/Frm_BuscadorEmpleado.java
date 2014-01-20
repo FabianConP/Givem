@@ -49,6 +49,8 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
         jl_Tienda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Buscador de empleados");
+        setType(java.awt.Window.Type.UTILITY);
 
         jl_Filtro.setText("Filtro");
 
@@ -195,6 +197,7 @@ public class Frm_BuscadorEmpleado extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jrb_CodigoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrb_CodigoItemStateChanged

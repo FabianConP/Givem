@@ -790,10 +790,11 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                 map.put("FACTURA", jl_NumeroFactura.getText());
                 JasperPrint print = JasperFillManager.fillReport(report, map, c.c);
                 JasperViewer.viewReport(print, false);
+                this.dispose();
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(JIF_Factura.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "No se ha encontrado el archivo de configuración de las facturas", "Error en archivo", JOptionPane.ERROR_MESSAGE);
             } catch (IOException | ClassNotFoundException | SQLException | JRException ex) {
-                Logger.getLogger(JIF_Factura.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, "Error al conectarse a la base de datos", "Error",JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jb_FacturarActionPerformed

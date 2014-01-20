@@ -54,6 +54,7 @@ public class Frm_BuscadorProducto extends javax.swing.JFrame {
         jb_Agregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Buscador de productos");
 
         jl_Filtro.setText("Filtro");
 
@@ -200,7 +201,7 @@ public class Frm_BuscadorProducto extends javax.swing.JFrame {
                                     .addComponent(jl_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(31, 31, 31)
                                 .addComponent(jb_Agregar)))
-                        .addContainerGap(19, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,6 +231,7 @@ public class Frm_BuscadorProducto extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jrb_CodigoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrb_CodigoItemStateChanged

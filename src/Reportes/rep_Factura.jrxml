@@ -166,7 +166,7 @@
 				<textElement>
 					<font fontName="Times New Roman" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Precio]]></text>
+				<text><![CDATA[Precio c/u]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="12" width="176" height="1" uuid="110ce4d7-b7a8-4f9f-aadf-1846d2761755"/>

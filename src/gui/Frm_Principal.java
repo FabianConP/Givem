@@ -6,9 +6,13 @@
 package gui;
 
 import Conexion.Conexion;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
 /**
@@ -47,6 +51,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jdp_DesktopPrincipal = new javax.swing.JDesktopPane();
         jmb_Principal = new javax.swing.JMenuBar();
         jm_Archivo = new javax.swing.JMenu();
         jmi_Cerrar_Sesion = new javax.swing.JMenuItem();
@@ -73,7 +78,7 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Givem");
-        setPreferredSize(new java.awt.Dimension(1024, 768));
+        setPreferredSize(new java.awt.Dimension(1024, 700));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -83,6 +88,7 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         jm_Archivo.setText("Archivo");
 
+        jmi_Cerrar_Sesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_loginOut_small.png"))); // NOI18N
         jmi_Cerrar_Sesion.setText("Cerrar Sesión");
         jmi_Cerrar_Sesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +97,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         });
         jm_Archivo.add(jmi_Cerrar_Sesion);
 
+        jmi_Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_salir_small.png"))); // NOI18N
         jmi_Salir.setText("Salir");
         jmi_Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +111,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jm_Agregar_Modificar.setText("Agregar / Modificar");
 
         jmi_Factura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        jmi_Factura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_factura_small.png"))); // NOI18N
         jmi_Factura.setText("Factura");
         jmi_Factura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +121,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jm_Agregar_Modificar.add(jmi_Factura);
 
         jmi_Producto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jmi_Producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_producto_small.png"))); // NOI18N
         jmi_Producto.setText("Producto");
         jmi_Producto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +131,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jm_Agregar_Modificar.add(jmi_Producto);
 
         jmi_Cliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jmi_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_cliente_small.png"))); // NOI18N
         jmi_Cliente.setText("Cliente");
         jmi_Cliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +141,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jm_Agregar_Modificar.add(jmi_Cliente);
 
         jmi_Empleado.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jmi_Empleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_empleado_small.png"))); // NOI18N
         jmi_Empleado.setText("Empleado");
         jmi_Empleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +150,8 @@ public class Frm_Principal extends javax.swing.JFrame {
         });
         jm_Agregar_Modificar.add(jmi_Empleado);
 
-        jmi_Proveedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jmi_Proveedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jmi_Proveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_proveedor_small.png"))); // NOI18N
         jmi_Proveedor.setText("Proveedor");
         jmi_Proveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,6 +161,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jm_Agregar_Modificar.add(jmi_Proveedor);
 
         jmi_Tienda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
+        jmi_Tienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_tienda_small.png"))); // NOI18N
         jmi_Tienda.setText("Tienda");
         jmi_Tienda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,20 +173,25 @@ public class Frm_Principal extends javax.swing.JFrame {
         jmb_Principal.add(jm_Agregar_Modificar);
 
         jm_Herramientas.setText("Herramientas");
-        jm_Herramientas.setEnabled(false);
 
+        jmi_Generar_CS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_copia_small.png"))); // NOI18N
         jmi_Generar_CS.setText("Generar Copia de Seguridad");
         jm_Herramientas.add(jmi_Generar_CS);
 
+        jmi_Restaurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_restaurar_small.png"))); // NOI18N
         jmi_Restaurar.setText("Restaurar");
         jm_Herramientas.add(jmi_Restaurar);
 
         jmb_Principal.add(jm_Herramientas);
 
         jm_Informes.setText("Informes");
-        jm_Informes.setEnabled(false);
 
         jmi_Informe_General.setText("Informe General");
+        jmi_Informe_General.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_Informe_GeneralActionPerformed(evt);
+            }
+        });
         jm_Informes.add(jmi_Informe_General);
 
         jmi_Productos_Vendidos.setText("Productos Vendidos");
@@ -192,9 +210,11 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         jm_Ayuda.setText("Ayuda");
 
+        jmi_Contenidos_Ayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_ayuda_small.png"))); // NOI18N
         jmi_Contenidos_Ayuda.setText("Contenidos de Ayuda");
         jm_Ayuda.add(jmi_Contenidos_Ayuda);
 
+        jmi_Acerca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_acerca_small.png"))); // NOI18N
         jmi_Acerca.setText("Acerca");
         jm_Ayuda.add(jmi_Acerca);
 
@@ -206,20 +226,23 @@ public class Frm_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1024, Short.MAX_VALUE)
+            .addComponent(jdp_DesktopPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 750, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jdp_DesktopPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmi_ProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ProductoActionPerformed
         JIF_Producto jif_Producto = new JIF_Producto();
-        this.getContentPane().removeAll();
-        this.getContentPane().add(jif_Producto);
+        jdp_DesktopPrincipal.removeAll();
+        jdp_DesktopPrincipal.add(jif_Producto);
         jif_Producto.show();
     }//GEN-LAST:event_jmi_ProductoActionPerformed
 
@@ -235,36 +258,36 @@ public class Frm_Principal extends javax.swing.JFrame {
 
     private void jmi_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ClienteActionPerformed
         JIF_Cliente jif_Cliente = new JIF_Cliente();
-        this.getContentPane().removeAll();
-        this.getContentPane().add(jif_Cliente);
+        jdp_DesktopPrincipal.removeAll();
+        jdp_DesktopPrincipal.add(jif_Cliente);
         jif_Cliente.show();
     }//GEN-LAST:event_jmi_ClienteActionPerformed
 
     private void jmi_ProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_ProveedorActionPerformed
         JIF_Proveedor jif_Proveedor = new JIF_Proveedor();
-        this.getContentPane().removeAll();
-        this.getContentPane().add(jif_Proveedor);
+        jdp_DesktopPrincipal.removeAll();
+        jdp_DesktopPrincipal.add(jif_Proveedor);
         jif_Proveedor.show();
     }//GEN-LAST:event_jmi_ProveedorActionPerformed
 
     private void jmi_EmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_EmpleadoActionPerformed
         JIF_Empleado jif_Empleado = new JIF_Empleado();
-        this.getContentPane().removeAll();
-        this.getContentPane().add(jif_Empleado);
+        jdp_DesktopPrincipal.removeAll();
+        jdp_DesktopPrincipal.add(jif_Empleado);
         jif_Empleado.show();
     }//GEN-LAST:event_jmi_EmpleadoActionPerformed
 
     private void jmi_TiendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_TiendaActionPerformed
         JIF_Tienda jif_Tienda = new JIF_Tienda();
-        this.getContentPane().removeAll();
-        this.getContentPane().add(jif_Tienda);
+        jdp_DesktopPrincipal.removeAll();
+        jdp_DesktopPrincipal.add(jif_Tienda);
         jif_Tienda.show();
     }//GEN-LAST:event_jmi_TiendaActionPerformed
 
     private void jmi_FacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_FacturaActionPerformed
         JIF_Factura jif_Factura = new JIF_Factura();
-        this.getContentPane().removeAll();
-        this.getContentPane().add(jif_Factura);
+        jdp_DesktopPrincipal.removeAll();
+        jdp_DesktopPrincipal.add(jif_Factura);
         jif_Factura.show();
     }//GEN-LAST:event_jmi_FacturaActionPerformed
 
@@ -289,6 +312,13 @@ public class Frm_Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void jmi_Informe_GeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_Informe_GeneralActionPerformed
+        JIF_InformeGeneral jif_informeGeneral = new JIF_InformeGeneral();
+        jdp_DesktopPrincipal.removeAll();
+        jdp_DesktopPrincipal.add(jif_informeGeneral);
+        jif_informeGeneral.show();
+    }//GEN-LAST:event_jmi_Informe_GeneralActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,6 +356,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JDesktopPane jdp_DesktopPrincipal;
     private javax.swing.JMenu jm_Agregar_Modificar;
     private javax.swing.JMenu jm_Archivo;
     private javax.swing.JMenu jm_Ayuda;

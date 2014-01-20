@@ -47,6 +47,8 @@ public class Frm_BuscadorCliente extends javax.swing.JFrame {
         jl_Nombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Buscador de clientes");
+        setType(java.awt.Window.Type.UTILITY);
 
         jl_Filtro.setText("Filtro");
 
@@ -186,6 +188,7 @@ public class Frm_BuscadorCliente extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jrb_DocumentoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jrb_DocumentoItemStateChanged
