@@ -9,9 +9,6 @@
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
-  <Events>
-    <EventHandler event="internalFrameOpened" listener="javax.swing.event.InternalFrameListener" parameters="javax.swing.event.InternalFrameEvent" handler="formInternalFrameOpened"/>
-  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -58,10 +55,11 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jl_Fecha" pref="206" max="32767" attributes="0"/>
-                          <Component id="js_NumeroFactura" max="32767" attributes="0"/>
-                          <Component id="jl_Tienda" alignment="0" pref="206" max="32767" attributes="0"/>
+                          <Component id="jl_Fecha" min="-2" pref="206" max="-2" attributes="0"/>
+                          <Component id="jl_Tienda" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
+                          <Component id="jl_NumeroFactura" alignment="0" min="-2" pref="206" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="9" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jp_Producto" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -81,20 +79,20 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jl_InfoFactura" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="js_NumeroFactura" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jl_NumeroFactura" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jl_InfoFecha" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jl_Fecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jl_Fecha" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jl_InfoTienda" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jl_Tienda" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jl_Tienda" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -108,7 +106,7 @@
                   <Component id="jl_InfoPrecioTotal" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="jl_PrecioTotal" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="15" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -118,7 +116,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Informaci&#xf3;n cliente">
+            <TitledBorder title="Informaci&#xf3;n vendedor">
               <Font PropertyName="font" name="Segoe UI" size="14" style="0"/>
             </TitledBorder>
           </Border>
@@ -234,11 +232,12 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Informaci&#xf3;n cliente">
+            <TitledBorder title="Informaci&#xf3;n producto">
               <Font PropertyName="font" name="Segoe UI" size="14" style="0"/>
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -353,6 +352,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_BuscarProductoActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jl_InfoPrecio">
           <Properties>
@@ -372,6 +374,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="$$"/>
             <Property name="toolTipText" type="java.lang.String" value="Precio c/u del producto"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="4"/>
           </Properties>
           <AuxValues>
@@ -401,6 +404,7 @@
               <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Cantidad de productos a comprar"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="js_CantidadStateChanged"/>
@@ -432,6 +436,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Dto"/>
             <Property name="toolTipText" type="java.lang.String" value="Marque esta opci&#xf3;n si se aplica alg&#xfa;n descuento al producto"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jc_DescuentoProductoItemStateChanged"/>
@@ -475,6 +480,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="$$"/>
             <Property name="toolTipText" type="java.lang.String" value="Precio total de lo(s) producto(s)"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="4"/>
           </Properties>
           <AuxValues>
@@ -543,7 +549,7 @@
                     <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
                     <Column editable="false" title="Nombre" type="java.lang.Object"/>
                     <Column editable="false" title="Precio C/U" type="java.lang.Object"/>
-                    <Column editable="false" title="Cantidad" type="java.lang.Object"/>
+                    <Column editable="false" title="Cant." type="java.lang.Object"/>
                     <Column editable="false" title="Precio Total" type="java.lang.Object"/>
                     <Column editable="false" title="Dto" type="java.lang.Object"/>
                   </Table>
@@ -582,10 +588,17 @@
                     </Column>
                   </TableColumnModel>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="false" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jta_VentaKeyTyped"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -598,7 +611,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Facturar"/>
         <Property name="toolTipText" type="java.lang.String" value="Haga clic aqu&#xed; para generar la factura"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jb_FacturarActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
     <Container class="javax.swing.JPanel" name="jp_Cliente">
       <Properties>
@@ -709,6 +729,22 @@
         <Property name="text" type="java.lang.String" value="Factura"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="jl_NumeroFactura">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Arial" size="18" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
+    </Component>
     <Component class="javax.swing.JLabel" name="jl_Fecha">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -716,6 +752,11 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value=" "/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="final DateFormat dateFormat = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);&#xa;final Calendar cal = Calendar.getInstance();&#xa;jl_Fecha.setText(dateFormat.format(cal.getTime()));"/>
@@ -738,7 +779,11 @@
           <Color blue="0" green="66" red="0" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="0"/>
+        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jl_InfoFecha">
       <Properties>
@@ -746,16 +791,6 @@
           <Font name="Tahoma" size="18" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Fecha"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JSpinner" name="js_NumeroFactura">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="18" style="1"/>
-        </Property>
-        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
-          <SpinnerModel initial="1" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
-        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jl_InfoTienda">
@@ -772,7 +807,11 @@
           <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value=" "/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+            <EtchetBorder/>
+          </Border>
+        </Property>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>

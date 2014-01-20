@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gui;
 
 import Conexion.Conexion;
@@ -200,12 +199,13 @@ public class Frm_BuscadorCliente extends javax.swing.JFrame {
     private void jta_ClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jta_ClienteMouseClicked
         // rowToFields(jta_Cliente.getSelectedRow());
         int fila = jta_Cliente.getSelectedRow();
-        if(fila!=-1){
+        if (fila != -1) {
             jb_Agregar.setEnabled(true);
             jl_Documento.setText(jta_Cliente.getValueAt(fila, 0).toString());
             jl_Nombre.setText(jta_Cliente.getValueAt(fila, 1).toString());
-        }else
+        } else {
             jb_Agregar.setEnabled(false);
+        }
     }//GEN-LAST:event_jta_ClienteMouseClicked
 
     private void jb_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_BuscarActionPerformed
@@ -220,12 +220,15 @@ public class Frm_BuscadorCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jt_FiltroKeyTyped
 
     private void jb_AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_AgregarActionPerformed
-       JIF_Factura.jt_CodigoCliente.setText(jl_Documento.getText());
-       JIF_Factura.jl_NomCliente.setText(jl_Nombre.getText());
-       this.dispose();
+        JIF_Factura.jt_CodigoCliente.setText(jl_Documento.getText());
+        JIF_Factura.jl_NomCliente.setText(jl_Nombre.getText());
+        JIF_Factura.cambioEstadoProducto(false);
+        JIF_Factura.cambioEstadoFactura(true);
+        JIF_Factura.nuevoCodFactura();
+        this.dispose();
     }//GEN-LAST:event_jb_AgregarActionPerformed
 
-    private void llenarTablaCliente(){
+    private void llenarTablaCliente() {
         DefaultTableModel dtm = (DefaultTableModel) jta_Cliente.getModel();
         while (dtm.getRowCount() > 0) {
             dtm.removeRow(0);
@@ -249,7 +252,7 @@ public class Frm_BuscadorCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     /**
      * @param args the command line arguments
      */

@@ -77,6 +77,9 @@
         <Property name="text" type="java.lang.String" value="1234"/>
         <Property name="toolTipText" type="java.lang.String" value="Contrase&#xf1;a del empleado [a-Z][0-9]"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jt_ContrasenaKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jl_Documento">
       <Properties>

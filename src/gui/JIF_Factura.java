@@ -6,22 +6,38 @@
 package gui;
 
 import Conexion.Conexion;
-import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import javax.swing.JFormattedTextField;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author Personal
+ * @author Personals
  */
 public class JIF_Factura extends javax.swing.JInternalFrame {
 
@@ -77,36 +93,19 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jl_InfoNomCliente = new javax.swing.JLabel();
         jl_NomCliente = new javax.swing.JLabel();
         jl_InfoFactura = new javax.swing.JLabel();
+        jl_NumeroFactura = new javax.swing.JLabel();
         jl_Fecha = new javax.swing.JLabel();
         jl_InfoPrecioTotal = new javax.swing.JLabel();
         jl_PrecioTotal = new javax.swing.JLabel();
         jl_InfoFecha = new javax.swing.JLabel();
-        js_NumeroFactura = new javax.swing.JSpinner();
         jl_InfoTienda = new javax.swing.JLabel();
         jl_Tienda = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setTitle("Factura");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameOpened(evt);
-            }
-        });
 
-        jp_Vendedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+        jp_Vendedor.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información vendedor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
         jl_CodigoVendedor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jl_CodigoVendedor.setText("Código vendedor");
@@ -174,7 +173,8 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jp_Producto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+        jp_Producto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información producto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+        jp_Producto.setEnabled(false);
 
         jl_CodigoProducto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jl_CodigoProducto.setText("Código producto");
@@ -197,6 +197,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jl_PrecioProducto.setForeground(new java.awt.Color(0, 102, 0));
         jl_PrecioProducto.setText("$$");
         jl_PrecioProducto.setToolTipText("Precio c/u del producto");
+        jl_PrecioProducto.setEnabled(false);
         jl_PrecioProducto.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jl_NombreProducto.setText(" ");
@@ -207,6 +208,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
 
         js_Cantidad.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
         js_Cantidad.setToolTipText("Cantidad de productos a comprar");
+        js_Cantidad.setEnabled(false);
         js_Cantidad.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 js_CantidadStateChanged(evt);
@@ -226,6 +228,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jc_DescuentoProducto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jc_DescuentoProducto.setText("Dto");
         jc_DescuentoProducto.setToolTipText("Marque esta opción si se aplica algún descuento al producto");
+        jc_DescuentoProducto.setEnabled(false);
         jc_DescuentoProducto.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jc_DescuentoProductoItemStateChanged(evt);
@@ -245,6 +248,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jl_PrecioProductoT.setForeground(new java.awt.Color(0, 102, 0));
         jl_PrecioProductoT.setText("$$");
         jl_PrecioProductoT.setToolTipText("Precio total de lo(s) producto(s)");
+        jl_PrecioProductoT.setEnabled(false);
         jl_PrecioProductoT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         js_DescuentoProducto.setModel(new javax.swing.SpinnerNumberModel(0, 0, 100, 1));
@@ -289,7 +293,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                         .addComponent(jc_DescuentoProducto)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jp_ProductoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(js_DescuentoProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                    .addComponent(js_DescuentoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 54, Short.MAX_VALUE)
                     .addComponent(js_Cantidad))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jb_AgregarProducto)
@@ -333,7 +337,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Nombre", "Precio C/U", "Cantidad", "Precio Total", "Dto"
+                "Código", "Nombre", "Precio C/U", "Cant.", "Precio Total", "Dto"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -344,7 +348,13 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jta_Venta.setEnabled(false);
         jta_Venta.getTableHeader().setReorderingAllowed(false);
+        jta_Venta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jta_VentaKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(jta_Venta);
         if (jta_Venta.getColumnModel().getColumnCount() > 0) {
             jta_Venta.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -372,6 +382,12 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jb_Facturar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_imprimir.png"))); // NOI18N
         jb_Facturar.setText("Facturar");
         jb_Facturar.setToolTipText("Haga clic aquí para generar la factura");
+        jb_Facturar.setEnabled(false);
+        jb_Facturar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_FacturarActionPerformed(evt);
+            }
+        });
 
         jp_Cliente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Información cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
 
@@ -431,9 +447,14 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jl_InfoFactura.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_InfoFactura.setText("Factura");
 
+        jl_NumeroFactura.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jl_NumeroFactura.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jl_NumeroFactura.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         jl_Fecha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jl_Fecha.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jl_Fecha.setText(" ");
+        jl_Fecha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jl_InfoPrecioTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jl_InfoPrecioTotal.setText("Precio Total");
@@ -441,19 +462,17 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         jl_PrecioTotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jl_PrecioTotal.setForeground(new java.awt.Color(0, 102, 0));
         jl_PrecioTotal.setText("0");
+        jl_PrecioTotal.setEnabled(false);
 
         jl_InfoFecha.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_InfoFecha.setText("Fecha");
-
-        js_NumeroFactura.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        js_NumeroFactura.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
         jl_InfoTienda.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jl_InfoTienda.setText("Tienda");
 
         jl_Tienda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jl_Tienda.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jl_Tienda.setText(" ");
+        jl_Tienda.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -485,9 +504,10 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                                 .addComponent(jl_InfoTienda, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jl_Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                            .addComponent(js_NumeroFactura)
-                            .addComponent(jl_Tienda, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)))
+                            .addComponent(jl_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jl_Tienda, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jl_NumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 9, Short.MAX_VALUE))
                     .addComponent(jp_Producto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -501,18 +521,18 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                             .addComponent(jp_Vendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jp_Cliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jl_InfoFactura)
-                            .addComponent(js_NumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17)
+                            .addComponent(jl_NumeroFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jl_InfoFecha)
-                            .addComponent(jl_Fecha))
+                            .addComponent(jl_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jl_InfoTienda)
-                            .addComponent(jl_Tienda))))
+                            .addComponent(jl_Tienda, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jp_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -522,7 +542,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                     .addComponent(jb_Facturar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jl_InfoPrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jl_PrecioTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -531,8 +551,6 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    public static String docCliente, nomCliente;
 
     private void jb_BuscarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_BuscarEmpleadoActionPerformed
         Frm_BuscadorEmpleado frm_BuscadorEmpleado = new Frm_BuscadorEmpleado();
@@ -545,36 +563,32 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jb_BuscarClienteActionPerformed
 
     private void jb_BuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_BuscarProductoActionPerformed
-        if (jl_Tienda.getText().length() == 0) {
-            JOptionPane.showMessageDialog(this, "No se ha cargado la tienda, seleccione un vendedor");
+        if (jl_Tienda.getText().length() == 0 || jl_NumeroFactura.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Primero seleccione el vendedor y el cliente");
         } else {
             Frm_BuscadorProducto frm_BuscadorProducto = new Frm_BuscadorProducto();
             frm_BuscadorProducto.main(new String[]{""});
         }
     }//GEN-LAST:event_jb_BuscarProductoActionPerformed
 
-    private void formInternalFrameOpened(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameOpened
+    public static void nuevoCodFactura() {
         precioT = 0;
         try {
             Conexion c = new Conexion();
             Statement s = c.c.createStatement();
-            String sentence = "CALL sp_codNuevaFactura()";
+            String codVendedor = jt_CodigoVendedor.getText();
+            String docCliente = jt_CodigoCliente.getText();
+            String sentence = "CALL sp_codNuevaFactura(\'" + codVendedor + "\',\'" + docCliente + "\')";
             ResultSet r = s.executeQuery(sentence);
             if (r.next()) {
                 int numFactura = Integer.parseInt(r.getString(1));
-                SpinnerNumberModel snm = new SpinnerNumberModel(numFactura, numFactura, 1000, 1);
-                js_NumeroFactura.setModel(snm);
-            } else {
-                JOptionPane.showMessageDialog(this, "Error al generar nueva factura", "Error", JOptionPane.ERROR_MESSAGE);
+                jl_NumeroFactura.setText(numFactura + "");
             }
             c.c.close();
         } catch (ClassNotFoundException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            //JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        JFormattedTextField tf = ((JSpinner.DefaultEditor) js_NumeroFactura.getEditor()).getTextField();
-        tf.setEditable(false);
-        tf.setBackground(Color.white);
-    }//GEN-LAST:event_formInternalFrameOpened
+    }
 
     public static void cargarUnidDisponibles(String idProducto) {
         try {
@@ -585,10 +599,18 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                 ResultSet r = s.executeQuery(sentence);
                 if (r.next()) {
                     int unidDispo = Integer.parseInt(r.getString(1));
+                    boolean exists = false;
+                    DefaultTableModel dtm = (DefaultTableModel) jta_Venta.getModel();
+                    for (int i = 0; i < jta_Venta.getRowCount(); i++) {
+                        if (dtm.getValueAt(i, 0).equals(idProducto + "")) {
+                            unidDispo -= Integer.parseInt(dtm.getValueAt(i, 3).toString());
+                        }
+                    }
                     SpinnerNumberModel snm;
                     if (unidDispo > 0) {
                         snm = new SpinnerNumberModel(1, 1, unidDispo, 1);
                         jb_AgregarProducto.setEnabled(true);
+                        JIF_Factura.cambioEstadoProducto(true);
                     } else {
                         jt_CodigoProducto.setText("");
                         jl_NombreProducto.setText("No hay disponiblidad del producto");
@@ -596,6 +618,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                         jl_PrecioProductoT.setText("$$");
                         jc_DescuentoProducto.setSelected(false);
                         js_DescuentoProducto.setValue(new Integer(0));
+                        JIF_Factura.cambioEstadoProducto(false);
                         snm = new SpinnerNumberModel(0, 0, 0, 0);
                         jb_AgregarProducto.setEnabled(false);
                         //JOptionPane.showMessageDialog(this, "No ha disponibilidad del producto");
@@ -611,6 +634,21 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
             //JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+
+    public static void cambioEstadoProducto(boolean state) {
+        jb_AgregarProducto.setEnabled(state);
+        jl_PrecioProducto.setEnabled(state);
+        jl_PrecioProductoT.setEnabled(state);
+        jc_DescuentoProducto.setEnabled(state);
+        js_Cantidad.setEnabled(state);
+        js_DescuentoProducto.setEnabled(state);
+    }
+
+    public static void cambioEstadoFactura(boolean state) {
+        jta_Venta.setEnabled(state);
+        jl_PrecioTotal.setEnabled(state);
+        jb_Facturar.setEnabled(state);
     }
 
     private void jc_SesionItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jc_SesionItemStateChanged
@@ -660,18 +698,118 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
     private void jb_AgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_AgregarProductoActionPerformed
         DefaultTableModel dtm = (DefaultTableModel) jta_Venta.getModel();
         Object codigo = (Object) jt_CodigoProducto.getText();
-        Object nombre = (Object) jl_NombreProducto.getText();
-        Object precio = (Object) jl_PrecioProducto.getText();
-        Object cantidad = (Object) js_Cantidad.getValue().toString();
-        Object preciot = (Object) jl_PrecioProductoT.getText();
-        Object dto = (Object) js_DescuentoProducto.getValue().toString();
-        Object[] o = new Object[]{codigo, nombre, precio, cantidad, preciot, dto};
-        dtm.addRow(o);
-        jta_Venta.setModel(dtm);
-        jb_AgregarProducto.setEnabled(false);
-        precioT += Double.parseDouble(jl_PrecioProductoT.getText());
-        jl_PrecioTotal.setText(String.format("%.2f", precioT).replaceAll(",", "."));
+        boolean exists = false;
+        for (int i = 0; i < jta_Venta.getRowCount() && !exists; i++) {
+            if (dtm.getValueAt(i, 0).toString().equals(codigo)) {
+                exists = true;
+            }
+        }
+        if (!exists) {
+            Object nombre = (Object) jl_NombreProducto.getText();
+            Object precio = (Object) jl_PrecioProducto.getText();
+            Object cantidad = (Object) js_Cantidad.getValue().toString();
+            Object preciot = (Object) jl_PrecioProductoT.getText();
+            Object dto = (Object) js_DescuentoProducto.getValue().toString();
+            Object[] o = new Object[]{codigo, nombre, precio, cantidad, preciot, dto};
+            dtm.addRow(o);
+            jta_Venta.setModel(dtm);
+            jb_AgregarProducto.setEnabled(false);
+            precioT += Double.parseDouble(jl_PrecioProductoT.getText());
+            jl_PrecioTotal.setText(String.format("%.2f", precioT).replaceAll(",", "."));
+            js_DescuentoProducto.setValue(new Integer(0));
+            jt_UnidDispoProducto.setText("0");
+            js_Cantidad.setValue(new Integer(0));
+            jt_CodigoProducto.setText("");
+            jl_PrecioProducto.setText("$$");
+            jl_PrecioProductoT.setText("$$");
+            jl_NombreProducto.setText("");
+            cambioEstadoProducto(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Ya se ha agregado este tipo de producto a la venta.\nSi desea cambiar la cantidad del producto\nseleccionelo en la tabla de venta y presione [Supr]\n y vuelva a agregarlo");
+        }
     }//GEN-LAST:event_jb_AgregarProductoActionPerformed
+
+    private void jta_VentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jta_VentaKeyTyped
+        if ((int) evt.getKeyChar() == 127 && jta_Venta.getSelectedRow() >= 0) {
+            borrarFilaTabla(jta_Venta.getSelectedRow());
+        }
+    }//GEN-LAST:event_jta_VentaKeyTyped
+
+    private void jb_FacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_FacturarActionPerformed
+        if (jta_Venta.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "No se ha agregado ningún producto(s) a la factura");
+        } else {
+            DefaultTableModel dtm = (DefaultTableModel) jta_Venta.getModel();
+            for (int i = 0; i < jta_Venta.getRowCount(); i++) {
+                try {
+                    String idFactura = jl_NumeroFactura.getText();
+                    String codProducto = dtm.getValueAt(i, 0).toString();
+                    String cantidad = dtm.getValueAt(i, 3).toString();
+                    String dto = dtm.getValueAt(i, 5).toString();
+                    Conexion c = new Conexion();
+                    Statement s = c.c.createStatement();
+                    String sentence = "CALL sp_agregarVenta(" + idFactura + "," + codProducto + "," + cantidad + "," + dto + ")";
+                    s.executeQuery(sentence);
+                    c.c.close();
+                } catch (ClassNotFoundException | SQLException ex) {
+                    JOptionPane.showMessageDialog(this, "No se pudo completar la facturación");
+                    try {
+                        Conexion c = new Conexion();
+                        Statement s = c.c.createStatement();
+                        String idFactura = jl_NumeroFactura.getText();
+                        String sentence = "CALL sp_borrarVentas(" + idFactura + ")";
+                        s.executeQuery(sentence);
+                        c.c.close();
+                    } catch (ClassNotFoundException | SQLException exec) {
+                        JOptionPane.showMessageDialog(this, exec.getMessage());
+                    }
+                }
+            }
+            try {
+                //Llamar al reporte
+                InputStream input = this.getClass().getResourceAsStream("/Util/ConfFactura.txt");
+                BufferedReader in = new BufferedReader(new InputStreamReader(input));
+                String cc = in.readLine();
+                String ccLocal = in.readLine();
+                String nombre = in.readLine();
+                String mens1 = in.readLine();
+                String mens2 = in.readLine();
+                input = this.getClass().getResourceAsStream("/Reportes/rep_Factura.jrxml");
+                JasperDesign design = JRXmlLoader.load(input);
+                JasperReport report = JasperCompileManager.compileReport(design);
+                Conexion c = new Conexion();
+                Map map = new HashMap(10);
+                map.put("CC", cc);
+                map.put("CCLOCAL", ccLocal);
+                map.put("NOMBRE", nombre);
+                map.put("NIT", ccLocal);
+                map.put("MENS1", mens1);
+                map.put("MENS2", mens2);
+                map.put("CLIENTENOMBRE", jl_NomCliente.getText());
+                map.put("CLIENTEDOC", jt_CodigoCliente.getText());
+                map.put("EMPLEADO", jl_NomVendedor.getText());
+                map.put("FACTURA", jl_NumeroFactura.getText());
+                JasperPrint print = JasperFillManager.fillReport(report, map, c.c);
+                JasperViewer.viewReport(print, false);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(JIF_Factura.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException | ClassNotFoundException | SQLException | JRException ex) {
+                Logger.getLogger(JIF_Factura.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jb_FacturarActionPerformed
+
+    private void borrarFilaTabla(int f) {
+        String codigo = jta_Venta.getValueAt(f, 0).toString();
+        String nombre = jta_Venta.getValueAt(f, 1).toString();
+        double precio = Double.parseDouble(jta_Venta.getValueAt(f, 2).toString());
+        int cantidad = Integer.parseInt(jta_Venta.getValueAt(f, 3).toString());
+        double preciot = Double.parseDouble(jta_Venta.getValueAt(f, 4).toString());
+        int dto = Integer.parseInt(jta_Venta.getValueAt(f, 5).toString());
+        ((DefaultTableModel) jta_Venta.getModel()).removeRow(f);
+        precioT -= preciot;
+        jl_PrecioTotal.setText(String.format("%.2f", precioT).replaceAll(",", "."));
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -679,8 +817,8 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
     public static javax.swing.JButton jb_AgregarProducto;
     private javax.swing.JButton jb_BuscarCliente;
     private javax.swing.JButton jb_BuscarEmpleado;
-    private javax.swing.JButton jb_BuscarProducto;
-    private javax.swing.JButton jb_Facturar;
+    public static javax.swing.JButton jb_BuscarProducto;
+    public static javax.swing.JButton jb_Facturar;
     private static javax.swing.JCheckBox jc_DescuentoProducto;
     private javax.swing.JCheckBox jc_Sesion;
     private javax.swing.JLabel jl_CantidadProducto;
@@ -700,9 +838,10 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
     public static javax.swing.JLabel jl_NomCliente;
     public static javax.swing.JLabel jl_NomVendedor;
     public static javax.swing.JLabel jl_NombreProducto;
+    public static javax.swing.JLabel jl_NumeroFactura;
     public static javax.swing.JLabel jl_PrecioProducto;
     public static javax.swing.JLabel jl_PrecioProductoT;
-    private javax.swing.JLabel jl_PrecioTotal;
+    public static javax.swing.JLabel jl_PrecioTotal;
     public static javax.swing.JLabel jl_Tienda;
     private javax.swing.JPanel jp_Cliente;
     private javax.swing.JPanel jp_Producto;
@@ -710,11 +849,10 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jp_Venta;
     private static javax.swing.JSpinner js_Cantidad;
     private static javax.swing.JSpinner js_DescuentoProducto;
-    private javax.swing.JSpinner js_NumeroFactura;
     public static javax.swing.JTextField jt_CodigoCliente;
     public static javax.swing.JTextField jt_CodigoProducto;
     public static javax.swing.JTextField jt_CodigoVendedor;
     private static javax.swing.JTextField jt_UnidDispoProducto;
-    private javax.swing.JTable jta_Venta;
+    public static javax.swing.JTable jta_Venta;
     // End of variables declaration//GEN-END:variables
 }

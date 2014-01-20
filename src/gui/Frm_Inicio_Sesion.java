@@ -7,6 +7,7 @@ package gui;
 
 import Conexion.Conexion;
 import Util.Util;
+import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -46,6 +47,11 @@ public class Frm_Inicio_Sesion extends javax.swing.JFrame {
 
         jt_Contrasena.setText("1234");
         jt_Contrasena.setToolTipText("Contraseña del empleado [a-Z][0-9]");
+        jt_Contrasena.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_ContrasenaKeyTyped(evt);
+            }
+        });
 
         jl_Documento.setText("Documento");
 
@@ -113,6 +119,10 @@ public class Frm_Inicio_Sesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jb_EntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_EntrarActionPerformed
+        inicioSesion();
+    }//GEN-LAST:event_jb_EntrarActionPerformed
+
+    private void inicioSesion() {
         Conexion c;
         try {
             c = new Conexion();
@@ -141,15 +151,22 @@ public class Frm_Inicio_Sesion extends javax.swing.JFrame {
         } catch (ClassNotFoundException | SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error al conectarse", "Error de conexion", JOptionPane.ERROR_MESSAGE);
         }
-
-    }//GEN-LAST:event_jb_EntrarActionPerformed
+    }
 
     private void jt_DocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_DocumentoKeyTyped
         char n = evt.getKeyChar();
         if (!Character.isDigit(n)) {
             evt.consume();
         }
+        if((char)evt.getKeyChar() == 10)
+            inicioSesion();
+
     }//GEN-LAST:event_jt_DocumentoKeyTyped
+
+    private void jt_ContrasenaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_ContrasenaKeyTyped
+        if((char)evt.getKeyChar() == 10)
+            inicioSesion();
+    }//GEN-LAST:event_jt_ContrasenaKeyTyped
 
     /**
      * @param args the command line arguments
