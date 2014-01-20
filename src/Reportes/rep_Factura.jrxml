@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="216" pageHeight="792" columnWidth="176" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="67ca6ce7-32a3-4eb8-bb54-3397a8f4047f">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="216" pageHeight="504" whenNoDataType="AllSectionsNoDetail" columnWidth="176" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="67ca6ce7-32a3-4eb8-bb54-3397a8f4047f">
 	<property name="ireport.zoom" value="3.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="31"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="CC" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -48,6 +48,9 @@
 	<field name="precio" class="java.math.BigDecimal">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<variable name="total" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{precio}*$F{cantidad}]]></variableExpression>
+	</variable>
 	<group name="nombre">
 		<groupExpression><![CDATA[$F{nombre}]]></groupExpression>
 	</group>
@@ -81,7 +84,7 @@
 				<textFieldExpression><![CDATA[$P{NOMBRE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="34" width="176" height="11" uuid="41337edc-8e03-46a9-bc03-a9bb95e59135"/>
+				<reportElement x="0" y="34" width="176" height="11" uuid="30322564-60af-4673-b4f8-32fdffc8239b"/>
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="9"/>
 				</textElement>
@@ -124,7 +127,7 @@
 				<textElement>
 					<font fontName="Times New Roman" size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{CLIENTEDOC}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{CLIENTENOM}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="55" y="33" width="121" height="11" uuid="1c83947c-b182-4498-9f83-f00d787fe69d"/>
@@ -156,7 +159,7 @@
 				<textElement>
 					<font fontName="Times New Roman" size="9" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Cant]]></text>
+				<text><![CDATA[Uni.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="133" y="0" width="43" height="12" uuid="18249b2d-3283-47a5-b2b0-766dc9d13d69"/>
@@ -174,14 +177,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="38" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="0" width="113" height="11" uuid="b123a782-d4fc-4aaf-83d9-c5ea3608a947"/>
-				<textElement>
-					<font fontName="Times New Roman" size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
-			</textField>
+		<band height="12" splitType="Stretch">
 			<textField>
 				<reportElement x="113" y="0" width="20" height="11" uuid="7e9a8bb0-dd16-422a-9d38-e897f9058781"/>
 				<textElement>
@@ -196,39 +192,12 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="1" y="11" width="175" height="1" uuid="2a4b376c-5e07-4703-a524-c5050e433c9f"/>
-				<graphicElement>
-					<pen lineStyle="Dotted"/>
-				</graphicElement>
-			</line>
-			<staticText>
-				<reportElement x="0" y="12" width="55" height="12" uuid="22404d97-58b7-4670-a972-901ffa49590f"/>
-				<textElement>
-					<font fontName="Times New Roman" size="9" isBold="true"/>
-				</textElement>
-				<text><![CDATA[TOTAL]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="55" y="12" width="121" height="11" uuid="1a318385-4cb7-4bd8-abbc-0f92b71355b0"/>
+				<reportElement x="0" y="0" width="113" height="11" uuid="b123a782-d4fc-4aaf-83d9-c5ea3608a947"/>
 				<textElement>
 					<font fontName="Times New Roman" size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[SUM($F{precio})]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="0" y="25" width="55" height="11" uuid="df760de9-35eb-4f65-8763-03e5b1f7ae5f"/>
-				<textElement>
-					<font fontName="Times New Roman" size="9"/>
-				</textElement>
-				<text><![CDATA[Atendido por:]]></text>
-			</staticText>
-			<textField>
-				<reportElement x="55" y="25" width="121" height="11" uuid="935eca95-a88a-49ca-b44f-d95169b182c4"/>
-				<textElement>
-					<font fontName="Times New Roman" size="9"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{EMPLEADO}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -236,24 +205,58 @@
 		<band height="1" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="1" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="31" splitType="Stretch">
+		<band height="59" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="176" height="15" uuid="10a38e3c-2a50-494b-b1fe-737b1bccd57a"/>
+				<reportElement x="0" y="28" width="176" height="15" uuid="10a38e3c-2a50-494b-b1fe-737b1bccd57a"/>
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{MENS1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="15" width="176" height="16" uuid="1ed2bb56-bcc2-47d5-b64f-5f5783938fc2"/>
+				<reportElement x="1" y="43" width="176" height="16" uuid="1ed2bb56-bcc2-47d5-b64f-5f5783938fc2"/>
 				<textElement textAlignment="Center">
 					<font fontName="Times New Roman" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{MENS2}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="55" height="11" uuid="df760de9-35eb-4f65-8763-03e5b1f7ae5f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Atendido por:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="15" width="121" height="11" uuid="935eca95-a88a-49ca-b44f-d95169b182c4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{EMPLEADO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="3" width="55" height="12" uuid="22404d97-58b7-4670-a972-901ffa49590f"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="3" width="121" height="11" uuid="1a318385-4cb7-4bd8-abbc-0f92b71355b0"/>
+				<textElement>
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="177" height="1" uuid="7b465080-362a-4ed8-a221-6b4500acccf7"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
 		</band>
 	</summary>
 </jasperReport>

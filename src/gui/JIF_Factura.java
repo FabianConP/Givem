@@ -7,9 +7,7 @@ package gui;
 
 import Conexion.Conexion;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -772,6 +770,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                 String cc = in.readLine();
                 String ccLocal = in.readLine();
                 String nombre = in.readLine();
+                String nit = in.readLine();
                 String mens1 = in.readLine();
                 String mens2 = in.readLine();
                 input = this.getClass().getResourceAsStream("/Reportes/rep_Factura.jrxml");
@@ -782,10 +781,10 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                 map.put("CC", cc);
                 map.put("CCLOCAL", ccLocal);
                 map.put("NOMBRE", nombre);
-                map.put("NIT", ccLocal);
+                map.put("NIT", nit);
                 map.put("MENS1", mens1);
                 map.put("MENS2", mens2);
-                map.put("CLIENTENOMBRE", jl_NomCliente.getText());
+                map.put("CLIENTENOM", jl_NomCliente.getText());
                 map.put("CLIENTEDOC", jt_CodigoCliente.getText());
                 map.put("EMPLEADO", jl_NomVendedor.getText());
                 map.put("FACTURA", jl_NumeroFactura.getText());
