@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package gui;
-
 
 import Conexion.Conexion;
 import java.sql.SQLException;
@@ -14,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DiegoAndrés
@@ -25,7 +25,49 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
      */
     public JIF_Cliente() {
         initComponents();
-        setTitle("CLIENTE");     
+        llenarTablaCliente();
+        setTitle("CLIENTE");
+    }
+
+    private void llenarTablaCliente() {
+        DefaultTableModel dtm = (DefaultTableModel) jtb_Clientes.getModel();
+        while (dtm.getRowCount() > 0) {
+            dtm.removeRow(0);
+        }
+        jtb_Clientes.setModel(dtm);
+        try {
+            Conexion c = new Conexion();
+            Statement s = c.c.createStatement();
+            String sentence = "select idNumero, nombre, pais, ciudad, direccion, telefono, correoElectronico from tb_cliente, tb_contacto where tb_contacto.`idUbicacion` = tb_cliente.`contacto_idUbicacion`";
+            ResultSet r = s.executeQuery(sentence);
+            while (r.next()) {
+                Object[] o = new Object[]{r.getString(1), r.getString(2), r.getString(3),
+                    r.getString(4), r.getString(5), r.getString(6), r.getString(7)};
+
+                dtm.addRow(o);
+                jtb_Clientes.setModel(dtm);
+            }
+            c.c.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void rowToFields(int fila) {
+        String idNumero = jtb_Clientes.getValueAt(fila, 0).toString();
+        String nombre = jtb_Clientes.getValueAt(fila, 1).toString();
+        String pais = jtb_Clientes.getValueAt(fila, 2).toString();
+        String ciudad = jtb_Clientes.getValueAt(fila, 3).toString();
+        String direccion = jtb_Clientes.getValueAt(fila, 4).toString();
+        String tel = jtb_Clientes.getValueAt(fila, 5).toString();
+        String correo = jtb_Clientes.getValueAt(fila, 6).toString();
+        jt_Cedula.setText(idNumero);
+        jt_Nombre.setText(nombre);
+        jt_Pais.setText(pais);
+        jt_Ciudad.setText(ciudad);
+        jt_Direccion.setText(direccion);
+        jt_Telefono.setText(tel);
+        jt_Correo_Electronico.setText(correo);
     }
 
     /**
@@ -37,6 +79,7 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        bg_Filtro = new javax.swing.ButtonGroup();
         jl_Cedula = new javax.swing.JLabel();
         jt_Cedula = new javax.swing.JTextField();
         jl_Nombre = new javax.swing.JLabel();
@@ -54,21 +97,36 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
         jb_Modificar = new javax.swing.JButton();
         jl_Ciudad = new javax.swing.JLabel();
         jt_Ciudad = new javax.swing.JTextField();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jp_DatosPersonales = new javax.swing.JPanel();
+        jb_Nuevo = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtb_Clientes = new javax.swing.JTable();
+        jp_Contenedor = new javax.swing.JPanel();
+        jrb_Cedula = new javax.swing.JRadioButton();
+        jrb_Nombre = new javax.swing.JRadioButton();
+        jt_Buscar = new javax.swing.JTextField();
+        jb_Find = new javax.swing.JButton();
+        jb_Limpiar = new javax.swing.JButton();
+        jp_Find = new javax.swing.JPanel();
+        jb_Borrar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setTitle("CLIENTE");
-        setPreferredSize(new java.awt.Dimension(1020, 718));
+        setPreferredSize(new java.awt.Dimension(860, 680));
+        try {
+            setSelected(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
         setVisible(true);
         getContentPane().setLayout(null);
 
         jl_Cedula.setText("Cédula:");
         getContentPane().add(jl_Cedula);
-        jl_Cedula.setBounds(120, 120, 92, 23);
+        jl_Cedula.setBounds(40, 70, 92, 23);
 
         jt_Cedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,27 +139,27 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jt_Cedula);
-        jt_Cedula.setBounds(240, 120, 320, 25);
+        jt_Cedula.setBounds(160, 70, 300, 25);
 
         jl_Nombre.setText("Nombre:");
         getContentPane().add(jl_Nombre);
-        jl_Nombre.setBounds(120, 150, 92, 20);
+        jl_Nombre.setBounds(40, 100, 92, 20);
 
         jl_Pais.setText("País:");
         getContentPane().add(jl_Pais);
-        jl_Pais.setBounds(120, 180, 92, 20);
+        jl_Pais.setBounds(40, 130, 92, 20);
 
         jl_Direccion.setText("Dirección:");
         getContentPane().add(jl_Direccion);
-        jl_Direccion.setBounds(120, 240, 92, 20);
+        jl_Direccion.setBounds(40, 190, 92, 20);
 
         jl_Telefono.setText("Teléfono:");
         getContentPane().add(jl_Telefono);
-        jl_Telefono.setBounds(120, 270, 92, 20);
+        jl_Telefono.setBounds(40, 220, 92, 20);
 
         jl_Correo_Electronico.setText("Correo Electrónico:");
         getContentPane().add(jl_Correo_Electronico);
-        jl_Correo_Electronico.setBounds(120, 300, 110, 20);
+        jl_Correo_Electronico.setBounds(40, 250, 110, 20);
 
         jt_Nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +172,7 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jt_Nombre);
-        jt_Nombre.setBounds(240, 150, 320, 25);
+        jt_Nombre.setBounds(160, 100, 300, 25);
 
         jt_Direccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +185,7 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jt_Direccion);
-        jt_Direccion.setBounds(240, 240, 320, 25);
+        jt_Direccion.setBounds(160, 190, 300, 25);
 
         jt_Pais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,7 +198,7 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jt_Pais);
-        jt_Pais.setBounds(240, 180, 320, 25);
+        jt_Pais.setBounds(160, 130, 300, 25);
 
         jt_Telefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +211,7 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jt_Telefono);
-        jt_Telefono.setBounds(240, 270, 320, 25);
+        jt_Telefono.setBounds(160, 220, 300, 25);
 
         jt_Correo_Electronico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,13 +224,13 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jt_Correo_Electronico);
-        jt_Correo_Electronico.setBounds(240, 300, 320, 25);
+        jt_Correo_Electronico.setBounds(160, 250, 300, 25);
 
-        jl_Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/icono_acc_clientes.jpg"))); // NOI18N
+        jl_Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_customer.png"))); // NOI18N
         getContentPane().add(jl_Icono);
-        jl_Icono.setBounds(595, 90, 260, 260);
+        jl_Icono.setBounds(520, 10, 260, 260);
 
-        jb_Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_nuevo.png"))); // NOI18N
+        jb_Agregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_agregar.png"))); // NOI18N
         jb_Agregar.setText("Agregar");
         jb_Agregar.setPreferredSize(new java.awt.Dimension(83, 25));
         jb_Agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -181,9 +239,9 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jb_Agregar);
-        jb_Agregar.setBounds(190, 360, 114, 30);
+        jb_Agregar.setBounds(30, 300, 100, 30);
 
-        jb_Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/modificar.png"))); // NOI18N
+        jb_Modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_modificar.png"))); // NOI18N
         jb_Modificar.setText("Modificar");
         jb_Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,11 +249,11 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jb_Modificar);
-        jb_Modificar.setBounds(320, 360, 114, 30);
+        jb_Modificar.setBounds(370, 300, 100, 30);
 
         jl_Ciudad.setText("Ciudad:");
         getContentPane().add(jl_Ciudad);
-        jl_Ciudad.setBounds(120, 210, 92, 20);
+        jl_Ciudad.setBounds(40, 160, 92, 20);
 
         jt_Ciudad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -203,26 +261,134 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jt_Ciudad);
-        jt_Ciudad.setBounds(240, 210, 320, 25);
+        jt_Ciudad.setBounds(160, 160, 300, 25);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(100, 90, 490, 260);
+        jp_DatosPersonales.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Personales"));
+        getContentPane().add(jp_DatosPersonales);
+        jp_DatosPersonales.setBounds(20, 50, 460, 240);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/fondo-blanco.jpg"))); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1040, 710);
+        jb_Nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_nuevo.png"))); // NOI18N
+        jb_Nuevo.setText("Nuevo");
+        jb_Nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_NuevoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jb_Nuevo);
+        jb_Nuevo.setBounds(140, 300, 100, 30);
+
+        jtb_Clientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cédula", "Nombre", "País", "Ciudad", "Dirección", "Teléfono", "Correo Electrónico"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtb_Clientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtb_ClientesMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jtb_Clientes);
+        if (jtb_Clientes.getColumnModel().getColumnCount() > 0) {
+            jtb_Clientes.getColumnModel().getColumn(0).setPreferredWidth(8);
+            jtb_Clientes.getColumnModel().getColumn(2).setPreferredWidth(8);
+            jtb_Clientes.getColumnModel().getColumn(3).setPreferredWidth(8);
+            jtb_Clientes.getColumnModel().getColumn(5).setPreferredWidth(8);
+        }
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(20, 400, 800, 230);
+
+        jp_Contenedor.setBorder(javax.swing.BorderFactory.createTitledBorder("Clientes Registrados"));
+        getContentPane().add(jp_Contenedor);
+        jp_Contenedor.setBounds(10, 380, 820, 260);
+
+        bg_Filtro.add(jrb_Cedula);
+        jrb_Cedula.setSelected(true);
+        jrb_Cedula.setText("Cédula");
+        jrb_Cedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_CedulaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jrb_Cedula);
+        jrb_Cedula.setBounds(500, 300, 80, 30);
+
+        bg_Filtro.add(jrb_Nombre);
+        jrb_Nombre.setText("Nombre");
+        jrb_Nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrb_NombreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jrb_Nombre);
+        jrb_Nombre.setBounds(500, 330, 80, 30);
+
+        jt_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jt_BuscarActionPerformed(evt);
+            }
+        });
+        jt_Buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jt_BuscarKeyTyped(evt);
+            }
+        });
+        getContentPane().add(jt_Buscar);
+        jt_Buscar.setBounds(600, 300, 150, 30);
+
+        jb_Find.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_buscar.png"))); // NOI18N
+        jb_Find.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_FindActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jb_Find);
+        jb_Find.setBounds(750, 300, 49, 30);
+
+        jb_Limpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_clear.png"))); // NOI18N
+        jb_Limpiar.setText("Limpiar");
+        jb_Limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_LimpiarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jb_Limpiar);
+        jb_Limpiar.setBounds(600, 330, 200, 25);
+
+        jp_Find.setBorder(javax.swing.BorderFactory.createTitledBorder("Herramientas de Búsqueda"));
+        getContentPane().add(jp_Find);
+        jp_Find.setBounds(490, 280, 330, 90);
+
+        jb_Borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_borrar.png"))); // NOI18N
+        jb_Borrar.setText("Borrar");
+        jb_Borrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_BorrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jb_Borrar);
+        jb_Borrar.setBounds(260, 300, 100, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jt_CedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_CedulaActionPerformed
-        
+
     }//GEN-LAST:event_jt_CedulaActionPerformed
 
     private void jt_NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_NombreActionPerformed
-        
+
     }//GEN-LAST:event_jt_NombreActionPerformed
 
     private void jt_DireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_DireccionActionPerformed
@@ -250,18 +416,35 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
             String direccion = jt_Direccion.getText();
             String telefono = jt_Telefono.getText();
             String correo = jt_Correo_Electronico.getText();
-            int ntelefono = Integer.parseInt(telefono);
-            int ncedula = Integer.parseInt(cedula);
 
-            
             Conexion c;
-            try { 
-               c = new Conexion();
-               try (Statement s = c.c.createStatement()) {
-                    if (pais.equals("") || ciudad.equals("")){
+            try {
+                c = new Conexion();
+                ttry:
+                try (Statement s = c.c.createStatement()) {
+                    if (pais.equals("") || ciudad.equals("")) {
                         pais = "Colombia";
-                        ciudad = "Bogotá";                          
+                        ciudad = "Bogotá";
                     }
+                    if (telefono.length() == 0) {
+                        telefono = "0";
+                    }
+                    if (jt_Cedula.getText().length() == 0 || jt_Nombre.getText().length() == 0) {
+                        JOptionPane.showMessageDialog(this, "Complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+                        break ttry;
+                    }
+
+                    int ntelefono = Integer.parseInt(telefono);
+                    int ncedula = Integer.parseInt(cedula);
+                    ResultSet repetido = s.executeQuery("SELECT idNumero FROM tb_cliente where idNumero = " + ncedula);
+                    if (repetido.next()) {
+                        String cedulaRepetida = repetido.getString(1);
+                        if (cedulaRepetida.length() != 0) {
+                            JOptionPane.showMessageDialog(this, "No se ha podido agregar. El cliente ya existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                            break ttry;
+                        }
+                    }
+
                     s.executeUpdate("insert into tb_Contacto (nombre, pais, ciudad, direccion, telefono, correoElectronico) VALUES ('" + nombre + "','" + pais + "','" + ciudad + "','" + direccion + "'," + ntelefono + ",'" + correo + "')");
                     ResultSet r = s.executeQuery("SELECT MAX(idUbicacion) FROM tb_Contacto");
                     if (r.next()) {
@@ -277,13 +460,14 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
                     jt_Direccion.setText("");
                     jt_Telefono.setText("");
                     jt_Correo_Electronico.setText("");
+                    llenarTablaCliente();
                     s.close();
                 }
 
-            } catch ( ClassNotFoundException | SQLException ex) {
+            } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(JIF_Cliente.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
+            }
         }
     }//GEN-LAST:event_jb_AgregarActionPerformed
 
@@ -295,94 +479,244 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
         String direccion = jt_Direccion.getText();
         String telefono = jt_Telefono.getText();
         String correo = jt_Correo_Electronico.getText();
-        int ntelefono = Integer.parseInt(telefono);
-        int ncedula = Integer.parseInt(cedula);
-        
-        Conexion c;
-            try { 
-                    c = new Conexion();
-                    if (pais.equals("") || ciudad.equals("")){
-                        pais = "Colombia";
-                        ciudad = "Bogotá";                          
-                    }
-                    try (Statement s = c.c.createStatement()) {
-                        s.executeUpdate("update tb_Contacto, tb_Cliente set nombre = '" + nombre + "', pais = '" + pais + "', ciudad = '" + ciudad + "', direccion = '" + direccion + "', telefono = " + ntelefono + ", correoElectronico = '" + correo + "' " + "where tb_Contacto.idUbicacion = tb_Cliente.contacto_idUbicacion and idNumero = " + ncedula);
-                        JOptionPane.showMessageDialog(null, "Cliente Modificado Satisfactoriamente!");
-                        jt_Cedula.setText("");
-                        jt_Nombre.setText("");
-                        jt_Pais.setText("");
-                        jt_Ciudad.setText("");
-                        jt_Direccion.setText("");
-                        jt_Telefono.setText("");
-                        jt_Correo_Electronico.setText("");
-                        s.close();
-                     }
 
-            } catch (    ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(JIF_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        Conexion c;
+        ttry:
+        try {
+            c = new Conexion();
+            if (pais.equals("") || ciudad.equals("")) {
+                pais = "Colombia";
+                ciudad = "Bogotá";
+            }
+            try (Statement s = c.c.createStatement()) {
+                if (pais.equals("") || ciudad.equals("")) {
+                    pais = "Colombia";
+                    ciudad = "Bogotá";
+                }
+                if (telefono.length() == 0) {
+                    telefono = "0";
+                }
+                if (jt_Cedula.getText().length() == 0 || jt_Nombre.getText().length() == 0) {
+                    JOptionPane.showMessageDialog(this, "Complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    break ttry;
+                }
+                int ntelefono = Integer.parseInt(telefono);
+                int ncedula = Integer.parseInt(cedula);
+                s.executeUpdate("update tb_Contacto, tb_Cliente set nombre = '" + nombre + "', pais = '" + pais + "', ciudad = '" + ciudad + "', direccion = '" + direccion + "', telefono = " + ntelefono + ", correoElectronico = '" + correo + "' " + "where tb_Contacto.idUbicacion = tb_Cliente.contacto_idUbicacion and idNumero = " + ncedula);
+                JOptionPane.showMessageDialog(null, "Cliente Modificado Satisfactoriamente!");
+                jt_Cedula.setText("");
+                jt_Nombre.setText("");
+                jt_Pais.setText("");
+                jt_Ciudad.setText("");
+                jt_Direccion.setText("");
+                jt_Telefono.setText("");
+                jt_Correo_Electronico.setText("");
+                llenarTablaCliente();
+                s.close();
+            }
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(JIF_Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jb_ModificarActionPerformed
 
     private void jt_CedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_CedulaKeyTyped
-      char caracter = evt.getKeyChar();
+        char caracter = evt.getKeyChar();
 
-      if(((caracter < '0') || (caracter > '9')) && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
-         evt.consume();  // ignorar el evento de teclado
-      }
+        if (((caracter < '0') || (caracter > '9')) && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
     }//GEN-LAST:event_jt_CedulaKeyTyped
 
     private void jt_NombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_NombreKeyTyped
         int limite = 60;
-        if (jt_Nombre.getText().length() >= limite){
+        if (jt_Nombre.getText().length() >= limite) {
+            evt.consume();
+        }
+        char caracter = evt.getKeyChar();
+        if ((caracter < '0') || (caracter > '9')) {
+        } else {
             evt.consume();
         }
     }//GEN-LAST:event_jt_NombreKeyTyped
 
     private void jt_PaisKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_PaisKeyTyped
         int limite = 20;
-        if (jt_Pais.getText().length() >= limite){
+        if (jt_Pais.getText().length() >= limite) {
+            evt.consume();
+        }
+        char caracter = evt.getKeyChar();
+        if ((caracter < '0') || (caracter > '9')) {
+        } else {
             evt.consume();
         }
     }//GEN-LAST:event_jt_PaisKeyTyped
 
     private void jt_CiudadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_CiudadKeyTyped
         int limite = 20;
-        if (jt_Ciudad.getText().length() >= limite){
+        if (jt_Ciudad.getText().length() >= limite) {
+            evt.consume();
+        }
+        char caracter = evt.getKeyChar();
+        if ((caracter < '0') || (caracter > '9')) {
+        } else {
             evt.consume();
         }
     }//GEN-LAST:event_jt_CiudadKeyTyped
 
     private void jt_DireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_DireccionKeyTyped
         int limite = 60;
-        if (jt_Direccion.getText().length() >= limite){
+        if (jt_Direccion.getText().length() >= limite) {
             evt.consume();
         }
     }//GEN-LAST:event_jt_DireccionKeyTyped
 
     private void jt_TelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_TelefonoKeyTyped
-      char caracter = evt.getKeyChar();
-      if(((caracter < '0') || (caracter > '9')) && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
-         evt.consume();  // ignorar el evento de teclado
-      }
-      int limite = 20;
-       if (jt_Telefono.getText().length() >= limite){
+        char caracter = evt.getKeyChar();
+        if (((caracter < '0') || (caracter > '9')) && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+            evt.consume();  // ignorar el evento de teclado
+        }
+        int limite = 20;
+        if (jt_Telefono.getText().length() >= limite) {
             evt.consume();
-       }
+        }
     }//GEN-LAST:event_jt_TelefonoKeyTyped
 
     private void jt_Correo_ElectronicoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_Correo_ElectronicoKeyTyped
         int limite = 60;
-        if (jt_Correo_Electronico.getText().length() >= limite){
+        if (jt_Correo_Electronico.getText().length() >= limite) {
             evt.consume();
         }
     }//GEN-LAST:event_jt_Correo_ElectronicoKeyTyped
 
+    private void jb_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_NuevoActionPerformed
+        jt_Cedula.setText("");
+        jt_Nombre.setText("");
+        jt_Pais.setText("");
+        jt_Ciudad.setText("");
+        jt_Direccion.setText("");
+        jt_Telefono.setText("");
+        jt_Correo_Electronico.setText("");
+    }//GEN-LAST:event_jb_NuevoActionPerformed
+
+    private void jb_FindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_FindActionPerformed
+        Conexion c;
+        DefaultTableModel dtm = (DefaultTableModel) jtb_Clientes.getModel();
+        while (dtm.getRowCount() > 0) {
+            dtm.removeRow(0);
+        }
+        jtb_Clientes.setModel(dtm);
+        try {
+            c = new Conexion();
+            try (Statement s = c.c.createStatement()) {
+                if (jrb_Cedula.isSelected()) {
+                    String cedula = jt_Buscar.getText();
+                    if (cedula.equals("")) {
+                        cedula = "0";
+                    }
+                    int fcedula = Integer.parseInt(cedula);
+                    String sentence = "select idNumero, nombre, pais, ciudad, direccion, telefono, correoElectronico from tb_cliente, tb_contacto where tb_contacto.`idUbicacion` = tb_cliente.`contacto_idUbicacion` and idNumero = " + fcedula + "";
+                    ResultSet r = s.executeQuery(sentence);
+                    while (r.next()) {
+                        Object[] o = new Object[]{r.getString(1), r.getString(2), r.getString(3),
+                            r.getString(4), r.getString(5), r.getString(6), r.getString(7)};
+
+                        dtm.addRow(o);
+                        jtb_Clientes.setModel(dtm);
+                    }
+                } else if (jrb_Nombre.isSelected()) {
+                    String nombre = jt_Buscar.getText();
+                    String sentence = "select idNumero, nombre, pais, ciudad, direccion, telefono, correoElectronico from tb_cliente, tb_contacto where tb_contacto.`idUbicacion` = tb_cliente.`contacto_idUbicacion` and nombre like '%" + nombre + "%'";
+                    ResultSet r = s.executeQuery(sentence);
+                    while (r.next()) {
+                        Object[] o = new Object[]{r.getString(1), r.getString(2), r.getString(3),
+                            r.getString(4), r.getString(5), r.getString(6), r.getString(7)};
+
+                        dtm.addRow(o);
+                        jtb_Clientes.setModel(dtm);
+                    }
+                }
+                s.close();
+            }
+        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jb_FindActionPerformed
+
+    private void jrb_CedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_CedulaActionPerformed
+        jt_Buscar.setText("");
+    }//GEN-LAST:event_jrb_CedulaActionPerformed
+
+    private void jb_LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_LimpiarActionPerformed
+        jt_Buscar.setText("");
+        llenarTablaCliente();
+    }//GEN-LAST:event_jb_LimpiarActionPerformed
+
+    private void jt_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_BuscarActionPerformed
+
+    }//GEN-LAST:event_jt_BuscarActionPerformed
+
+    private void jt_BuscarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_BuscarKeyTyped
+        if (jrb_Cedula.isSelected()) {
+            char caracter = evt.getKeyChar();
+            if (((caracter < '0') || (caracter > '9')) && (caracter != '\b' /*corresponde a BACK_SPACE*/)) {
+                evt.consume();  // ignorar el evento de teclado
+            }
+        }
+    }//GEN-LAST:event_jt_BuscarKeyTyped
+
+    private void jrb_NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrb_NombreActionPerformed
+        jt_Buscar.setText("");
+    }//GEN-LAST:event_jrb_NombreActionPerformed
+
+    private void jtb_ClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtb_ClientesMouseClicked
+        rowToFields(jtb_Clientes.getSelectedRow());
+    }//GEN-LAST:event_jtb_ClientesMouseClicked
+
+    private void jb_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_BorrarActionPerformed
+        String idNumero = jt_Cedula.getText();
+        if (idNumero.length() == 0) {
+            JOptionPane.showMessageDialog(this, "Escriba la cédula del cliente, está vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            int op = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea borrar el\ncliente asociado a la cédula " + idNumero + " ?");
+            if (op == JOptionPane.YES_OPTION) {
+                try {
+                    Conexion c = new Conexion();
+                    Statement s = c.c.createStatement();
+                    String sentence = "CALL sp_borrarCliente(" + idNumero + ")";
+                    ResultSet r = s.executeQuery(sentence);
+                    if (r.next()) {
+                        String ans = r.getString(1);
+                        JOptionPane.showMessageDialog(this, ans);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Error al intentar borrar", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    c.c.close();
+                } catch (ClassNotFoundException | SQLException ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                llenarTablaCliente();
+                jt_Cedula.setText("");
+                jt_Nombre.setText("");
+                jt_Pais.setText("");
+                jt_Ciudad.setText("");
+                jt_Direccion.setText("");
+                jt_Telefono.setText("");
+                jt_Correo_Electronico.setText("");
+            }
+        }
+
+    }//GEN-LAST:event_jb_BorrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.ButtonGroup bg_Filtro;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jb_Agregar;
+    private javax.swing.JButton jb_Borrar;
+    private javax.swing.JButton jb_Find;
+    private javax.swing.JButton jb_Limpiar;
     private javax.swing.JButton jb_Modificar;
+    private javax.swing.JButton jb_Nuevo;
     private javax.swing.JLabel jl_Cedula;
     private javax.swing.JLabel jl_Ciudad;
     private javax.swing.JLabel jl_Correo_Electronico;
@@ -391,6 +725,12 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jl_Nombre;
     private javax.swing.JLabel jl_Pais;
     private javax.swing.JLabel jl_Telefono;
+    private javax.swing.JPanel jp_Contenedor;
+    private javax.swing.JPanel jp_DatosPersonales;
+    private javax.swing.JPanel jp_Find;
+    private javax.swing.JRadioButton jrb_Cedula;
+    private javax.swing.JRadioButton jrb_Nombre;
+    private javax.swing.JTextField jt_Buscar;
     private javax.swing.JTextField jt_Cedula;
     private javax.swing.JTextField jt_Ciudad;
     private javax.swing.JTextField jt_Correo_Electronico;
@@ -398,5 +738,6 @@ public class JIF_Cliente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jt_Nombre;
     private javax.swing.JTextField jt_Pais;
     private javax.swing.JTextField jt_Telefono;
+    private javax.swing.JTable jtb_Clientes;
     // End of variables declaration//GEN-END:variables
 }
