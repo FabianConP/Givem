@@ -56,6 +56,11 @@ public class Frm_Principal extends javax.swing.JFrame {
         jm_Archivo = new javax.swing.JMenu();
         jmi_Cerrar_Sesion = new javax.swing.JMenuItem();
         jmi_Salir = new javax.swing.JMenuItem();
+        jm_Buscar = new javax.swing.JMenu();
+        jmi_BProducto = new javax.swing.JMenuItem();
+        jmi_BCliente = new javax.swing.JMenuItem();
+        jmi_BEmpleado = new javax.swing.JMenuItem();
+        jmi_BTienda = new javax.swing.JMenuItem();
         jm_Agregar_Modificar = new javax.swing.JMenu();
         jmi_Factura = new javax.swing.JMenuItem();
         jmi_Producto = new javax.swing.JMenuItem();
@@ -107,6 +112,22 @@ public class Frm_Principal extends javax.swing.JFrame {
         jm_Archivo.add(jmi_Salir);
 
         jmb_Principal.add(jm_Archivo);
+
+        jm_Buscar.setText("Buscar");
+
+        jmi_BProducto.setText("Producto");
+        jm_Buscar.add(jmi_BProducto);
+
+        jmi_BCliente.setText("Cliente");
+        jm_Buscar.add(jmi_BCliente);
+
+        jmi_BEmpleado.setText("Empleado");
+        jm_Buscar.add(jmi_BEmpleado);
+
+        jmi_BTienda.setText("Tienda");
+        jm_Buscar.add(jmi_BTienda);
+
+        jmb_Principal.add(jm_Buscar);
 
         jm_Agregar_Modificar.setText("Agregar / Modificar");
 
@@ -195,6 +216,11 @@ public class Frm_Principal extends javax.swing.JFrame {
         jm_Informes.add(jmi_Informe_General);
 
         jmi_Productos_Vendidos.setText("Productos Vendidos");
+        jmi_Productos_Vendidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_Productos_VendidosActionPerformed(evt);
+            }
+        });
         jm_Informes.add(jmi_Productos_Vendidos);
 
         jmi_Ventas_Tienda.setText("Ventas por Tienda");
@@ -320,6 +346,13 @@ public class Frm_Principal extends javax.swing.JFrame {
         jif_informeGeneral.show();
     }//GEN-LAST:event_jmi_Informe_GeneralActionPerformed
 
+    private void jmi_Productos_VendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_Productos_VendidosActionPerformed
+        JIF_ProductosVendidos jif_productosVendidos = new JIF_ProductosVendidos();
+        jdp_DesktopPrincipal.removeAll();
+        jdp_DesktopPrincipal.add(jif_productosVendidos);
+        jif_productosVendidos.show();
+    }//GEN-LAST:event_jmi_Productos_VendidosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -360,10 +393,15 @@ public class Frm_Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jm_Agregar_Modificar;
     private javax.swing.JMenu jm_Archivo;
     private javax.swing.JMenu jm_Ayuda;
+    private javax.swing.JMenu jm_Buscar;
     private javax.swing.JMenu jm_Herramientas;
     private javax.swing.JMenu jm_Informes;
     private javax.swing.JMenuBar jmb_Principal;
     private javax.swing.JMenuItem jmi_Acerca;
+    private javax.swing.JMenuItem jmi_BCliente;
+    private javax.swing.JMenuItem jmi_BEmpleado;
+    private javax.swing.JMenuItem jmi_BProducto;
+    private javax.swing.JMenuItem jmi_BTienda;
     private javax.swing.JMenuItem jmi_Cerrar_Sesion;
     private javax.swing.JMenuItem jmi_Cliente;
     private javax.swing.JMenuItem jmi_Contenidos_Ayuda;

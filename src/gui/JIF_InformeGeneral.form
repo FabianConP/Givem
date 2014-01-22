@@ -96,11 +96,13 @@
     <Component class="com.alee.extended.date.WebDateField" name="wdf_FechaInicio">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="toolTipText" type="java.lang.String" value="Haga clic en el calendario para seleccionar la fecha de inicio"/>
       </Properties>
     </Component>
     <Component class="com.alee.extended.date.WebDateField" name="wdf_FechaFinal">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
+        <Property name="toolTipText" type="java.lang.String" value="Haga clic en el calendario para seleccionar la fecha final"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jb_FechaActual">

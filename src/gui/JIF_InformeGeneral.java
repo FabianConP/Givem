@@ -52,8 +52,10 @@ public class JIF_InformeGeneral extends javax.swing.JInternalFrame {
         });
 
         wdf_FechaInicio.setEditable(false);
+        wdf_FechaInicio.setToolTipText("Haga clic en el calendario para seleccionar la fecha de inicio");
 
         wdf_FechaFinal.setEditable(false);
+        wdf_FechaFinal.setToolTipText("Haga clic en el calendario para seleccionar la fecha final");
 
         jb_FechaActual.setText("...");
         jb_FechaActual.setToolTipText("Cargar la fecha actual");
