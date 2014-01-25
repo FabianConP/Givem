@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Inicio de sesi&#xf3;n"/>
@@ -24,82 +24,55 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               <Component id="jl_InicioSesion" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jl_Compania" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jl_Documento" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jt_Documento" min="-2" pref="159" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jb_Entrar" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="wt_Contrasena" alignment="0" max="32767" attributes="0"/>
+                              <Component id="wt_Documento" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jl_Titulo" min="-2" pref="194" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jl_Contrasena" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jt_Contrasena" min="-2" pref="157" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jb_Entrar" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jl_Titulo" min="-2" pref="78" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="wt_Documento" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <Component id="wt_Contrasena" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jb_Entrar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jl_Compania" min="-2" pref="32" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jl_Documento" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jt_Documento" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jl_Contrasena" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jt_Contrasena" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jb_Entrar" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jl_InicioSesion" pref="137" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jl_InicioSesion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JPasswordField" name="jt_Contrasena">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="1234"/>
-        <Property name="toolTipText" type="java.lang.String" value="Contrase&#xf1;a del empleado [a-Z][0-9]"/>
-      </Properties>
-      <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jt_ContrasenaKeyTyped"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jl_Documento">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Documento"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jt_Documento">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="1019101086"/>
-        <Property name="toolTipText" type="java.lang.String" value="Documento del empleado [0-9]"/>
-      </Properties>
-      <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jt_DocumentoKeyTyped"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jl_Contrasena">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="jb_Entrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Entrar"/>
@@ -112,7 +85,65 @@
     <Component class="javax.swing.JLabel" name="jl_InicioSesion">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Im&#xe1;genes/img_iniciarSesion.png"/>
+          <Image iconType="3" name="/Im&#xe1;genes/img_iniciarSesion.jpg"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="com.alee.laf.text.WebTextField" name="wt_Documento">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1019101086"/>
+        <Property name="toolTipText" type="java.lang.String" value="Ingrese su documento"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="12" style="0"/>
+        </Property>
+        <Property name="inputPrompt" type="java.lang.String" value="Documento"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="wt_DocumentoKeyTyped"/>
+      </Events>
+    </Component>
+    <Component class="com.alee.laf.text.WebPasswordField" name="wt_Contrasena">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="1234"/>
+        <Property name="toolTipText" type="java.lang.String" value="Ingrese su contrase&#xf1;a"/>
+        <Property name="echoChar" type="char" value="&#x25cf;"/>
+        <Property name="inputPrompt" type="java.lang.String" value="Contrase&#xf1;a"/>
+        <Property name="leadingComponent" type="javax.swing.JComponent" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new WebImage(new javax.swing.ImageIcon(getClass().getResource(&quot;/Im&#xe1;genes/img_contrasena.png&quot;)))" type="code"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="wt_ContrasenaKeyTyped"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_Titulo">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="50" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="a8" green="4a" red="9" type="rgb"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="GIVEM"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jl_Compania">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="0"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="c0" green="c0" id="lightGray" palette="1" red="c0" type="palette"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;Givem Inc.&#xa;&#xa9;2014 &#xa;&lt;/html&gt;"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Im&#xe1;genes/img_givemLogo.png"/>
         </Property>
       </Properties>
     </Component>

@@ -269,6 +269,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jl_Nombre">
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="jl_Nombre.setText(Frm_Principal.idTienda);"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

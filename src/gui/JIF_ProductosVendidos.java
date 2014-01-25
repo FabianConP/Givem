@@ -6,6 +6,8 @@
 package gui;
 
 import Conexion.Conexion;
+import com.alee.managers.notification.NotificationIcon;
+import com.alee.managers.notification.NotificationManager;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -73,13 +75,13 @@ public class JIF_ProductosVendidos extends javax.swing.JInternalFrame {
             }
             public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
             public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
             }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
             }
             public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
                 formInternalFrameOpened(evt);
@@ -221,6 +223,7 @@ public class JIF_ProductosVendidos extends javax.swing.JInternalFrame {
         );
 
         AutoCompleteDecorator.decorate(this.jcb_Datos);
+        jl_Nombre.setText(Frm_Principal.idTienda);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -257,8 +260,8 @@ public class JIF_ProductosVendidos extends javax.swing.JInternalFrame {
         if (wdf_FechaFinal.getText().length() > 0 && wdf_FechaInicio.getText().length() > 0) {
             Date fechaInicio = wdf_FechaInicio.getDate();
             Date fechaFinal = wdf_FechaFinal.getDate();
-            if (fechaInicio.after(fechaFinal) && fechaInicio.equals(fechaFinal)) {
-                JOptionPane.showMessageDialog(this, "La fecha final es anterior a la fecha inicial", "Error en selección", JOptionPane.ERROR_MESSAGE);
+            if (fechaInicio.after(fechaFinal) && !fechaInicio.equals(fechaFinal)) {
+                NotificationManager.showNotification ( "La fecha final es anterior a la fecha inicial", NotificationIcon.information.getIcon() ).setDisplayTime(5000);
                 wdf_FechaFinal.setText((new SimpleDateFormat("dd.MM.yyyy")).format(new Date()));
                 wdf_FechaInicio.setText((new SimpleDateFormat("dd.MM.yyyy")).format(new Date()));
             } else {
@@ -279,7 +282,7 @@ public class JIF_ProductosVendidos extends javax.swing.JInternalFrame {
                         JasperPrint print = JasperFillManager.fillReport(report, map, c.c);
                         JasperViewer.viewReport(print, false);
                     } catch (ClassNotFoundException | SQLException | JRException ex) {
-                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error reporte", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error al generar el reporte", JOptionPane.ERROR_MESSAGE);
                         ex.printStackTrace();
                     }
                 } else {
@@ -305,7 +308,7 @@ public class JIF_ProductosVendidos extends javax.swing.JInternalFrame {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Seleccione la fecha inicial y final", "Error en selección", JOptionPane.ERROR_MESSAGE);
+            NotificationManager.showNotification ( "Seleccione la fecha inicial y final", NotificationIcon.information.getIcon() ).setDisplayTime(5000);
         }
     }//GEN-LAST:event_jb_GenerarInformeActionPerformed
 

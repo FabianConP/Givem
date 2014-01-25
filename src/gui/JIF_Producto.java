@@ -7,6 +7,8 @@ package gui;
 
 import Conexion.Conexion;
 import Util.Util;
+import com.alee.managers.notification.NotificationIcon;
+import com.alee.managers.notification.NotificationManager;
 import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -594,7 +596,7 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
             if (jt_IdProducto.getText().length() == 0
                     || jt_Nombre.getText().length() == 0
                     || jt_Marca.getText().length() == 0) {
-                JOptionPane.showMessageDialog(this, "Complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+                NotificationManager.showNotification ( "Complete todos los campos.", NotificationIcon.information.getIcon() ).setDisplayTime(5000);
                 break ttry;
             }
             c = new Conexion();
@@ -614,7 +616,7 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
             if (r.next()) {
                 String ans = r.getString(1);
                 if (!ans.startsWith("Ya existe un")) {
-                    JOptionPane.showMessageDialog(this, ans);
+                    NotificationManager.showNotification ( ans, NotificationIcon.information.getIcon() ).setDisplayTime(5000);
                 } else {
                     int op = JOptionPane.showConfirmDialog(this, "Ya existe un producto asociado al Id. " + idProducto + " "
                             + "\n¿Desea actualizar la información del producto?");
@@ -633,16 +635,16 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
                         r = cs.executeQuery();
                         if (r.next()) {
                             ans = r.getString(1);
-                            JOptionPane.showMessageDialog(this, ans);
+                            NotificationManager.showNotification ( ans, NotificationIcon.information.getIcon() ).setDisplayTime(5000);
                         }
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Problemas al realizar la operación.", "Error", JOptionPane.ERROR_MESSAGE);
+                NotificationManager.showNotification ( "Problemas al realizar la operación.", NotificationIcon.error.getIcon() ).setDisplayTime(5000);
             }
             c.c.close();
         } catch (ClassNotFoundException | SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Problemas al realizar la operación." + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            NotificationManager.showNotification ( "Problemas al realizar la operación.", NotificationIcon.error.getIcon() ).setDisplayTime(5000);
         }
         llenarTablaProducto();
     }//GEN-LAST:event_jb_GuardarActionPerformed
@@ -735,7 +737,7 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
     private void jb_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_BorrarActionPerformed
         String idProducto = jt_IdProducto.getText();
         if (idProducto.length() == 0) {
-            JOptionPane.showMessageDialog(this, "Complete el campo id. del producto está vacio.", "Error", JOptionPane.ERROR_MESSAGE);
+            NotificationManager.showNotification ( "Complete el campo id. del producto está vacio.", NotificationIcon.information.getIcon() ).setDisplayTime(5000);
         } else {
             int op = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea borrar el\nproducto asociado al Id. " + idProducto + " ?");
             if (op == JOptionPane.YES_OPTION) {
@@ -746,9 +748,9 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
                     ResultSet r = s.executeQuery(sentence);
                     if (r.next()) {
                         String ans = r.getString(1);
-                        JOptionPane.showMessageDialog(this, ans);
+                        NotificationManager.showNotification ( ans, NotificationIcon.information.getIcon() ).setDisplayTime(5000);
                     } else {
-                        JOptionPane.showMessageDialog(this, "Error al intentar borrar", "Error", JOptionPane.ERROR_MESSAGE);
+                        NotificationManager.showNotification ( "Error al intentar borrar", NotificationIcon.error.getIcon() ).setDisplayTime(5000);
                     }
                     c.c.close();
                 } catch (ClassNotFoundException | SQLException ex) {
@@ -775,7 +777,7 @@ public class JIF_Producto extends javax.swing.JInternalFrame {
             JasperPrint print = JasperFillManager.fillReport(report,map, c.c);
             JasperViewer.viewReport(print, false);
         } catch (ClassNotFoundException | SQLException | JRException ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error con la conexión", JOptionPane.ERROR_MESSAGE);
+            NotificationManager.showNotification ( "Error al general el reporte", NotificationIcon.error.getIcon() ).setDisplayTime(5000);
         }
     }//GEN-LAST:event_jb_InformeActionPerformed
 

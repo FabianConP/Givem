@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="65450644-d19a-440b-8abb-afaf651c4ca7">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="65450644-d19a-440b-8abb-afaf651c4ca7">
 	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="903"/>
+	<property name="ireport.x" value="567"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
@@ -23,7 +23,8 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[CALL sp_productosVendidosT($P!{IDTIENDA});]]>
+		<![CDATA[-- CALL sp_productosVendidosT($P!{IDTIENDA}, '$P!{FECHAINI}','$P!{FECHAFIN}');
+CALL sp_productosVendidosT(1, '2014-01-25 00:00:00', '2014-01-25 23:59:59');]]>
 	</queryString>
 	<field name="fecha" class="java.sql.Timestamp">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -43,13 +44,16 @@
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="nombreP" class="java.lang.String"/>
+	<field name="descuento" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="cantidad" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="V.cantidad * P.precio" class="java.math.BigDecimal"/>
+	<field name="precioT" class="java.math.BigDecimal"/>
 	<variable name="totalPrecio" class="java.lang.Integer" calculation="Sum">
-            <variableExpression><![CDATA[$F{V.cantidad * P.precio}]]></variableExpression>
-        </variable>
+		<variableExpression><![CDATA[$F{precioT}]]></variableExpression>
+	</variable>
 	<group name="fecha">
 		<groupExpression><![CDATA[$F{fecha}]]></groupExpression>
 		<groupHeader>
@@ -71,11 +75,11 @@
 					<textFieldExpression><![CDATA[$F{nombreE}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="721" y="9" width="81" height="18" uuid="e842a942-57a5-49d9-b285-f30dbd75c94a"/>
+					<reportElement style="Detail" positionType="Float" x="728" y="9" width="74" height="18" uuid="e842a942-57a5-49d9-b285-f30dbd75c94a"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{V.cantidad * P.precio}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[$F{precioT}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
 					<reportElement style="Detail" positionType="Float" x="93" y="0" width="200" height="18" uuid="907f014d-8c55-47a9-a0d0-3cd76ed96055"/>
@@ -85,46 +89,39 @@
 					<textFieldExpression><![CDATA[$F{cedula}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="293" y="0" width="200" height="18" uuid="ecfbe50a-9b8c-469d-befc-23e6b9396f7c"/>
+					<reportElement style="Detail" positionType="Float" x="293" y="0" width="190" height="18" uuid="ecfbe50a-9b8c-469d-befc-23e6b9396f7c"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{idNumero}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="293" y="18" width="200" height="18" uuid="69a45675-6f75-483d-be92-f321e5b9609f"/>
+					<reportElement style="Detail" positionType="Float" x="293" y="18" width="190" height="18" uuid="69a45675-6f75-483d-be92-f321e5b9609f"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nombreC}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="493" y="0" width="200" height="18" uuid="53257185-f09b-474c-8ded-5062964efca4"/>
+					<reportElement style="Detail" positionType="Float" x="483" y="0" width="184" height="18" uuid="53257185-f09b-474c-8ded-5062964efca4"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{idProducto}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="493" y="18" width="200" height="18" uuid="1959b332-1ed0-489d-8c8a-b1e05a689295"/>
+					<reportElement style="Detail" positionType="Float" x="483" y="18" width="184" height="18" uuid="1959b332-1ed0-489d-8c8a-b1e05a689295"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{nombreP}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="695" y="9" width="26" height="18" uuid="88adaeb7-6f7c-4f65-b2af-0c3e3f6937eb"/>
+					<reportElement style="Detail" positionType="Float" x="702" y="9" width="26" height="18" uuid="88adaeb7-6f7c-4f65-b2af-0c3e3f6937eb"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="2" y="9" width="91" height="18" uuid="6cf88417-8267-4a53-acc4-7c59501bb030"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
 				</textField>
 				<line>
 					<reportElement positionType="FixRelativeToBottom" x="0" y="36" width="802" height="1" uuid="e185a592-8a1e-40f3-99c1-66fdac52c739"/>
@@ -132,6 +129,20 @@
 						<pen lineWidth="0.5" lineColor="#999999"/>
 					</graphicElement>
 				</line>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="667" y="9" width="35" height="18" uuid="475969a2-4ed8-4062-acf7-502d8c3ebeb1"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{descuento}+"%"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" positionType="Float" x="0" y="2" width="91" height="34" uuid="6cf88417-8267-4a53-acc4-7c59501bb030"/>
+					<textElement>
+						<font size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupHeader>
 	</group>
@@ -215,14 +226,14 @@
 				<text><![CDATA[Empleado]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="493" y="0" width="200" height="18" forecolor="#000000" uuid="1e513b26-a210-4bb0-8cde-5ab71d34f1fd"/>
+				<reportElement style="Column header" x="483" y="0" width="184" height="18" forecolor="#000000" uuid="1e513b26-a210-4bb0-8cde-5ab71d34f1fd"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Producto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="721" y="0" width="74" height="18" forecolor="#000000" uuid="ef639658-8492-4f0d-bc83-62040849b4c4"/>
+				<reportElement style="Column header" x="728" y="0" width="74" height="18" forecolor="#000000" uuid="ef639658-8492-4f0d-bc83-62040849b4c4"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -236,18 +247,25 @@
 				<text><![CDATA[Fecha]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="293" y="0" width="200" height="18" forecolor="#000000" uuid="483f3b74-b9ff-43be-9e2b-a421ce7df4ba"/>
+				<reportElement style="Column header" x="293" y="0" width="190" height="18" forecolor="#000000" uuid="483f3b74-b9ff-43be-9e2b-a421ce7df4ba"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cliente]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="693" y="0" width="28" height="18" forecolor="#000000" uuid="80c75285-9ad3-473b-9a1d-f3cd6af56bc8"/>
+				<reportElement style="Column header" x="702" y="0" width="26" height="18" forecolor="#000000" uuid="80c75285-9ad3-473b-9a1d-f3cd6af56bc8"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Uni.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="670" y="0" width="32" height="18" forecolor="#000000" uuid="b5d2455e-6a4e-4706-b414-4afd078a170b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dto.]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -291,7 +309,7 @@
 					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font size="10" isBold="false"/>
 					</textElement>
-					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+					<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 				</textField>
 				<textField pattern="EEEEE dd MMMMM yyyy">
 					<reportElement style="Column header" x="2" y="3" width="197" height="20" forecolor="#FFFFFF" uuid="9aff2e64-b366-49d8-b784-4c1e20dd309e"/>

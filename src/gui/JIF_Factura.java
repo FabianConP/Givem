@@ -6,6 +6,8 @@
 package gui;
 
 import Conexion.Conexion;
+import com.alee.managers.notification.NotificationIcon;
+import com.alee.managers.notification.NotificationManager;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,8 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
@@ -562,7 +562,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
 
     private void jb_BuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_BuscarProductoActionPerformed
         if (jl_Tienda.getText().length() == 0 || jl_NumeroFactura.getText().length() == 0) {
-            JOptionPane.showMessageDialog(this, "Primero seleccione el vendedor y el cliente");
+            NotificationManager.showNotification("Primero seleccione el vendedor y el cliente", NotificationIcon.information.getIcon()).setDisplayTime(5000);
         } else {
             Frm_BuscadorProducto frm_BuscadorProducto = new Frm_BuscadorProducto();
             frm_BuscadorProducto.main(new String[]{""});
@@ -723,7 +723,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
             jl_NombreProducto.setText("");
             cambioEstadoProducto(false);
         } else {
-            JOptionPane.showMessageDialog(this, "Ya se ha agregado este tipo de producto a la venta.\nSi desea cambiar la cantidad del producto\nseleccionelo en la tabla de venta y presione [Supr]\n y vuelva a agregarlo");
+            NotificationManager.showNotification("<html>Ya se ha agregado este tipo de producto a la venta.<p>Si desea cambiar la cantidad del producto<p>seleccionelo en la tabla de venta y presione [Supr]<p>y vuelva a agregarlo</html>", NotificationIcon.information.getIcon()).setDisplayTime(5000);
         }
     }//GEN-LAST:event_jb_AgregarProductoActionPerformed
 
@@ -735,7 +735,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
 
     private void jb_FacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_FacturarActionPerformed
         if (jta_Venta.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(this, "No se ha agregado ningún producto(s) a la factura");
+            NotificationManager.showNotification("No se ha agregado ningún producto(s) a la factura", NotificationIcon.information.getIcon()).setDisplayTime(5000);
         } else {
             DefaultTableModel dtm = (DefaultTableModel) jta_Venta.getModel();
             for (int i = 0; i < jta_Venta.getRowCount(); i++) {
@@ -750,7 +750,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                     s.executeQuery(sentence);
                     c.c.close();
                 } catch (ClassNotFoundException | SQLException ex) {
-                    JOptionPane.showMessageDialog(this, "No se pudo completar la facturación");
+                    NotificationManager.showNotification("No se pudo completar la facturación", NotificationIcon.error.getIcon()).setDisplayTime(5000);
                     try {
                         Conexion c = new Conexion();
                         Statement s = c.c.createStatement();
@@ -792,9 +792,9 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
                 JasperViewer.viewReport(print, false);
                 this.dispose();
             } catch (FileNotFoundException ex) {
-                JOptionPane.showMessageDialog(this, "No se ha encontrado el archivo de configuración de las facturas", "Error en archivo", JOptionPane.ERROR_MESSAGE);
+                NotificationManager.showNotification("No se ha encontrado el archivo de configuración de las facturas", NotificationIcon.error.getIcon()).setDisplayTime(5000);
             } catch (IOException | ClassNotFoundException | SQLException | JRException ex) {
-                JOptionPane.showMessageDialog(this, "Error al conectarse a la base de datos", "Error",JOptionPane.ERROR_MESSAGE);
+                NotificationManager.showNotification("Error al conectarse a la base de datos", NotificationIcon.error.getIcon()).setDisplayTime(5000);
             }
         }
     }//GEN-LAST:event_jb_FacturarActionPerformed

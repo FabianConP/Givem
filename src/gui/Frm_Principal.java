@@ -6,13 +6,10 @@
 package gui;
 
 import Conexion.Conexion;
-import java.awt.Graphics;
-import java.awt.Image;
+import com.alee.managers.notification.NotificationManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.ImageIcon;
-import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 
 /**
@@ -72,10 +69,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         jmi_Generar_CS = new javax.swing.JMenuItem();
         jmi_Restaurar = new javax.swing.JMenuItem();
         jm_Informes = new javax.swing.JMenu();
-        jmi_Informe_General = new javax.swing.JMenuItem();
         jmi_Productos_Vendidos = new javax.swing.JMenuItem();
-        jmi_Ventas_Tienda = new javax.swing.JMenuItem();
-        jmi_Ventas_Vendedor = new javax.swing.JMenuItem();
         jmi_Inventario = new javax.swing.JMenuItem();
         jm_Ayuda = new javax.swing.JMenu();
         jmi_Contenidos_Ayuda = new javax.swing.JMenuItem();
@@ -90,6 +84,9 @@ public class Frm_Principal extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
+
+        jdp_DesktopPrincipal.setAlignmentX(0.0F);
+        jdp_DesktopPrincipal.setAlignmentY(0.0F);
 
         jm_Archivo.setText("Archivo");
 
@@ -115,15 +112,19 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         jm_Buscar.setText("Buscar");
 
+        jmi_BProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_producto_small.png"))); // NOI18N
         jmi_BProducto.setText("Producto");
         jm_Buscar.add(jmi_BProducto);
 
+        jmi_BCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_cliente_small.png"))); // NOI18N
         jmi_BCliente.setText("Cliente");
         jm_Buscar.add(jmi_BCliente);
 
+        jmi_BEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_empleado_small.png"))); // NOI18N
         jmi_BEmpleado.setText("Empleado");
         jm_Buscar.add(jmi_BEmpleado);
 
+        jmi_BTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_tienda_small.png"))); // NOI18N
         jmi_BTienda.setText("Tienda");
         jm_Buscar.add(jmi_BTienda);
 
@@ -207,14 +208,7 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         jm_Informes.setText("Informes");
 
-        jmi_Informe_General.setText("Informe General");
-        jmi_Informe_General.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmi_Informe_GeneralActionPerformed(evt);
-            }
-        });
-        jm_Informes.add(jmi_Informe_General);
-
+        jmi_Productos_Vendidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_productosVendidos_small.png"))); // NOI18N
         jmi_Productos_Vendidos.setText("Productos Vendidos");
         jmi_Productos_Vendidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -223,12 +217,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         });
         jm_Informes.add(jmi_Productos_Vendidos);
 
-        jmi_Ventas_Tienda.setText("Ventas por Tienda");
-        jm_Informes.add(jmi_Ventas_Tienda);
-
-        jmi_Ventas_Vendedor.setText("Ventas por Vendedor");
-        jm_Informes.add(jmi_Ventas_Vendedor);
-
+        jmi_Inventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_inventario_small.png"))); // NOI18N
         jmi_Inventario.setText("Inventario");
         jm_Informes.add(jmi_Inventario);
 
@@ -252,13 +241,11 @@ public class Frm_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jdp_DesktopPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1024, Short.MAX_VALUE)
+            .addComponent(jdp_DesktopPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 1228, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jdp_DesktopPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jdp_DesktopPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
         );
 
         pack();
@@ -332,19 +319,13 @@ public class Frm_Principal extends javax.swing.JFrame {
                 direccion = r.getString(11);
                 telefono = r.getString(12);
                 email = r.getString(13);
+                NotificationManager.showNotification("<html>Bienvenido " + nombre + ", <p>su rol es " + rol.toLowerCase()+"</html>").setDisplayTime(5000);
             }
             c.c.close();
         } catch (ClassNotFoundException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_formWindowOpened
-
-    private void jmi_Informe_GeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_Informe_GeneralActionPerformed
-        JIF_InformeGeneral jif_informeGeneral = new JIF_InformeGeneral();
-        jdp_DesktopPrincipal.removeAll();
-        jdp_DesktopPrincipal.add(jif_informeGeneral);
-        jif_informeGeneral.show();
-    }//GEN-LAST:event_jmi_Informe_GeneralActionPerformed
 
     private void jmi_Productos_VendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_Productos_VendidosActionPerformed
         JIF_ProductosVendidos jif_productosVendidos = new JIF_ProductosVendidos();
@@ -408,7 +389,6 @@ public class Frm_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_Empleado;
     private javax.swing.JMenuItem jmi_Factura;
     private javax.swing.JMenuItem jmi_Generar_CS;
-    private javax.swing.JMenuItem jmi_Informe_General;
     private javax.swing.JMenuItem jmi_Inventario;
     private javax.swing.JMenuItem jmi_Producto;
     private javax.swing.JMenuItem jmi_Productos_Vendidos;
@@ -416,7 +396,5 @@ public class Frm_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_Restaurar;
     private javax.swing.JMenuItem jmi_Salir;
     private javax.swing.JMenuItem jmi_Tienda;
-    private javax.swing.JMenuItem jmi_Ventas_Tienda;
-    private javax.swing.JMenuItem jmi_Ventas_Vendedor;
     // End of variables declaration//GEN-END:variables
 }
