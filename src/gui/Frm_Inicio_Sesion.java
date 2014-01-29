@@ -27,6 +27,7 @@ public class Frm_Inicio_Sesion extends javax.swing.JFrame {
      */
     public Frm_Inicio_Sesion() {
         initComponents();
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imágenes/img_icono.png")).getImage());
         this.getContentPane().setBackground(Color.white);
     }
 

@@ -564,7 +564,7 @@ public class JIF_Factura extends javax.swing.JInternalFrame {
         if (jl_Tienda.getText().length() == 0 || jl_NumeroFactura.getText().length() == 0) {
             NotificationManager.showNotification("Primero seleccione el vendedor y el cliente", NotificationIcon.information.getIcon()).setDisplayTime(5000);
         } else {
-            Frm_BuscadorProducto frm_BuscadorProducto = new Frm_BuscadorProducto();
+            Frm_BuscadorProductoFac frm_BuscadorProducto = new Frm_BuscadorProductoFac();
             frm_BuscadorProducto.main(new String[]{""});
         }
     }//GEN-LAST:event_jb_BuscarProductoActionPerformed

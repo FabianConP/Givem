@@ -10,6 +10,7 @@ import com.alee.managers.notification.NotificationManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -36,6 +37,7 @@ public class Frm_Principal extends javax.swing.JFrame {
         initComponents();
         cedula = Cedula;
         rol = Rol;
+        this.setIconImage(new ImageIcon(getClass().getResource("/Imágenes/img_icono.png")).getImage());
         this.setTitle(this.getTitle() + " - " + rol);
     }
 
@@ -60,7 +62,10 @@ public class Frm_Principal extends javax.swing.JFrame {
         jmi_BTienda = new javax.swing.JMenuItem();
         jm_Agregar_Modificar = new javax.swing.JMenu();
         jmi_Factura = new javax.swing.JMenuItem();
+        jse_Separador1 = new javax.swing.JPopupMenu.Separator();
         jmi_Producto = new javax.swing.JMenuItem();
+        jmi_IngresoProducto = new javax.swing.JMenuItem();
+        jse_Separador2 = new javax.swing.JPopupMenu.Separator();
         jmi_Cliente = new javax.swing.JMenuItem();
         jmi_Empleado = new javax.swing.JMenuItem();
         jmi_Proveedor = new javax.swing.JMenuItem();
@@ -112,18 +117,27 @@ public class Frm_Principal extends javax.swing.JFrame {
 
         jm_Buscar.setText("Buscar");
 
+        jmi_BProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK));
         jmi_BProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_producto_small.png"))); // NOI18N
         jmi_BProducto.setText("Producto");
+        jmi_BProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_BProductoActionPerformed(evt);
+            }
+        });
         jm_Buscar.add(jmi_BProducto);
 
+        jmi_BCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
         jmi_BCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_cliente_small.png"))); // NOI18N
         jmi_BCliente.setText("Cliente");
         jm_Buscar.add(jmi_BCliente);
 
+        jmi_BEmpleado.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK));
         jmi_BEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_empleado_small.png"))); // NOI18N
         jmi_BEmpleado.setText("Empleado");
         jm_Buscar.add(jmi_BEmpleado);
 
+        jmi_BTienda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK));
         jmi_BTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_tienda_small.png"))); // NOI18N
         jmi_BTienda.setText("Tienda");
         jm_Buscar.add(jmi_BTienda);
@@ -141,6 +155,7 @@ public class Frm_Principal extends javax.swing.JFrame {
             }
         });
         jm_Agregar_Modificar.add(jmi_Factura);
+        jm_Agregar_Modificar.add(jse_Separador1);
 
         jmi_Producto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         jmi_Producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_producto_small.png"))); // NOI18N
@@ -151,6 +166,17 @@ public class Frm_Principal extends javax.swing.JFrame {
             }
         });
         jm_Agregar_Modificar.add(jmi_Producto);
+
+        jmi_IngresoProducto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
+        jmi_IngresoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_ingresoProducto_small.png"))); // NOI18N
+        jmi_IngresoProducto.setText("Ingreso producto");
+        jmi_IngresoProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_IngresoProductoActionPerformed(evt);
+            }
+        });
+        jm_Agregar_Modificar.add(jmi_IngresoProducto);
+        jm_Agregar_Modificar.add(jse_Separador2);
 
         jmi_Cliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jmi_Cliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imágenes/img_cliente_small.png"))); // NOI18N
@@ -310,7 +336,7 @@ public class Frm_Principal extends javax.swing.JFrame {
             Statement s = c.c.createStatement();
             String sentence = "CALL sp_infoSesion(" + cedula + ")";
             ResultSet r = s.executeQuery(sentence);
-            while (r.next()) {
+            if (r.next()) {
                 idTienda = r.getString(3);
                 rol = r.getString(6);
                 nombre = r.getString(8);
@@ -319,13 +345,28 @@ public class Frm_Principal extends javax.swing.JFrame {
                 direccion = r.getString(11);
                 telefono = r.getString(12);
                 email = r.getString(13);
-                NotificationManager.showNotification("<html>Bienvenido " + nombre + ", <p>su rol es " + rol.toLowerCase()+"</html>").setDisplayTime(5000);
+                NotificationManager.showNotification("<html>Bienvenido " + nombre + ", <p>su rol es " + rol.toLowerCase() + "</html>").setDisplayTime(5000);
             }
             c.c.close();
         } catch (ClassNotFoundException | SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+        rolMet(rol);
     }//GEN-LAST:event_formWindowOpened
+
+    public void rolMet(String rol) {
+        if (rol.equals("Vendedor")) {
+            jmi_Producto.setEnabled(false);
+            jmi_IngresoProducto.setEnabled(false);
+            jmi_Cliente.setEnabled(false);
+            jmi_Empleado.setEnabled(false);
+            jmi_Proveedor.setEnabled(false);
+            jmi_Tienda.setEnabled(false);
+            jm_Herramientas.setEnabled(false);
+            jm_Informes.setEnabled(false);
+        } 
+    }
+
 
     private void jmi_Productos_VendidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_Productos_VendidosActionPerformed
         JIF_ProductosVendidos jif_productosVendidos = new JIF_ProductosVendidos();
@@ -333,6 +374,18 @@ public class Frm_Principal extends javax.swing.JFrame {
         jdp_DesktopPrincipal.add(jif_productosVendidos);
         jif_productosVendidos.show();
     }//GEN-LAST:event_jmi_Productos_VendidosActionPerformed
+
+    private void jmi_IngresoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_IngresoProductoActionPerformed
+        JIF_IngresoProducto jif_IngresoProducto = new JIF_IngresoProducto();
+        jdp_DesktopPrincipal.removeAll();
+        jdp_DesktopPrincipal.add(jif_IngresoProducto);
+        jif_IngresoProducto.show();
+    }//GEN-LAST:event_jmi_IngresoProductoActionPerformed
+
+    private void jmi_BProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_BProductoActionPerformed
+        Frm_BuscadorProductoGen frm_BuscadorProductoGen = new Frm_BuscadorProductoGen();
+        frm_BuscadorProductoGen.main(new String[]{""});
+    }//GEN-LAST:event_jmi_BProductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,6 +442,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_Empleado;
     private javax.swing.JMenuItem jmi_Factura;
     private javax.swing.JMenuItem jmi_Generar_CS;
+    private javax.swing.JMenuItem jmi_IngresoProducto;
     private javax.swing.JMenuItem jmi_Inventario;
     private javax.swing.JMenuItem jmi_Producto;
     private javax.swing.JMenuItem jmi_Productos_Vendidos;
@@ -396,5 +450,7 @@ public class Frm_Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_Restaurar;
     private javax.swing.JMenuItem jmi_Salir;
     private javax.swing.JMenuItem jmi_Tienda;
+    private javax.swing.JPopupMenu.Separator jse_Separador1;
+    private javax.swing.JPopupMenu.Separator jse_Separador2;
     // End of variables declaration//GEN-END:variables
 }

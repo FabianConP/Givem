@@ -18,12 +18,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Personal
  */
-public class Frm_BuscadorProducto extends javax.swing.JFrame {
+public class Frm_BuscadorProductoFac extends javax.swing.JFrame {
 
     /**
      * Creates new form Frm_BuscadorProducto
      */
-    public Frm_BuscadorProducto() {
+    public Frm_BuscadorProductoFac() {
         initComponents();
     }
 
@@ -131,6 +131,7 @@ public class Frm_BuscadorProducto extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jta_ArticulosRegistrados);
+        jta_ArticulosRegistrados.setAutoCreateRowSorter(true);
 
         javax.swing.GroupLayout jp_ProductosRegistradosLayout = new javax.swing.GroupLayout(jp_ProductosRegistrados);
         jp_ProductosRegistrados.setLayout(jp_ProductosRegistradosLayout);
@@ -322,20 +323,20 @@ public class Frm_BuscadorProducto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Frm_BuscadorProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_BuscadorProductoFac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Frm_BuscadorProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_BuscadorProductoFac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Frm_BuscadorProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_BuscadorProductoFac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Frm_BuscadorProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Frm_BuscadorProductoFac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Frm_BuscadorProducto().setVisible(true);
+                new Frm_BuscadorProductoFac().setVisible(true);
             }
         });
     }
